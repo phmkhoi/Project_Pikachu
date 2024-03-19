@@ -8,19 +8,22 @@ using namespace std;
 
 int main() {
 	initWindow(1000, 500);
-	int choice;
-	while ((choice = mainMenu()) != 3) {
+	int choice = mainMenu();
+	while (choice >= 0 && choice <= 3) {
 		switch (choice) {
-		case 0: 
+		case 0:
 			break;
-		case 1: 
+		case 1:
 			break;
-		case 2: 
+		case 2:
 			readLeaderBoard();
 			break;
+		case 3:
+			exit(0);
 		default:
 			break;
 		}
 	}
+	_getch();
 	return 0;
 }

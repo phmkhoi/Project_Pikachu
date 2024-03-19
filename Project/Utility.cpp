@@ -1,13 +1,16 @@
 #include "Utility.h"
 #include "Struct.h"
 
+//Set Color
 void setColor(int color) {
 	HANDLE hcolor;
 	hcolor = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hcolor, color);
 }
 
+//Draw Box
 void drawBox(int x, int width, int y, int height, int text_color, int bg_color, string content) {
+	//BORDER
 	for (int ix = x; ix < x + width; ix++) {
 		gotoXY(ix, y);
 		cout << char(196);
@@ -22,11 +25,12 @@ void drawBox(int x, int width, int y, int height, int text_color, int bg_color, 
 		cout << char(179);
 	}
 
-	gotoXY(x, y); cout << char(218);
-	gotoXY(x + width - 1, y); cout << char(191);
-	gotoXY(x, y + height - 1); cout << char(192);
-	gotoXY(x + width - 1, y + height - 1); cout << char(217);
+	gotoXY(x, y); cout << char(218); //TOP LEFT CORNER
+	gotoXY(x + width - 1, y); cout << char(191); //TOP RIGHT CORNER
+	gotoXY(x, y + height - 1); cout << char(192); //BOTTOM LEFT CORNER
+	gotoXY(x + width - 1, y + height - 1); cout << char(217); //BOTTOM RIGHT CORNER
 
+	//Draw bg inside box
 	setColor(text_color + bg_color * 16);
 	for (int ix = x + 1; ix < x + width - 1; ix++) {
 		for (int iy = y + 1; iy < y + height - 1; iy++) {
@@ -35,169 +39,158 @@ void drawBox(int x, int width, int y, int height, int text_color, int bg_color, 
 		}
 	}
 
+	//Print content
 	gotoXY(x + (width - content.length()) / 2, y + (height - 1) / 2);
 	cout << content;
 	setColor(WHITE);
 }
 
+//Game Start UI
 int mainMenu() {
 	//Draw Word
-	gotoXY(10, 4);
-	setColor(GREEN);
+	//THE
+	gotoXY(8, 1);
+	setColor(LIGHT_GREEN);
 	cout << " _____   _   _   _____";
-	gotoXY(10, 5);
+	gotoXY(8, 2);
 	cout << "|_   _| | | | | |  ___|";
-	gotoXY(10, 6);
-	setColor(AQUA);
+	gotoXY(8, 3);
 	cout << "  | |   | |_| | | |__  ";
-	gotoXY(10, 7);
+	gotoXY(8, 4);
+	setColor(LIGHT_AQUA);
 	cout << "  | |   |  _  | |  __| ";
-	gotoXY(10, 8);
-	setColor(YELLOW);
+	gotoXY(8, 5);
 	cout << "  | |   | | | | | |___ ";
-	gotoXY(10, 9);
+	gotoXY(8, 6);
 	cout << "  \\_/   \\_| |_/ \\____/ ";
 
-	gotoXY(10, 11);
-	setColor(GREEN);
+	//MATCHING
+	gotoXY(36, 1);
+	setColor(LIGHT_GREEN);
 	cout << "___  ___  ___  _____  _____  _   _  _____  _   _  _____ ";
-	gotoXY(10, 12);
+	gotoXY(36, 2);
 	cout << "|  \\/  | / _ \\|_   _|/  __ \\| | | ||_   _|| \\ | ||  __ \\";
-	gotoXY(10, 13);
-	setColor(AQUA);
+	gotoXY(36, 3);
 	cout << "| .  . |/ /_\\ \\ | |  | /  \\/| |_| |  | |  |  \\| || |  \\/";
-	gotoXY(10, 14);
+	gotoXY(36, 4);
+	setColor(LIGHT_AQUA);
 	cout << "| |\\/| ||  _  | | |  | |    |  _  |  | |  | . ` || | __ ";
-	gotoXY(10, 15);
-	setColor(YELLOW);
+	gotoXY(36, 5);
 	cout << "| |  | || | | | | |  | \\__/\\| | | | _| |_ | |\\  || |_\\ \\";
-	gotoXY(10, 16);
+	gotoXY(36, 6);
 	cout << "\\_|  |_/\\_| |_/ \\_/   \\____/\\_| |_/ \\___/ \\_| \\_/ \\____/";
 
-	gotoXY(10, 18);
-	setColor(GREEN);
+	//GAME
+	gotoXY(97, 1);
+	setColor(LIGHT_GREEN);
 	cout << " _____   ___  ___  ___ _____ ";
-	gotoXY(10, 19);
+	gotoXY(97, 2);
 	cout << "|  __ \\ / _ \\ |  \\/  ||  ___|";
-	gotoXY(10, 20);
-	setColor(AQUA);
+	gotoXY(97, 3);
 	cout << "| |  \\// /_\\ \\| .  . || |__  ";
-	gotoXY(10, 21);
+	gotoXY(97, 4);
+	setColor(LIGHT_AQUA);
 	cout << "| | __ |  _  || |\\/| ||  __| ";
-	gotoXY(10, 22);
-	setColor(YELLOW);
+	gotoXY(97, 5);
 	cout << "| |_\\ \\| | | || |  | || |___ ";
-	gotoXY(10, 23);
+	gotoXY(97, 6);
 	cout << " \\____/\\_| |_/\\_|  |_/\\____/ ";
 
-	setColor(WHITE);
-	int x_menu = 100, y_menu = 4;
+	//PIKACHU
+	setColor(LIGHT_YELLOW);
+	gotoXY(34, 8);
+	cout << " ________  ___  ___  __    ________  ________  ___  ___  ___  ___     ";
+	gotoXY(34, 9);
+	cout << "|\\   __  \\|\\  \\|\\  \\|\\  \\ |\\   __  \\|\\   ____\\|\\  \\|\\  \\|\\  \\|\\  \\    ";
+	gotoXY(34, 10);
+	cout << "\\ \\  \\|\\  \\ \\  \\ \\  \\/  /|\\ \\  \\|\\  \\ \\  \\___|\\ \\  \\\\\\  \\ \\  \\\\\\  \\   ";
+	gotoXY(34, 11);
+	cout << " \\ \\   ____\\ \\  \\ \\   ___  \\ \\   __  \\ \\  \\    \\ \\   __  \\ \\  \\\\\\  \\  ";
+	gotoXY(34, 12);
+	cout << "  \\ \\  \\___|\\ \\  \\ \\  \\\\ \\  \\ \\  \\ \\  \\ \\  \\____\\ \\  \\ \\  \\ \\  \\\\\\  \\ ";
+	gotoXY(34, 13);
+	cout << "   \\ \\__\\    \\ \\__\\ \\__\\\\ \\__\\ \\__\\ \\__\\ \\_______\\ \\__\\ \\__\\ \\_______\\";
+	gotoXY(34, 14);
+	cout << "    \\|__|     \\|__|\\|__| \\|__|\\|__|\\|__|\\|_______|\\|__|\\|__|\\|_______|";
 
-	for (int x_border = x_menu - 5; x_border <= x_menu + 16 + 4; x_border++) {
-		setColor(GREEN);
-		gotoXY(x_border, y_menu - 2);
-		cout << char(205);
-		setColor(YELLOW);
-		gotoXY(x_border, y_menu + 5 * 4 + 1);
-		cout << char(205);
-	}
-
-	setColor(WHITE);
-	for (int y_border = y_menu - 2; y_border <= y_menu + 5 * 4 + 1; y_border++) {
-		if (y_border <= y_menu - 2 + 7) {
-			setColor(GREEN);
-		}
-		else if (y_border <= y_menu - 2 + 16) {
-			setColor(AQUA);
-		}
-		else {
-			setColor(YELLOW);
-		}
-		gotoXY(x_menu - 5, y_border);
-		cout << char(186);
-		gotoXY(x_menu + 16 + 4, y_border);
-		cout << char(186);
-	}
-	setColor(GREEN);
-	gotoXY(x_menu - 5, y_menu - 2); cout << char(201);
-	gotoXY(x_menu + 16 + 4, y_menu - 2); cout << char(187);
-	setColor(YELLOW);
-	gotoXY(x_menu - 5, y_menu + 5 * 4 + 1); cout << char(200);
-	gotoXY(x_menu + 16 + 4, y_menu + 5 * 4 + 1); cout << char(188);
-
+	//Reset Color
 	setColor(WHITE);
 
+	//COORDINATE OF MENU
+	int x_menu = 60, y_menu = 16;
+
+	//Menu
 	int choice[4] = { 0, 0, 0, 0 }, cur_choice = 0, key, temp_key;
 	while (1) {
 		choice[cur_choice] = 1;
 
 		if (choice[0]) {
 			setColor(WHITE);
-			drawBox(x_menu, 16, y_menu, 5, 12, 10, "NORMAL");
-			gotoXY(x_menu - 3, y_menu + 2);
+			drawBox(x_menu, 16, y_menu, 3, BLACK, WHITE, "NORMAL");
+			gotoXY(x_menu - 3, y_menu + 1);
 			cout << ">>";
-			gotoXY(x_menu + 16 - 1 + 2, y_menu + 2);
+			gotoXY(x_menu + 16 - 1 + 2, y_menu + 1);
 			cout << "<<";
 		}
 		else {
 			setColor(WHITE);
-			drawBox(x_menu, 16, y_menu, 5, 7, 0, "NORMAL");
+			drawBox(x_menu, 16, y_menu, 3, WHITE, BLACK, "NORMAL");
 			setColor(0 * 0);
-			gotoXY(x_menu - 3, y_menu + 2);
+			gotoXY(x_menu - 3, y_menu + 1);
 			cout << "  ";
-			gotoXY(x_menu + 16 - 1 + 2, y_menu + 2);
+			gotoXY(x_menu + 16 - 1 + 2, y_menu + 1);
 			cout << "  ";
 		}
 
 		if (choice[1]) {
 			setColor(WHITE);
-			drawBox(x_menu, 16, y_menu + 5, 5, 12, 3, "HARD");
-			gotoXY(x_menu - 3, y_menu + 5 + 2);
+			drawBox(x_menu, 16, y_menu + 3, 3, BLACK, WHITE, "HARD");
+			gotoXY(x_menu - 3, y_menu + 3 + 1);
 			cout << ">>";
-			gotoXY(x_menu + 16 - 1 + 2, y_menu + 5 + 2);
+			gotoXY(x_menu + 16 - 1 + 2, y_menu + 3 + 1);
 			cout << "<<";
 		}
 		else {
 			setColor(WHITE);
-			drawBox(x_menu, 16, y_menu + 5, 5, 7, 0, "HARD");
+			drawBox(x_menu, 16, y_menu + 3, 3, WHITE, BLACK, "HARD");
 			setColor(0 * 0);
-			gotoXY(x_menu - 3, y_menu + 5 + 2);
+			gotoXY(x_menu - 3, y_menu + 3 + 1);
 			cout << "  ";
-			gotoXY(x_menu + 16 - 1 + 2, y_menu + 5 + 2);
+			gotoXY(x_menu + 16 - 1 + 2, y_menu + 3 + 1);
 			cout << "  ";
 		}
 
 		if (choice[2]) {
 			setColor(WHITE);
-			drawBox(x_menu, 16, y_menu + 10, 5, 12, 3, "LEADER BOARD");
-			gotoXY(x_menu - 3, y_menu + 10 + 2);
+			drawBox(x_menu, 16, y_menu + 6, 3, BLACK, WHITE, "LEADER BOARD");
+			gotoXY(x_menu - 3, y_menu + 6 + 1);
 			cout << ">>";
-			gotoXY(x_menu + 16 - 1 + 2, y_menu + 10 + 2);
+			gotoXY(x_menu + 16 - 1 + 2, y_menu + 6 + 1);
 			cout << "<<";
 		}
 		else {
 			setColor(WHITE);
-			drawBox(x_menu, 16, y_menu + 10, 5, 7, 0, "LEADER BOARD");
-			gotoXY(x_menu - 3, y_menu + 10 + 2);
+			drawBox(x_menu, 16, y_menu + 6, 3, WHITE, BLACK, "LEADER BOARD");
+			gotoXY(x_menu - 3, y_menu + 6 + 1);
 			cout << "  ";
-			gotoXY(x_menu + 16 - 1 + 2, y_menu + 10 + 2);
+			gotoXY(x_menu + 16 - 1 + 2, y_menu + 6 + 1);
 			cout << "  ";
 		}
 
 		if (choice[3]) {
 			setColor(WHITE);
-			drawBox(x_menu, 16, y_menu + 15, 5, 12, 6, "EXIT");
-			gotoXY(x_menu - 3, y_menu + 15 + 2);
+			drawBox(x_menu, 16, y_menu + 9, 3, BLACK, WHITE, "EXIT");
+			gotoXY(x_menu - 3, y_menu + 9 + 1);
 			cout << ">>";
-			gotoXY(x_menu + 16 - 1 + 2, y_menu + 15 + 2);
+			gotoXY(x_menu + 16 - 1 + 2, y_menu + 9 + 1);
 			cout << "<<";
 		}
 		else {
 			setColor(WHITE);
-			drawBox(x_menu, 16, y_menu + 15, 5, 7, 0, "EXIT");
-			gotoXY(x_menu - 3, y_menu + 15 + 2);
+			drawBox(x_menu, 16, y_menu + 9, 3, WHITE, BLACK, "EXIT");
+			gotoXY(x_menu - 3, y_menu + 9 + 1);
 			cout << "  ";
-			gotoXY(x_menu + 16 - 1 + 2, y_menu + 15 + 2);
+			gotoXY(x_menu + 16 - 1 + 2, y_menu + 9 + 1);
 			cout << "  ";
 		}
 
@@ -235,6 +228,6 @@ int mainMenu() {
 				}
 			}
 		}
- 	}
+	}
 }
 
