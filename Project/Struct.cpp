@@ -54,14 +54,14 @@ void displayPlayer(Player p, int rank) {
 }
 void readLeaderBoard() {
 	//Leader Board UI
-	gotoXY(58, 5);
-	setColor(GREEN);
+	gotoXY(58, 3);
+	setColor(LIGHT_BLUE);
 	cout << "LEADER BOARD";
 	gotoXY(27, 6);
-	setColor(AQUA);
+	setColor(BRIGHT_WHITE);
 	cout << "NAME";
 	gotoXY(97, 6);
-	setColor(YELLOW);
+	setColor(BRIGHT_WHITE);
 	cout << "POINT";
 	setColor(WHITE);
 	gotoXY(27, 7);
