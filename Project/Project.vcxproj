@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Console_Settings.cpp" />
+    <ClCompile Include="LeaderBoard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="Struct.cpp" />
@@ -135,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console_Settings.h" />
+    <ClInclude Include="LeaderBoard.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="Utility.h" />
   </ItemGroup>

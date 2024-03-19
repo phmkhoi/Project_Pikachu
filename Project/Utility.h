@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <conio.h>
 #include "Console_Settings.h"
+using namespace std;
 
 #define UP_KEY 72
 #define DOWN_KEY 80
@@ -29,7 +30,6 @@
 #define LIGHT_YELLOW 14
 #define BRIGHT_WHITE 15
 
-using namespace std;
 
 void setColor(int color);
 void drawBox(int x, int width, int y, int height, int text_color, int bg_color, string content);

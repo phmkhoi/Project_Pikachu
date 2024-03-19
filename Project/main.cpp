@@ -3,7 +3,7 @@
 #include "Console_Settings.h"
 #include "Struct.h"
 #include "Utility.h"
-
+#include "LeaderBoard.h"
 using namespace std;
 
 int main() {
