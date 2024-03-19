@@ -7,6 +7,7 @@
 #define DOWN_KEY 80
 #define LEFT_KEY 75
 #define RIGHT_KEY 77
+#define ESC_KEY 27
 #define ENTER_KEY 13
 #define BLACK 0
 #define GREEN 2
