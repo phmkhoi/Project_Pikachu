@@ -1,7 +1,4 @@
-#include <iostream>
-#include <Windows.h>
-
-using namespace std;
+#include "Console_Settings.h"
 
 //Move Cursor to Position (x, y)
 void gotoXY(int x, int y) {
@@ -20,7 +17,6 @@ void setCursor(bool visible) {
 	ipCursor.dwSize = 20;
 	SetConsoleCursorInfo(console, &ipCursor);
 }
-
 
 //resize Screen
 void resizeWindow(int x, int y) {

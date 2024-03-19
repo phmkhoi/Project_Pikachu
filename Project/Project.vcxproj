@@ -130,11 +130,16 @@
     <ClCompile Include="Console_Settings.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Project.cpp" />
+    <ClCompile Include="Struct.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console_Settings.h" />
+    <ClInclude Include="Struct.h" />
     <ClInclude Include="Utility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="LeaderBoard.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

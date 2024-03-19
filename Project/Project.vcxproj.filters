@@ -27,6 +27,9 @@
     <ClCompile Include="Utility.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="Struct.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console_Settings.h">
@@ -35,5 +38,13 @@
     <ClInclude Include="Utility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Struct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="LeaderBoard.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
