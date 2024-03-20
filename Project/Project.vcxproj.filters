@@ -33,6 +33,12 @@
     <ClCompile Include="LeaderBoard.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="NormalMode.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HardMode.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console_Settings.h">
@@ -45,6 +51,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LeaderBoard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalMode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HardMode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

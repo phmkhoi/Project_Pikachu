@@ -8,8 +8,7 @@ using namespace std;
 
 struct Player {
 	string name = " ";
-	int point = 0;
-	int life = 3;
+	int point, life;
 };
 typedef vector<Player> PlayerList;
 
