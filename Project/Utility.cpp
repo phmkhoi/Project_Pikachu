@@ -235,3 +235,35 @@ int mainMenu() {
 	}
 }
 
+void getBackground(char bg[][41]) {
+	ifstream ifs;
+	ifs.open("Background.txt", ios::in);
+	if (ifs) {
+		for (int i = 0; i < 23; i++) {
+			for (int j = 0; j < 41; j++) {
+				bg[i][j] = ifs.get();
+			}
+			ifs.ignore();
+		}
+	}
+	else {
+		memset(bg, ' ', sizeof(bg));
+	}
+	ifs.close();
+}
+
+void displayBackground(char bg[][41], int x, int y) {
+	//set bg color
+	setColor(LIGHT_GREEN);
+
+	//print bg from each cell
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 11; j++) {
+			gotoXY((x + 1) * 10 + j, (y + 1) * 4 + j);
+			cout << bg[y * 4 + i][x * 10 + j];
+		}
+	}
+
+	//reset color
+	setColor(WHITE);
+}

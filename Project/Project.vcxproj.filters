@@ -70,5 +70,8 @@
     <Text Include="LeaderBoard.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="Background.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

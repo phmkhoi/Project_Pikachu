@@ -34,3 +34,5 @@ using namespace std;
 void setColor(int color);
 void drawBox(int x, int width, int y, int height, int text_color, int bg_color, string content);
 int mainMenu();
+void getBackground(char bg[][41]);
+void displayBackground(char bg[][41], int x, int y);

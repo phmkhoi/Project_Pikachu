@@ -56,3 +56,56 @@ void displayPlayer(Player p, int rank) {
 	for (int i = 0; i < 79; i++) cout << "-";
 }
 
+
+char cell[5][11] = {
+	{"+--------+"},
+	{"|        |"},
+	{"|        |"},
+	{"|        |"},
+	{"+--------+"},
+};
+
+//draw cell in gameboard
+void CELL_1::drawCell(int color) {
+	/*if (!is_valid) {
+		return;
+	}*/
+
+	int x = j + 1, y = i + 1; //coordinate of cell
+
+	for (int i = 0; i < 5; i++) {
+		gotoXY(x * 9, y * 4 + i);
+		cout << cell[i];
+	}
+
+	//if (is_selected) {
+	//	setColor(color + WHITE * 16);
+	//	for (int i = 1; i < 4; i++) {
+	//		gotoXY(x * 10 + 1, y * 4 + i);
+	//		cout << "         ";
+	//	}
+
+	//	//print letter in cell
+	//	gotoXY(x * 10 + 5, y * 4 + 2);
+	//	cout << letter;
+ //		setColor(WHITE); //Reset Color
+	//}
+	//else {
+
+	//	//print letter in cell
+	//	gotoXY(x * 10 + 5, y * 4 + 2);
+	//	setColor(color + WHITE * 16);
+	//	cout << letter;
+	//	setColor(WHITE); //Reset Color
+	//}
+}
+
+void CELL_1::deleteCell() {
+	int x = j + 1, y = i + 1; //coordinate of cell
+
+	//delete cell
+	for (int i = 0; i < 5; i++) {
+		gotoXY(x * 10, y * 4 + i);
+		cout << "         ";
+	}
+}

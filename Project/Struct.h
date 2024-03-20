@@ -22,8 +22,20 @@ struct NormalMode {
 	bool exist = true;
 };
 
-
 struct HardMode {
 	char p_mon;
 	HardMode* p_next;
+};
+
+struct CELL_1 {
+	int i, j;
+	char letter = ' '; //character for each pairs in board
+	bool is_valid = 1, is_selected = 0;
+
+	void drawCell(int color);
+	void deleteCell();
+};
+
+struct Position {
+	int x, y;
 };

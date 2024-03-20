@@ -4,6 +4,7 @@
 #include "Struct.h"
 #include "Utility.h"
 #include "LeaderBoard.h"
+#include "NormalMode.h"
 using namespace std;
 
 int main() {
@@ -13,6 +14,8 @@ int main() {
 		choice = mainMenu();
 		switch (choice) {
 		case 0:
+			normalMode();
+			choice = -1;
 			break;
 		case 1:
 			break;
@@ -23,6 +26,6 @@ int main() {
 			exit(0);
 		}
 	} while (choice >= 0 && choice <= 3);
-	_getch();
+	system("pause");
 	return 0;
 }
