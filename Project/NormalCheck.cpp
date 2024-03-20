@@ -1,16 +1,6 @@
 #include "NormalCheck.h"
 
 //r stands for row, c stands for column
-bool nextCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
-	if ((c1 == c2 - 1 || c1 == c2 + 1) && (r1 == r2))
-		if (p_ball[r1][c1].p_mon == p_ball[r2][c2].p_mon)
-			return true;
-	if ((r1 == r2 - 1 || r1 == r2 + 1) && (c1 == c2))
-		if (p_ball[r1][c1].p_mon == p_ball[r2][c2].p_mon)
-			return true;
-	return false;
-}
-
 bool lineCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 	int start, end, cnt = 0;
 	if (r1 == r2) {
@@ -162,7 +152,6 @@ bool UNormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 }
 
 bool allCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
-	if (nextCheck(p_ball, r1, c1, r2, c2) == true) return true;
 	if (INormalCheck(p_ball, r1, c1, r2, c2) == true) return true;
 	if (LNormalCheck(p_ball, r1, c1, r2, c2) == true) return true;
 	if (ZNormalCheck(p_ball, r1, c1, r2, c2) == true) return true;
