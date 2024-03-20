@@ -8,8 +8,9 @@ using namespace std;
 
 int main() {
 	initWindow(1000, 500);
-	int choice = mainMenu();
-	while (choice >= 0 && choice <= 3) {
+	int choice;
+	do {
+		choice = mainMenu();
 		switch (choice) {
 		case 0:
 			break;
@@ -20,10 +21,8 @@ int main() {
 			break;
 		case 3:
 			exit(0);
-		default:
-			break;
 		}
-	}
+	} while (choice >= 0 && choice <= 3);
 	_getch();
 	return 0;
 }
