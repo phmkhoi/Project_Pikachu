@@ -1,19 +1,73 @@
 #include "LeaderBoard.h"
 
-void readLeaderBoard() {
-	//Leader Board UI
-	gotoXY(58, 3);
-	setColor(LIGHT_BLUE);
-	cout << "LEADER BOARD";
+void drawLeaderBoard() {
+	//Draw LEADER
+	////https://patorjk.com/software/taag/#p=display&h=0&v=0&f=Small&t=POINT, font: Doom
+	setColor(LIGHT_GREEN);
+	gotoXY(27, 1);
+	cout << " _      _____   ___  ______  _____ ______";
+	gotoXY(27, 2);
+	cout << "| |    |  ___| / _ \\ |  _  \\|  ___|| ___ \\";
+	setColor(LIGHT_AQUA);
+	gotoXY(27, 3);
+	cout << "| |    | |__  / /_\\ \\| | | || |__  | |_/ /";
+	gotoXY(27, 4);
+	cout << "| |    |  __| |  _  || | | ||  __| |    /";
+	setColor(LIGHT_YELLOW);
+	gotoXY(27, 5);
+	cout << "| |____| |___ | | | || |/ / | |___ | |\\ \\";
 	gotoXY(27, 6);
+	cout << "\\_____/\\____/ \\_| |_/|___/  \\____/ \\_| \\_|";
+
+	//Draw BOARD
+	////https://patorjk.com/software/taag/#p=display&h=0&v=0&f=Small&t=POINT, font: Doom
+	setColor(LIGHT_GREEN);
+	gotoXY(71, 1);
+	cout << "______  _____   ___  ______ ______";
+	gotoXY(71, 2);
+	cout << "| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
+	setColor(LIGHT_AQUA);
+	gotoXY(71, 3);
+	cout << "| |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
+	gotoXY(71, 4);
+	cout << "| ___ \\| | | ||  _  ||    / | | | |";
+	setColor(LIGHT_YELLOW);
+	gotoXY(71, 5);
+	cout << "| |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
+	gotoXY(71, 6);
+	cout << "\\____/  \\___/ \\_| |_/\\_| \\_||___/";
+
 	setColor(BRIGHT_WHITE);
-	cout << "NAME";
-	gotoXY(97, 6);
-	setColor(BRIGHT_WHITE);
-	cout << "POINT";
+	//Draw NAME
+	//https://patorjk.com/software/taag/#p=display&h=0&v=0&f=Small&t=POINT, font: Small
+	gotoXY(27, 9);
+	cout << " _  _    _    __  __  ___";
+	gotoXY(27, 10);
+	cout << "| \\| |  /_\\  |  \\/  || __|";
+	gotoXY(27, 11);
+	cout << "| .` | / _ \\ | |\\/| || _|";
+	gotoXY(27, 12);
+	cout << "|_|\\_|/_/ \\_\\|_|  |_||___|";
+
+	//Draw POINT
+	//https://patorjk.com/software/taag/#p=display&h=0&v=0&f=Small&t=POINT, font: Small
+	gotoXY(76, 9);
+	cout << " ___   ___   ___  _  _  _____";
+	gotoXY(76, 10);
+	cout << "| _ \\ / _ \\ |_ _|| \\| ||_   _|";
+	gotoXY(76, 11);
+	cout << "|  _/| (_) | | | | .` |  | |";
+	gotoXY(76, 12);
+	cout << "|_|   \\___/ |___||_|\\_|  |_|";
+
 	setColor(WHITE);
-	gotoXY(27, 7);
-	for (int i = 0; i < 75; i++) cout << "-";
+	gotoXY(27, 13);
+	for (int i = 0; i < 79; i++) cout << "-";
+
+}
+void readLeaderBoard() {
+	//Draw leaderBoard
+	drawLeaderBoard();
 
 	//Read file
 	ifstream ifs;
@@ -37,7 +91,7 @@ void readLeaderBoard() {
 	ifs.close();
 
 	//Display players
-	int rank = 2;
+	int rank = 0;
 	for (int i = 0; i < p_list.size(); i++) {
 		displayPlayer(p_list[i], rank);
 		rank += 2;

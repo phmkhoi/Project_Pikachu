@@ -18,41 +18,41 @@ void sortPlayer(PlayerList& p_list) {
 
 void displayPlayer(Player p, int rank) {
 	switch (rank) {
-	case 2:
-		gotoXY(27, 6 + rank);
-		setColor(RED);
+	case 0:
+		gotoXY(27, 14 + rank);
+		setColor(LIGHT_RED);
 		cout << p.name;
-		gotoXY(97, 6 + rank);
-		setColor(RED);
+		gotoXY(89, 14 + rank);
+		setColor(LIGHT_RED);
+		cout << p.point;
+		break;
+	case 2:
+		gotoXY(27, 14 + rank);
+		setColor(GREEN);
+		cout << p.name;
+		gotoXY(89, 14 + rank);
+		setColor(GREEN);
 		cout << p.point;
 		break;
 	case 4:
-		gotoXY(27, 6 + rank);
-		setColor(GREEN);
+		gotoXY(27, 14 + rank);
+		setColor(LIGHT_AQUA);
 		cout << p.name;
-		gotoXY(97, 6 + rank);
-		setColor(GREEN);
-		cout << p.point;
-		break;
-	case 6:
-		gotoXY(27, 6 + rank);
-		setColor(AQUA);
-		cout << p.name;
-		gotoXY(97, 6 + rank);
-		setColor(AQUA);
+		gotoXY(89, 14 + rank);
+		setColor(LIGHT_AQUA);
 		cout << p.point;
 		break;
 	default:
-		gotoXY(27, 6 + rank);
-		setColor(YELLOW);
+		gotoXY(27, 14 + rank);
+		setColor(LIGHT_YELLOW);
 		cout << p.name;
-		gotoXY(97, 6 + rank);
-		setColor(YELLOW);
+		gotoXY(89, 14 + rank);
+		setColor(LIGHT_YELLOW);
 		cout << p.point;
 		break;
 	}
 	setColor(WHITE);
-	gotoXY(27, 7 + rank);
-	for (int i = 0; i < 75; i++) cout << "-";
+	gotoXY(27, 15 + rank);
+	for (int i = 0; i < 79; i++) cout << "-";
 }
 
