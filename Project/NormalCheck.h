@@ -4,7 +4,6 @@
 #include "NormalMode.h"
 using namespace std;
 
-bool nextCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2);
 bool lineCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2);
 bool INormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2);
 bool LNormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2);
