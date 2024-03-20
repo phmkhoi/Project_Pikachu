@@ -67,36 +67,36 @@ int mainMenu() {
 
 	//MATCHING
 	//https://www.patorjk.com/software/taag/#p=display&f=Doom&t=THE%20MATCHING%20GAME, font: DOOM
-	gotoXY(37, 1);
+	gotoXY(35, 1);
 	setColor(LIGHT_GREEN);
 	cout << "___  ___  ___  _____  _____  _   _  _____  _   _  _____ ";
-	gotoXY(37, 2);
+	gotoXY(35, 2);
 	cout << "|  \\/  | / _ \\|_   _|/  __ \\| | | ||_   _|| \\ | ||  __ \\";
-	gotoXY(37, 3);
+	gotoXY(35, 3);
 	cout << "| .  . |/ /_\\ \\ | |  | /  \\/| |_| |  | |  |  \\| || |  \\/";
-	gotoXY(37, 4);
+	gotoXY(35, 4);
 	setColor(LIGHT_AQUA);
 	cout << "| |\\/| ||  _  | | |  | |    |  _  |  | |  | . ` || | __ ";
-	gotoXY(37, 5);
+	gotoXY(35, 5);
 	cout << "| |  | || | | | | |  | \\__/\\| | | | _| |_ | |\\  || |_\\ \\";
-	gotoXY(37, 6);
+	gotoXY(35, 6);
 	cout << "\\_|  |_/\\_| |_/ \\_/   \\____/\\_| |_/ \\___/ \\_| \\_/ \\____/";
 
 	//GAME
 	//https://www.patorjk.com/software/taag/#p=display&f=Doom&t=THE%20MATCHING%20GAME, font: DOOM
-	gotoXY(98, 1);
+	gotoXY(96, 1);
 	setColor(LIGHT_GREEN);
 	cout << " _____   ___  ___  ___ _____ ";
-	gotoXY(98, 2);
+	gotoXY(96, 2);
 	cout << "|  __ \\ / _ \\ |  \\/  ||  ___|";
-	gotoXY(98, 3);
+	gotoXY(96, 3);
 	cout << "| |  \\// /_\\ \\| .  . || |__  ";
-	gotoXY(98, 4);
+	gotoXY(96, 4);
 	setColor(LIGHT_AQUA);
 	cout << "| | __ |  _  || |\\/| ||  __| ";
-	gotoXY(98, 5);
+	gotoXY(96, 5);
 	cout << "| |_\\ \\| | | || |  | || |___ ";
-	gotoXY(98, 6);
+	gotoXY(96, 6);
 	cout << " \\____/\\_| |_/\\_|  |_/\\____/ ";
 
 	//PIKACHU
