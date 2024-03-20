@@ -39,6 +39,9 @@
     <ClCompile Include="HardMode.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="NormalCheck.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console_Settings.h">
@@ -57,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HardMode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalCheck.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

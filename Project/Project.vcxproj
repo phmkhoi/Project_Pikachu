@@ -131,6 +131,7 @@
     <ClCompile Include="HardMode.cpp" />
     <ClCompile Include="LeaderBoard.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NormalCheck.cpp" />
     <ClCompile Include="NormalMode.cpp" />
     <ClCompile Include="Project.cpp" />
     <ClCompile Include="Struct.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="Console_Settings.h" />
     <ClInclude Include="HardMode.h" />
     <ClInclude Include="LeaderBoard.h" />
+    <ClInclude Include="NormalCheck.h" />
     <ClInclude Include="NormalMode.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="Utility.h" />
