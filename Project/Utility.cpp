@@ -49,54 +49,58 @@ void drawBox(int x, int width, int y, int height, int text_color, int bg_color, 
 int mainMenu() {
 	//Draw Word
 	//THE
-	gotoXY(8, 1);
+	//https://www.patorjk.com/software/taag/#p=display&f=Doom&t=THE%20MATCHING%20GAME, font: DOOM
+	gotoXY(9, 1);
 	setColor(LIGHT_GREEN);
-	cout << " _____   _   _   _____";
-	gotoXY(8, 2);
-	cout << "|_   _| | | | | |  ___|";
-	gotoXY(8, 3);
-	cout << "  | |   | |_| | | |__  ";
-	gotoXY(8, 4);
+	cout << " _____  _   _  _____";
+	gotoXY(9, 2);
+	cout << "|_   _|| | | ||  ___|";
+	gotoXY(9, 3);
+	cout << "  | |  | |_| || |__  ";
+	gotoXY(9, 4);
 	setColor(LIGHT_AQUA);
-	cout << "  | |   |  _  | |  __| ";
-	gotoXY(8, 5);
-	cout << "  | |   | | | | | |___ ";
-	gotoXY(8, 6);
-	cout << "  \\_/   \\_| |_/ \\____/ ";
+	cout << "  | |  |  _  ||  __| ";
+	gotoXY(9, 5);
+	cout << "  | |  | | | || |___ ";
+	gotoXY(9, 6);
+	cout << "  \\_/  \\_| |_/\\____/ ";
 
 	//MATCHING
-	gotoXY(36, 1);
+	//https://www.patorjk.com/software/taag/#p=display&f=Doom&t=THE%20MATCHING%20GAME, font: DOOM
+	gotoXY(37, 1);
 	setColor(LIGHT_GREEN);
 	cout << "___  ___  ___  _____  _____  _   _  _____  _   _  _____ ";
-	gotoXY(36, 2);
+	gotoXY(37, 2);
 	cout << "|  \\/  | / _ \\|_   _|/  __ \\| | | ||_   _|| \\ | ||  __ \\";
-	gotoXY(36, 3);
+	gotoXY(37, 3);
 	cout << "| .  . |/ /_\\ \\ | |  | /  \\/| |_| |  | |  |  \\| || |  \\/";
-	gotoXY(36, 4);
+	gotoXY(37, 4);
 	setColor(LIGHT_AQUA);
 	cout << "| |\\/| ||  _  | | |  | |    |  _  |  | |  | . ` || | __ ";
-	gotoXY(36, 5);
+	gotoXY(37, 5);
 	cout << "| |  | || | | | | |  | \\__/\\| | | | _| |_ | |\\  || |_\\ \\";
-	gotoXY(36, 6);
+	gotoXY(37, 6);
 	cout << "\\_|  |_/\\_| |_/ \\_/   \\____/\\_| |_/ \\___/ \\_| \\_/ \\____/";
 
 	//GAME
-	gotoXY(97, 1);
+	//https://www.patorjk.com/software/taag/#p=display&f=Doom&t=THE%20MATCHING%20GAME, font: DOOM
+	gotoXY(98, 1);
 	setColor(LIGHT_GREEN);
 	cout << " _____   ___  ___  ___ _____ ";
-	gotoXY(97, 2);
+	gotoXY(98, 2);
 	cout << "|  __ \\ / _ \\ |  \\/  ||  ___|";
-	gotoXY(97, 3);
+	gotoXY(98, 3);
 	cout << "| |  \\// /_\\ \\| .  . || |__  ";
-	gotoXY(97, 4);
+	gotoXY(98, 4);
 	setColor(LIGHT_AQUA);
 	cout << "| | __ |  _  || |\\/| ||  __| ";
-	gotoXY(97, 5);
+	gotoXY(98, 5);
 	cout << "| |_\\ \\| | | || |  | || |___ ";
-	gotoXY(97, 6);
+	gotoXY(98, 6);
 	cout << " \\____/\\_| |_/\\_|  |_/\\____/ ";
 
 	//PIKACHU
+	//https://www.asciiart.eu/text-to-ascii-art, font: 3D-ASCII
 	setColor(LIGHT_YELLOW);
 	gotoXY(34, 8);
 	cout << " ________  ___  ___  __    ________  ________  ___  ___  ___  ___     ";
