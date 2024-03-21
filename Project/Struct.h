@@ -24,6 +24,7 @@ struct NormalMode {
 
 struct HardMode {
 	char p_mon;
+	bool exist = true;
 	HardMode* p_next;
 };
 

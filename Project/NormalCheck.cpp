@@ -159,25 +159,9 @@ bool allCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 	return false;
 }
 
-bool isPLaying(NormalMode** p_ball) {
-	char check = 'A';
-	while (check >= 'A' && check <= 'C') {
-		int cnt = 0;
-		int* pos = new int[NORMAL_HEIGHT * NORMAL_WIDTH];
-		for (int i = 0; i < NORMAL_HEIGHT; i++)
-			for (int j = 0; j < NORMAL_WIDTH; j++)
-				if (p_ball[i][j].p_mon == check && p_ball[i][j].exist == true) {
-					pos[cnt++] = i;
-					pos[cnt++] = j;
-				}
-		for (int i = 0; i < cnt - 2; i++)
-			for (int j = i + 2; j < cnt; j++)
-				if (allCheck(p_ball, pos[i], pos[i + 1], pos[j], pos[j + 1]) == true) {
-					delete[] pos;
-					return true;
-				}
-		++check;
-		delete[] pos;
-	}
-	return false;
+bool haveFinished(NormalMode** p_ball) {
+	for (int i = 0; i < NORMAL_HEIGHT; i++)
+		for (int j = 0; j < NORMAL_WIDTH; j++)
+			if (p_ball[i][j].exist == true) return false;
+	return true;
 }

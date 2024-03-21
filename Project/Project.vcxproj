@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Console_Settings.cpp" />
+    <ClCompile Include="HardCheck.cpp" />
     <ClCompile Include="HardMode.cpp" />
     <ClCompile Include="LeaderBoard.cpp" />
     <ClCompile Include="main.cpp" />
@@ -139,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console_Settings.h" />
+    <ClInclude Include="HardCheck.h" />
     <ClInclude Include="HardMode.h" />
     <ClInclude Include="LeaderBoard.h" />
     <ClInclude Include="NormalCheck.h" />
