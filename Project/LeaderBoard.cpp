@@ -71,14 +71,17 @@ void readLeaderBoard() {
 
 	//Read file
 	ifstream ifs;
+
 	ifs.open("LeaderBoard.txt");
 	if (!ifs.is_open()) {
 		cout << "Cannot open file!";
 		return;
 	}
+
 	Player temp_player;
 	PlayerList p_list;
 	string point = " ";
+
 	while (!ifs.eof()) {
 		getline(ifs, temp_player.name, ',');
 		getline(ifs, point, '\n');
@@ -92,6 +95,7 @@ void readLeaderBoard() {
 
 	//Display players
 	int rank = 0;
+
 	for (int i = 0; i < p_list.size(); i++) {
 		displayPlayer(p_list[i], rank);
 		rank += 2;
@@ -102,11 +106,13 @@ void readLeaderBoard() {
 }
 void writeLeaderBoard(Player p) {
 	ofstream ofs;
+
 	ofs.open("LeaderBoard.txt", ofstream::app);
 	if (!ofs.is_open()) {
 		cout << "Cannot open file!";
 		return;
 	}
+
 	ofs << "\n" << p.name << "," << p.point << "\n";
 	ofs.close();
 }
