@@ -108,6 +108,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -124,6 +125,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -135,6 +137,7 @@
     <ClCompile Include="NormalCheck.cpp" />
     <ClCompile Include="NormalMode.cpp" />
     <ClCompile Include="Project.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Struct.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
@@ -145,6 +148,7 @@
     <ClInclude Include="LeaderBoard.h" />
     <ClInclude Include="NormalCheck.h" />
     <ClInclude Include="NormalMode.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="Utility.h" />
   </ItemGroup>
