@@ -66,7 +66,7 @@ char cell[5][11] = {
 };
 
 //draw cell in gameboard
-void CELL_1::drawCell(int color) {
+void NormalMode::drawCell(int color) {
 	/*if (!is_valid) {
 		return;
 	}*/
@@ -74,7 +74,7 @@ void CELL_1::drawCell(int color) {
 	int x = j + 1, y = i + 1; //coordinate of cell
 
 	for (int i = 0; i < 5; i++) {
-		gotoXY(x * 9, y * 4 + i);
+		gotoXY(x * 9 + 6, y * 4 + i + 2);
 		cout << cell[i];
 	}
 
@@ -85,11 +85,11 @@ void CELL_1::drawCell(int color) {
 	//		cout << "         ";
 	//	}
 
-	//	//print letter in cell
-	//	gotoXY(x * 10 + 5, y * 4 + 2);
-	//	cout << letter;
- //		setColor(WHITE); //Reset Color
+		//print letter in cell
 	//}
+		gotoXY(x * 9 + 5 + 6, y * 4 + 4);
+		cout << p_mon;
+ 		setColor(WHITE); //reset color
 	//else {
 
 	//	//print letter in cell
@@ -100,12 +100,12 @@ void CELL_1::drawCell(int color) {
 	//}
 }
 
-void CELL_1::deleteCell() {
+void NormalMode::deleteCell() {
 	int x = j + 1, y = i + 1; //coordinate of cell
 
 	//delete cell
 	for (int i = 0; i < 5; i++) {
-		gotoXY(x * 10, y * 4 + i);
+		gotoXY(x * 9 + 6, y * 4 + i + 2);
 		cout << "         ";
 	}
 }

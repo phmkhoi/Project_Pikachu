@@ -18,12 +18,16 @@ void displayPlayer(Player p, int rank);
 
 //p_mon stands for pokemon
 struct NormalMode {
-	char p_mon;
-	bool exist = true;
+	int i, j;
+	char p_mon = ' ';
+	bool exist = true, is_selected = 0;
+
+	void drawCell(int color);
+	void deleteCell();
 };
 
 struct HardMode {
-	char p_mon;
+	char p_mon = ' ';
 	bool exist = true;
 	HardMode* p_next;
 };

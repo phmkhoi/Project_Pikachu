@@ -8,7 +8,8 @@
 #define NORMAL_HEIGHT 4
 #define NORMAL_WIDTH 4
 
-void initBoard(CELL_1** board);
-void deleteBoard(CELL_1** board);
-void printBoard(CELL_1** board);
+void initBoard(NormalMode** board);
+void deleteBoard(NormalMode** board);
+void printBoard(NormalMode** board);
+void move(NormalMode** board, Position& pos, int& status, Position selected_pos[], int& pair);
 void normalMode();
