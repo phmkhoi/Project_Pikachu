@@ -9,13 +9,18 @@ using namespace std;
 
 int main() {
 	initWindow(1000, 500);
+
+	Player p;
+	p.life = 3;
+	p.name = "Khoi";
+	p.point = 20;
+
 	int choice;
 	do {
 		choice = mainMenu();
 		switch (choice) {
 		case 0:
-			normalMode();
-			choice = -1;
+			normalMode(p);
 			break;
 		case 1:
 			break;

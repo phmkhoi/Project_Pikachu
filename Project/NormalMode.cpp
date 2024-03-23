@@ -2,6 +2,7 @@
 #include "NormalCheck.h"
 #include "Struct.h"
 #include "Utility.h"
+#include "LeaderBoard.h"
 
 using namespace std;
 
@@ -49,7 +50,7 @@ void printBoard(NormalMode** board) {
 	}
 }
 
-void move(NormalMode** board, Position& pos, int& status, Position selected_pos[], int& pair) {
+void move(NormalMode** board, Position& pos, int& status, Player &p, Position selected_pos[], int& pair) {
 	int temp, key;
 	temp = _getch();
 	if (temp && temp != 224) {//If not arrow key
@@ -64,9 +65,9 @@ void move(NormalMode** board, Position& pos, int& status, Position selected_pos[
 				board[selected_pos[0].y][selected_pos[0].x].is_selected = 0;
 				pair = 2;
 				selected_pos[0] = { -1, -1 };
-				//--p.life;
+				--p.life;
 				gotoXY(70, 0);
-				//cout << "Life: " << p.life;
+				cout << "Life: " << p.life;
 			}
 			else {
 				selected_pos[2 - pair].x = pos.x;
@@ -79,11 +80,11 @@ void move(NormalMode** board, Position& pos, int& status, Position selected_pos[
 					if (board[selected_pos[0].y][selected_pos[0].x].p_mon ==
 						board[selected_pos[1].y][selected_pos[1].x].p_mon) {
 						if (allCheck(board, selected_pos[0].y, selected_pos[0].x, selected_pos[1].y, selected_pos[1].x)) {
-							//p.point += 20;
+							p.point += 20;
 
 							//Update Score
 							gotoXY(40, 0);
-							//cout << "Point: " << p.point;
+							cout << "Point: " << p.point;
 
 							board[selected_pos[0].y][selected_pos[0].x].drawCell(40);
 							board[selected_pos[1].y][selected_pos[1].x].drawCell(40);
@@ -99,11 +100,11 @@ void move(NormalMode** board, Position& pos, int& status, Position selected_pos[
 							board[selected_pos[1].y][selected_pos[1].x].drawCell(70);
 							Sleep(500);
 
-							//--p.life;
+							--p.life;
 
-							//Update Life
+							/*Update Life*/
 							gotoXY(70, 0);
-							//cout << "Life: " << p.life;
+							cout << "Life: " << p.life;
 						}
 					}
 					//If not a pair (letter not match)
@@ -112,11 +113,11 @@ void move(NormalMode** board, Position& pos, int& status, Position selected_pos[
 						board[selected_pos[1].y][selected_pos[1].x].drawCell(70);
 						Sleep(500);
 
-						//--p.life;
+						--p.life;
 
 						//Update Life
 						gotoXY(70, 0);
-						//cout << "Life: " << p.life;
+						cout << "Life: " << p.life;
 					}
 
 					//reset
@@ -154,7 +155,7 @@ void move(NormalMode** board, Position& pos, int& status, Position selected_pos[
 	else {
 		if ((pos.y != selected_pos[0].y || pos.x != selected_pos[0].x) &&
 			(pos.y != selected_pos[1].y || pos.x != selected_pos[1].x)) {
-			board[pos.y][pos.x].exist = 0;
+			board[pos.y][pos.x].is_selected = 0;
 
 			//Read Arrow
 			key = _getch();
@@ -249,8 +250,8 @@ void move(NormalMode** board, Position& pos, int& status, Position selected_pos[
 				for (int i = pos.y; i >= 0; i--) {
 					for (int j = pos.x - 1; j >= 0; j--) {
 						if (board[i][j].exist) {
-							pos.x = i;
-							pos.y = j;
+							pos.x = j;
+							pos.y = i;
 							return;
 						}
 					}
@@ -259,8 +260,8 @@ void move(NormalMode** board, Position& pos, int& status, Position selected_pos[
 				for (int i = pos.y + 1; i < NORMAL_HEIGHT; i++) {
 					for (int j = pos.x - 1; j >= 0; j--) {
 						if (board[i][j].exist) {
-							pos.x = i;
-							pos.y = j;
+							pos.x = j;
+							pos.y = i;
 							return;
 						}
 					}
@@ -269,8 +270,8 @@ void move(NormalMode** board, Position& pos, int& status, Position selected_pos[
 				for (int i = pos.y; i >= 0; i--) {
 					for (int j = NORMAL_WIDTH - 1; j > pos.x; j--) {
 						if (board[i][j].exist) {
-							pos.x = i;
-							pos.y = j;
+							pos.x = j;
+							pos.y = i;
 							return;
 						}
 					}
@@ -279,8 +280,8 @@ void move(NormalMode** board, Position& pos, int& status, Position selected_pos[
 				for (int i = pos.y + 1; i < NORMAL_HEIGHT; i++) {
 					for (int j = NORMAL_WIDTH - 1; j > pos.x; j--) {
 						if (board[i][j].exist) {
-							pos.x = i;
-							pos.y = j;
+							pos.x = j;
+							pos.y = i;
 							return;
 						}
 					}
@@ -292,8 +293,8 @@ void move(NormalMode** board, Position& pos, int& status, Position selected_pos[
 				for (int i = pos.y; i >= 0; i--) {
 					for (int j = pos.x + 1; j < NORMAL_WIDTH; j++) {
 						if (board[i][j].exist) {
-							pos.x = i;
-							pos.y = j;
+							pos.x = j;
+							pos.y = i;
 							return;
 						}
 					}
@@ -302,8 +303,8 @@ void move(NormalMode** board, Position& pos, int& status, Position selected_pos[
 				for (int i = pos.y + 1; i < NORMAL_HEIGHT; i++) {
 					for (int j = pos.x + 1; j < NORMAL_WIDTH; j++) {
 						if (board[i][j].exist) {
-							pos.x = i;
-							pos.y = j;
+							pos.x = j;
+							pos.y = i;
 							return;
 						}
 					}
@@ -312,8 +313,8 @@ void move(NormalMode** board, Position& pos, int& status, Position selected_pos[
 				for (int i = pos.y; i >= 0; i--) {
 					for (int j = 0; j < pos.x; j++) {
 						if (board[i][j].exist) {
-							pos.x = i;
-							pos.y = j;
+							pos.x = j;
+							pos.y = i;
 							return;
 						}
 					}
@@ -322,8 +323,8 @@ void move(NormalMode** board, Position& pos, int& status, Position selected_pos[
 				for (int i = pos.y + 1; i < NORMAL_HEIGHT; i++) {
 					for (int j = 0; j < pos.x; j++) {
 						if (board[i][j].exist) {
-							pos.x = i;
-							pos.y = j;
+							pos.x = j;
+							pos.y = i;
 							return;
 						}
 					}
@@ -390,10 +391,12 @@ void drawBorder() {
 	Sleep(50);
 }
 
-void normalMode() {
+void normalMode(Player &p) {
+	//drawBorder();
 	srand(time(0));
 	/*getBackground(bg);*/
 
+	//initialize board
 	NormalMode** board = new NormalMode* [NORMAL_HEIGHT];
 	for (int i = 0; i < NORMAL_HEIGHT; i++) { // gan vi tri cho tung o mot
 		board[i] = new NormalMode[NORMAL_WIDTH];
@@ -404,12 +407,13 @@ void normalMode() {
 	}
 	initBoard(board);
 
-	/*gotoXY(10, 0);
+
+	gotoXY(10, 0);
 	cout << "Name: " << p.name;
 	gotoXY(40, 0);
 	cout << "Point: " << p.point;
 	gotoXY(70, 0);
-	cout << "Life: " << p.life;*/
+	cout << "Life: " << p.life;
 
 	setColor(LIGHT_AQUA);
 	gotoXY(100, 12);
@@ -429,6 +433,39 @@ void normalMode() {
 	2: Out*/
 	int status = 0;
 	
+	while (!status && p.life) {
+		board[cur_pos.y][cur_pos.x].is_selected = 1;
+
+		printBoard(board);
+
+		move(board, cur_pos, status, p, selected_pos, pair);
+		if ((!checkValidPairs(board))) status = 1;
+	}
+
 	printBoard(board);
-	system("pause");
+	deleteBoard(board);
+	Sleep(500);
+	system("cls");
+
+	if (p.life && status == 1) {
+		//displayStatus(1);
+		gotoXY(50, 17);
+		char ans;
+		cout << "Do you want to continue next game? (Y/N): ";
+		cin >> ans;
+		cin.ignore();
+		system("cls");
+		if (ans == 'Y' || ans == 'y') {
+			normalMode(p);
+		}
+		else {
+			writeLeaderBoard(p);
+		}
+	}
+	else if (p.life == 0) {
+		//displayStatus(0);
+		writeLeaderBoard(p);
+		Sleep(2000);
+	}
+	system("cls");
 }

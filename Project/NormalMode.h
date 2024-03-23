@@ -11,5 +11,5 @@
 void initBoard(NormalMode** board);
 void deleteBoard(NormalMode** board);
 void printBoard(NormalMode** board);
-void move(NormalMode** board, Position& pos, int& status, Position selected_pos[], int& pair);
-void normalMode();
+void move(NormalMode** board, Position& pos, int& status, Player& p, Position selected_pos[], int& pair);
+void normalMode(Player &p);
