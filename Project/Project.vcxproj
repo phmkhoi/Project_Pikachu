@@ -156,6 +156,13 @@
     <Text Include="Background.txt" />
     <Text Include="LeaderBoard.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="C:\Users\DELL\Downloads\8 bit uh oh sound.wav" />
+    <Media Include="C:\Users\DELL\Downloads\confirm-38513.wav" />
+    <Media Include="C:\Users\DELL\Downloads\game-over-38511.wav" />
+    <Media Include="C:\Users\DELL\Downloads\sound-fx-mario-coin_D_major.wav" />
+    <Media Include="C:\Users\DELL\Downloads\winsquare-6993.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
