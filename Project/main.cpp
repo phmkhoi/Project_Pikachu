@@ -5,6 +5,7 @@
 #include "Utility.h"
 #include "LeaderBoard.h"
 #include "NormalMode.h"
+#include "HardMode.h"
 using namespace std;
 
 int main() {
@@ -23,6 +24,7 @@ int main() {
 			normalMode(p);
 			break;
 		case 1:
+			//hardMode(p);
 			break;
 		case 2:
 			readLeaderBoard();

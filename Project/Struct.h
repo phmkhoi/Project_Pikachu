@@ -4,6 +4,8 @@
 #include <conio.h>
 #include <vector>
 #include <string>
+#include <Windows.h>
+#include "Utility.h"
 using namespace std;
 
 struct Player {
@@ -20,24 +22,19 @@ void displayPlayer(Player p, int rank);
 struct NormalMode {
 	int i, j;
 	char p_mon = ' ';
-	bool exist = true, is_selected = 0;
+	bool exist = 1, is_selected = 0;
 
-	void drawCell(int color);
+	void drawCell(int);
 	void deleteCell();
 };
 
 struct HardMode {
-	char p_mon = ' ';
-	bool exist = true;
-	HardMode* p_next;
-};
-
-struct CELL_1 {
 	int i, j;
-	char letter = ' '; //character for each pairs in board
-	bool is_valid = 1, is_selected = 0;
+	char p_mon = ' ';
+	bool exist = 1, is_selected = 0;
+	HardMode* p_next;
 
-	void drawCell(int color);
+	void drawCell(int);
 	void deleteCell();
 };
 

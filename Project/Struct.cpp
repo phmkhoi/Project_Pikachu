@@ -1,4 +1,3 @@
-#include "Console_Settings.h"
 #include "Utility.h"
 #include "Struct.h"
 
@@ -83,7 +82,7 @@ void NormalMode::drawCell(int color) {
 		setColor(color + WHITE * 16);
 		for (int i = 1; i < 4; i++) {
 			gotoXY(x * 9 + 6 + 1, y * 4 + i + 2);
-			cout << "         ";
+			cout << "        ";
 		}
 
 		//print letter in cell
@@ -97,7 +96,6 @@ void NormalMode::drawCell(int color) {
 		//print letter in cell
 		setColor(WHITE);
 		gotoXY(x * 9 + 5 + 6, y * 4 + 4);
-		setColor(color + WHITE * 16);
 		cout << p_mon;
 		setColor(WHITE); //Reset Color
 	}
@@ -109,6 +107,48 @@ void NormalMode::deleteCell() {
 	//delete cell
 	for (int i = 0; i < 5; i++) {
 		gotoXY(x * 9 + 6, y * 4 + i + 2);
-		cout << "         ";
+		cout << "          ";
+	}
+}
+
+void HardMode::drawCell(int color) {
+	int x = j + 1, y = i + 1;
+
+	for (int i = 0; i < 5; i++) {
+		gotoXY(x * 9 + 6, y * 4 + i + 2);
+		cout << cell[i];
+	}
+
+	setColor(WHITE);
+	if (is_selected) {
+		setColor(color + WHITE * 16);
+		for (int i = 1; i < 4; i++) {
+			gotoXY(x * 9 + 6 + 1, y * 4 + i + 2);
+			cout << "        ";
+		}
+
+		//print letter in cell
+		setColor(color + WHITE * 16);
+		gotoXY(x * 9 + 5 + 6, y * 4 + 4);
+		cout << p_mon;
+		setColor(WHITE); //reset color
+	}
+	else {
+
+		//print letter in cell
+		setColor(WHITE);
+		gotoXY(x * 9 + 5 + 6, y * 4 + 4);
+		cout << p_mon;
+		setColor(WHITE); //Reset Color
+	}
+}
+
+void HardMode::deleteCell() {
+	int x = j + 1, y = i + 1; //coordinate of cell
+
+	//delete cell
+	for (int i = 0; i < 5; i++) {
+		gotoXY(x * 9 + 6, y * 4 + i + 2);
+		cout << "          ";
 	}
 }
