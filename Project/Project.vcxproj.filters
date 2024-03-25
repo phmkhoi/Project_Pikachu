@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\Sound">
+      <UniqueIdentifier>{0c7baa20-bbbf-4ab6-94cd-56bb621f41de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project.cpp">
@@ -85,5 +88,22 @@
     <Text Include="Background.txt">
       <Filter>Resource Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="C:\Users\DELL\Downloads\8 bit uh oh sound.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
+    <Media Include="C:\Users\DELL\Downloads\game-over-38511.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
+    <Media Include="C:\Users\DELL\Downloads\confirm-38513.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
+    <Media Include="C:\Users\DELL\Downloads\sound-fx-mario-coin_D_major.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
+    <Media Include="C:\Users\DELL\Downloads\winsquare-6993.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
   </ItemGroup>
 </Project>
