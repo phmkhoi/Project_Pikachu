@@ -31,7 +31,7 @@ struct NormalMode {
 struct HardMode {
 	int i, j;
 	char p_mon = ' ';
-	bool exist = 1, is_selected = 0;
+	bool is_selected = 0;
 	HardMode* p_next;
 
 	void drawCell(int);

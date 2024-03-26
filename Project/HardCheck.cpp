@@ -1,110 +1,125 @@
 #include "HardCheck.h"
 
-//HardMode* findPokeBall(HardMode** p_ball, int r, int c) {
-//	if (r < HARD_HEIGHT || r > HARD_HEIGHT || c < HARD_WIDTH || c > HARD_WIDTH) return NULL;
-//	HardMode* p_curr = p_ball[r];
-//
-//	if (c == 0) return p_ball[r];
-//	while (c-- > 0) {
-//		p_curr = p_curr->p_next;
-//	}
-//	return p_curr;
-//}
-//
-//bool lineCheck(HardMode** p_ball, int r1, int c1, int r2, int c2) {
-//	HardMode* p_curr = nullptr;
-//	HardMode* p_start = nullptr;
-//	HardMode* p_end = nullptr;
-//	int start;
-//	int end;
-//	int cnt = 0;
-//
-//	if (r1 == r2) {
-//		start = c1 < c2 ? c1 : c2;
-//		end = c1 < c2 ? c2 : c1;
-//		p_start = c1 < c2 ? findPokeBall(p_ball, r1, c1) : findPokeBall(p_ball, r2, c2);
-//		p_end = c1 < c2 ? findPokeBall(p_ball, r2, c2) : findPokeBall(p_ball, r1, c1);
-//		p_curr = p_start;
-//		for (int i = start; i <= end; i++) {
-//			if (p_curr->exist == true) ++cnt;
-//			if (cnt > 1) return false;
-//			p_curr = p_curr->p_next;
-//		}
-//		if (cnt == 0) return true;
-//		if (cnt == 1)
-//			if ((p_start->exist == true && p_end->exist == false) ||
-//				(p_start->exist == false && p_end->exist == true))
-//				return true;
-//	}
-//	if (c1 == c2) {
-//		start = r1 < r2 ? r1 : r2;
-//		end = r1 < r2 ? r2 : r1;
-//		p_start = r1 < r2 ? findPokeBall(p_ball, r1, c1) : findPokeBall(p_ball, r2, c2);
-//		p_end = r1 < r2 ? findPokeBall(p_ball, r2, c2) : findPokeBall(p_ball, r1, c1);
-//		for (int i = start; i <= end; i++) {
-//			p_curr = findPokeBall(p_ball, i, c1);
-//			if (p_curr->exist == true) ++cnt;
-//			if (cnt > 1) return false;
-//		}
-//		if (cnt == 0) return true;
-//		if (cnt == 1)
-//			if ((p_start->exist == true && p_end->exist == false) ||
-//				(p_start->exist == false && p_end->exist == true))
-//				return true;
-//	}
-//	return false;
-//}
-//bool IHardCheck(HardMode** p_ball, int r1, int c1, int r2, int c2) {
-//	HardMode* p_curr = nullptr;
-//	int start;
-//	int end;
-//
-//	if (r1 == r2) {
-//		start = c1 < c2 ? c1 : c2;
-//		end = c1 < c2 ? c2 : c1;
-//		p_curr = c1 < c2 ? findPokeBall(p_ball, r1, c1) : findPokeBall(p_ball, r2, c2);
-//		for (int i = start + 1; i < end; i++) {
-//			p_curr = p_curr->p_next;
-//			if (p_curr->exist == true) return false;
-//		}
-//		return true;
-//	}
-//	if (c1 == c2) {
-//		start = r1 < r2 ? r1 : r2;
-//		end = r1 < r2 ? r2 : r1;
-//		p_curr = r1 < r2 ? findPokeBall(p_ball, r1, c1) : findPokeBall(p_ball, r2, c2);
-//		for (int i = start + 1; i < end; i++) {
-//			p_curr = findPokeBall(p_ball, i, c1);
-//			if (p_curr->exist == true) return false;
-//		}
-//		return true;
-//	}
-//	return false;
-//}
-//
-//bool LHardCheck(HardMode** p_ball, int r1, int c1, int r2, int c2) {
+HardMode* findPokeBall(HardMode** board, int r, int c) {
+	if (r < 0 || r > 4 || c < 0 || c > 7) return NULL;
+
+	HardMode* temp = board[r];
+	while (temp != NULL) {
+		if (temp->j == c) {
+			return temp;
+		}
+		temp = temp->p_next;
+	}
+	return NULL;
+}
+
+bool IHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
+	HardMode* p_curr = nullptr, *temp_head = nullptr;
+	int start, end, cnt = 0;
+
+	if (r1 == r2) {
+		start = c1 < c2 ? c1 : c2;
+		end = c1 < c2 ? c2 : c1;
+		temp_head = findPokeBall(board, r1, start);
+		p_curr = temp_head;
+		while (p_curr == NULL) {
+			start++;
+			p_curr = findPokeBall(board, start, c1);
+			temp_head = p_curr;
+			if (start > end) {
+				return true;
+			}
+		}
+
+		while (p_curr != NULL) {
+			++cnt;
+			p_curr = p_curr->p_next;
+			if (start + cnt > end) {
+				return true;
+			}
+			if (start + cnt == end) {
+				if (p_curr == NULL) {
+					return true;
+				}
+				if (p_curr->p_mon == temp_head->p_mon) {
+					return true;
+				}
+				return false;
+			}
+			if (p_curr != NULL) {
+				return false;
+			}
+		}
+	}
+	if (c1 == c2) {
+		start = r1 < r2 ? r1 : r2;
+		end = r1 < r2 ? r2 : r1;
+		temp_head = findPokeBall(board, start, c1);
+		p_curr = temp_head;
+		while (p_curr == NULL) {
+			start++;
+			p_curr = findPokeBall(board, start, c1);
+			temp_head = p_curr;
+			if (start == end) {
+				return true;
+			}
+			if (p_curr != NULL) {
+				return false;
+			}
+		}
+		while (p_curr != NULL) {
+			cnt++;
+			p_curr = findPokeBall(board, start + cnt, c1);
+			while (p_curr == NULL) {
+				cnt++;
+				p_curr = findPokeBall(board, start + cnt, c1);
+				if (start + cnt > end) {
+					return true;
+				}
+			}
+			if (start + cnt > end) {
+				return true;
+			}
+			if (start + cnt == end) {
+				if (p_curr == NULL) {
+					return true;
+				}
+				if (p_curr->p_mon == temp_head->p_mon) {
+					return true;
+				}
+				return false;
+			}
+			if (p_curr != NULL) {
+				return false;
+			}
+		}
+	}
+	return false;
+}
+
+//bool LHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 //	if (r1 == r2 || c1 == c2) return false;
 //
 //	HardMode* p_curr = nullptr;
 //	bool check1;
 //	bool check2;
 //
-//	p_curr = findPokeBall(p_ball, r1, c2);
+//	p_curr = findPokeBall(board, r1, c2);
 //	if (p_curr->exist == false) {
-//		check1 = lineCheck(p_ball, r1, c1, r1, c2);
-//		check2 = lineCheck(p_ball, r1, c2, r2, c2);
+//		check1 = lineCheck(board, r1, c1, r1, c2);
+//		check2 = lineCheck(board, r1, c2, r2, c2);
 //		if (check1 == true && check2 == true) return true;
 //	}
-//	p_curr = findPokeBall(p_ball, r2, c1);
+//	p_curr = findPokeBall(board, r2, c1);
 //	if (p_curr->exist == false) {
-//		check1 = lineCheck(p_ball, r1, c1, r2, c1);
-//		check2 = lineCheck(p_ball, r2, c1, r2, c2);
+//		check1 = lineCheck(board, r1, c1, r2, c1);
+//		check2 = lineCheck(board, r2, c1, r2, c2);
 //		if (check1 == true && check2 == true) return true;
 //	}
 //	return false;
 //}
 //
-//bool ZHardCheck(HardMode** p_ball, int r1, int c1, int r2, int c2) {
+//bool ZHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 //	if (r1 == r2 || c1 == c2) return false;
 //	
 //	bool check1;
@@ -116,27 +131,27 @@
 //	start = c1 < c2 ? c1 : c2;
 //	end = c1 < c2 ? c2 : c1;
 //	for (int i = start + 1; i < end; i++) {
-//		check1 = lineCheck(p_ball, r1, i, r2, i);
+//		check1 = lineCheck(board, r1, i, r2, i);
 //		if (check1 == true) {
-//			check2 = lineCheck(p_ball, r1, c1, r1, i);
-//			check3 = lineCheck(p_ball, r2, c2, r2, i);
+//			check2 = lineCheck(board, r1, c1, r1, i);
+//			check3 = lineCheck(board, r2, c2, r2, i);
 //			if (check2 == true && check3 == true) return true;
 //		}
 //	}
 //	start = r1 < r2 ? r1 : r2;
 //	end = r1 < r2 ? r2 : r1;
 //	for (int i = start + 1; i < end; i++) {
-//		check1 = lineCheck(p_ball, i, c1, i, c2);
+//		check1 = lineCheck(board, i, c1, i, c2);
 //		if (check1 == true) {
-//			check2 = lineCheck(p_ball, r1, c1, i, c1);
-//			check3 = lineCheck(p_ball, r2, c2, i, c2);
+//			check2 = lineCheck(board, r1, c1, i, c1);
+//			check3 = lineCheck(board, r2, c2, i, c2);
 //			if (check2 == true && check3 == true) return true;
 //		}
 //	}
 //	return false;
 //}
 //
-//bool UHardCheck(HardMode** p_ball, int r1, int c1, int r2, int c2) {
+//bool UHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 //	if (((r1 == r2) && (r1 == 0 || r1 == HARD_HEIGHT - 1)) ||
 //		((c1 == c2) && (c1 == 0 || c1 == HARD_WIDTH - 1)))
 //		return true;
@@ -151,16 +166,16 @@
 //	end = c1 < c2 ? c2 : c1;
 //	for (int i = 0; i < HARD_WIDTH; i++) {
 //		if (i <= start || i >= end) {
-//			check1 = lineCheck(p_ball, r1, i, r2, i);
+//			check1 = lineCheck(board, r1, i, r2, i);
 //			if (check1 == true) {
-//				check2 = lineCheck(p_ball, r1, c1, r1, i);
-//				check3 = lineCheck(p_ball, r2, c2, r2, i);
+//				check2 = lineCheck(board, r1, c1, r1, i);
+//				check3 = lineCheck(board, r2, c2, r2, i);
 //				if (check2 == true && check3 == true) return true;
 //			}
 //		}
 //		else if (i == 0 || i == HARD_WIDTH - 1) {
-//			check2 = lineCheck(p_ball, r1, c1, r1, i);
-//			check3 = lineCheck(p_ball, r2, c2, r2, i);
+//			check2 = lineCheck(board, r1, c1, r1, i);
+//			check3 = lineCheck(board, r2, c2, r2, i);
 //			if ((check2 == true && check3 == true) ||
 //				(check2 == true && c2 == i) ||
 //				(c1 == i && check3 == true))
@@ -171,16 +186,16 @@
 //	end = r1 < r2 ? r2 : r1;
 //	for (int i = 0; i < HARD_HEIGHT; i++) {
 //		if (i <= start || i >= end) {
-//			check1 = lineCheck(p_ball, i, c1, i, c2);
+//			check1 = lineCheck(board, i, c1, i, c2);
 //			if (check1 == true) {
-//				check2 = lineCheck(p_ball, r1, c1, i, c1);
-//				check3 = lineCheck(p_ball, r2, c2, i, c1);
+//				check2 = lineCheck(board, r1, c1, i, c1);
+//				check3 = lineCheck(board, r2, c2, i, c1);
 //				if (check2 == true && check3 == true) return true;
 //			}
 //		}
 //		else if (i == 0 || i == HARD_HEIGHT - 1) {
-//			check2 = lineCheck(p_ball, r1, c1, i, c1);
-//			check3 = lineCheck(p_ball, r2, c2, i, c1);
+//			check2 = lineCheck(board, r1, c1, i, c1);
+//			check3 = lineCheck(board, r2, c2, i, c1);
 //			if ((check2 == true && check3 == true) ||
 //				(check2 == true && r2 == i) ||
 //				(r1 == i && check3 == true))
@@ -189,113 +204,295 @@
 //	}
 //	return false;
 //}
-//
-//bool allCheck(HardMode** p_ball, int r1, int c1, int r2, int c2) {
-//	if (IHardCheck(p_ball, r1, c1, r2, c2) == true) return true;
-//	if (LHardCheck(p_ball, r1, c1, r2, c2) == true) return true;
-//	if (ZHardCheck(p_ball, r1, c1, r2, c2) == true) return true;
-//	if (UHardCheck(p_ball, r1, c1, r2, c2) == true) return true;
-//	return false;
-//}
-//
-//void deleteCell(HardMode** board, int y, int x) {
-//	HardMode* p = findPokeBall(board, y, x);
-//	if (x == 0) {
-//		if (board[y]->p_next == NULL) {
-//			board[y]->deleteCell();
-//			//if (board[y]->j < 4) displayBackground(bg, board[y]->j, y);
-//			board[y] = NULL;
-//			return;
-//		}
-//		board[y]->p_mon = p->p_next->p_mon;
-//
-//		p = board[y]->p_next;
-//		if (p->p_next == NULL) {
-//			p->deleteCell();
-//			//if (p->j < 4) displayBackground(bg, p->j, y);
-//			delete p;
-//			board[y]->p_next = NULL;
-//		}
-//		else {
-//			while (p->p_next->p_next != NULL)
-//			{
-//				p->p_mon = p->p_next->p_mon;
-//				p = p->p_next;
-//			}
-//			p->p_mon = p->p_next->p_mon;
-//			p->p_next->deleteCell();
-//			//if (p->p_next->j < 4) displayBackground(bg, p->p_next->j, p->p_next->i);
-//			delete p->p_next;
-//			p->p_next = NULL;
-//		}
-//	}
-//	else if (p->p_next != NULL) {
-//		while (p->p_next->p_next != NULL)
-//		{
-//			p->p_mon = p->p_next->p_mon;
-//			p = p->p_next;
-//		}
-//		p->p_mon = p->p_next->p_mon;
-//		p->p_next->deleteCell();
-//		//if (p->p_next->j < 4) displayBackground(bg, p->p_next->j, p->p_next->i);
-//		delete p->p_next;
-//		p->p_next = NULL;
-//	}
-//	else {
-//		p->deleteCell();
-//		//if (p->j < 4) displayBackground(bg, p->j, p->i);
-//		delete p;
-//		p = findPokeBall(board, y, x - 1);
-//		p->p_next = NULL;
-//	}
-//}
-//
-//void deletePair(HardMode** board, int y1, int x1, int y2, int x2) {
-//	if (x1 > x2)
-//	{
-//		deleteCell(board, y1, x1);
-//		deleteCell(board, y2, x2);
-//	}
-//	else {
-//		deleteCell(board, y2, x2);
-//		deleteCell(board, y1, x1);
-//	}
-//}
-//
-//bool checkValidPairs(HardMode** board) {
-//	HardMode* head, * temp;
-//	for (int i = 0; i < 5; i++) {
-//		head = board[i];
-//		while (head != NULL) {
-//			int j = i;
-//			temp = head->p_next;
-//			while (temp == NULL && j < 4) {
-//				j++;
-//				temp = board[j];
-//			}
-//			while (temp != NULL) {
-//				if (head->p_mon == temp->p_mon) {
-//					if (allCheck(board, head->i, head->j, temp->i, temp->j)) {
-//						return true;
-//					}
-//				}
-//				temp = temp->p_next;
-//				if ((temp == NULL) && (j < 4)) {
-//					j++;
-//					temp = findPokeBall(board, j, 0);
-//				}
-//			}
-//			head = head->p_next;
-//		}
-//	}
-//	return false;
-//}
-//
-//bool haveFinished(HardMode** p_ball) {
+
+bool LHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
+	HardMode* temp;
+	temp = findPokeBall(board, r1, c2);
+	if (temp == NULL) {
+		int x = c2, y = r1;
+		while (temp == NULL) {
+			if (c2 > c1) {
+				x--;
+			}
+			else {
+				x++;
+			}
+			temp = findPokeBall(board, r1, x);
+		}
+		temp = NULL;
+		while (temp == NULL) {
+			if (r2 > r1) {
+				y++;
+			}
+			else {
+				y--;
+			}
+			temp = findPokeBall(board, y, c2);
+		}
+		if (IHardCheck(board, r1, c1, r1, x)) {
+			if (IHardCheck(board, r2, c2, y, c2)) {
+				return true;
+			}
+		}
+		else if (IHardCheck(board, r1, c1, r1, x)) {
+			if (IHardCheck(board, r2, c2, y, c2)) {
+				return true;
+			}
+		}
+	}
+
+	temp = findPokeBall(board, r2, c1);
+	if (temp == NULL) {
+		int x = c1, y = r2;
+		while (temp == NULL) {
+			if (c2 > c1) {
+				x++;
+			}
+			else {
+				x--;
+			}
+			temp = findPokeBall(board, r2, x);
+		}
+		temp = NULL;
+		while (temp == NULL) {
+			if (r2 > r1) {
+				y--;
+			}
+			else {
+				y++;
+			}
+			temp = findPokeBall(board, y, c1);
+		}
+		if (IHardCheck(board, r1, c1, r1, x)) {
+			if (IHardCheck(board, r2, c2, y, c2)) {
+				return true;
+			}
+		}
+		else if (IHardCheck(board, r2, c2, r2, x)) {
+			if (IHardCheck(board, r1, c1, y, c1)) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+
+bool UandZcheck(HardMode** board, int r1, int c1, int r2, int c2) {
+	if ((findPokeBall(board, r1 - 1, c1) == NULL && findPokeBall(board, r2 - 1, c2) == NULL 
+		|| findPokeBall(board, r1 + 1, c1) == NULL && findPokeBall(board, r2 + 1, c2) == NULL) && (r1 == r2)) {
+		return true;
+	}
+
+	if ((c1 == 0 && c2 == 0) || (findPokeBall(board, r1, c1)->p_next == NULL 
+		&& findPokeBall(board, r2, c2)->p_next == NULL)) {
+		return true;
+	}
+
+	HardMode* tempTail, * tempHead;
+	if ((IHardCheck(board, r1, c1, 0, c1) || IHardCheck(board, r1, c1, HARD_HEIGHT - 1, c1)) && (r1 != r2)) {
+		tempTail = findPokeBall(board, r1, c2);
+		if (tempTail == NULL) {
+			int y = r1;
+			if ((IHardCheck(board, r1, c1, 0, c1))) {
+				while (tempTail == NULL) {
+					y++;
+					tempTail = findPokeBall(board, y, c2);
+				}
+			}
+			if (IHardCheck(board, y, c2, r2, c2)) {
+				return true;
+			}
+			y = r1;
+			if (IHardCheck(board, r1, c1, HARD_HEIGHT - 1, c1)) {
+				tempTail = NULL;
+				while (tempTail == NULL) {
+					y--;
+					tempTail = findPokeBall(board, y, c2);
+				}
+			}
+			if (IHardCheck(board, y, tempTail->j, r2, c2)) {
+				return true;
+			}
+		}
+		if (IHardCheck(board, tempTail->i, tempTail->j, r2, c2)) {
+			return true;
+		}
+	}
+	if ((IHardCheck(board, r2, c2, 0, c2) || IHardCheck(board, r2, c2, 4, c2)) && (r1 != r2)) {
+		tempTail = findPokeBall(board, r2, c1);
+		if (tempTail == NULL) {
+			int y = r2;
+			if (IHardCheck(board, r2, c2, 0, c2)) {
+				while (tempTail == NULL) {
+					y++;
+					tempTail = findPokeBall(board, y, c1);
+				}
+			}
+			if (IHardCheck(board, y, c1, r1, c1)) {
+				return true;
+			}
+			y = r2;
+			if (IHardCheck(board, r2, c2, HARD_HEIGHT - 1, c2)) {
+				while (tempTail == NULL) {
+					y--;
+					tempTail = findPokeBall(board, y, c1);
+				}
+			}
+			if (IHardCheck(board, y, c1, r1, c1)) {
+				return true;
+			}
+		}
+		else {
+			if (IHardCheck(board, tempTail->i, tempTail->j, r1, c1)) {
+				return true;
+			}
+		}
+	}
+
+	int ma, mi;
+	ma = max(r1, r2);
+	mi = min(r1, r2);
+	if (c1 != c2) {
+		for (int i = 0; (i < HARD_HEIGHT); i++) {
+			tempHead = findPokeBall(board, i, c1);
+			int x = c1;
+			tempTail = findPokeBall(board, i, c2);
+			x = c2;
+			if (IHardCheck(board, i, c1, i, c2)) {
+				if (IHardCheck(board, i, c1, r1, c1) && IHardCheck(board, i, c2, r2, c2)) {
+					return true;
+				}
+			}
+		}
+	}
+
+	ma = max(c1, c2);
+	mi = min(c1, c2);
+	if (r1 != r2) {
+		for (int i = 0; i < HARD_HEIGHT; i++) {
+			tempHead = findPokeBall(board, r1, i);
+			int y = r1;
+			tempTail = findPokeBall(board, r2, i);
+			y = r2;
+			if (IHardCheck(board, r1, i, r2, i)) {
+				if (IHardCheck(board, r1, i, r1, c1) && IHardCheck(board, r2, i, r2, c2)) {
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+bool allCheck(HardMode** board, int r1, int c1, int r2, int c2) {
+	if (IHardCheck(board, r1, c1, r2, c2) == true) return true;
+	if (LHardCheck(board, r1, c1, r2, c2) == true) return true;
+	//if (ZHardCheck(board, r1, c1, r2, c2) == true) return true;
+	//if (UHardCheck(board, r1, c1, r2, c2) == true) return true;
+	if (UandZcheck(board, r1, c1, r2, c2) == true) return true;
+	return false;
+}
+
+void deleteCell(HardMode** board, int y, int x) {
+	HardMode* p = findPokeBall(board, y, x);
+	if (x == 0) {
+		if (board[y]->p_next == NULL) {
+			board[y]->deleteCell();
+			//if (board[y]->j < 4) displayBackground(bg, board[y]->j, y);
+			board[y] = NULL;
+			return;
+		}
+		board[y]->p_mon = p->p_next->p_mon;
+
+		p = board[y]->p_next;
+		if (p->p_next == NULL) {
+			p->deleteCell();
+			//if (p->j < 4) displayBackground(bg, p->j, y);
+			delete p;
+			board[y]->p_next = NULL;
+		}
+		else {
+			while (p->p_next->p_next != NULL)
+			{
+				p->p_mon = p->p_next->p_mon;
+				p = p->p_next;
+			}
+			p->p_mon = p->p_next->p_mon;
+			p->p_next->deleteCell();
+			//if (p->p_next->j < 4) displayBackground(bg, p->p_next->j, p->p_next->i);
+			delete p->p_next;
+			p->p_next = NULL;
+		}
+	}
+	else if (p->p_next != NULL) {
+		while (p->p_next->p_next != NULL)
+		{
+			p->p_mon = p->p_next->p_mon;
+			p = p->p_next;
+		}
+		p->p_mon = p->p_next->p_mon;
+		p->p_next->deleteCell();
+		//if (p->p_next->j < 4) displayBackground(bg, p->p_next->j, p->p_next->i);
+		delete p->p_next;
+		p->p_next = NULL;
+	}
+	else {
+		p->deleteCell();
+		//if (p->j < 4) displayBackground(bg, p->j, p->i);
+		delete p;
+		p = findPokeBall(board, y, x - 1);
+		p->p_next = NULL;
+	}
+}
+
+void deletePair(HardMode** board, int r1, int c1, int r2, int c2) {
+	if (c1 > c2)
+	{
+		deleteCell(board, r1, c1);
+		deleteCell(board, r2, c2);
+	}
+	else {
+		deleteCell(board, r2, c2);
+		deleteCell(board, r1, c1);
+	}
+}
+
+bool checkValidPairs(HardMode** board) {
+	HardMode* head, * temp;
+	for (int i = 0; i < 5; i++) {
+		head = board[i];
+		while (head != NULL) {
+			int j = i;
+			temp = head->p_next;
+			while (temp == NULL && j < 4) {
+				j++;
+				temp = board[j];
+			}
+			while (temp != NULL) {
+				if (head->p_mon == temp->p_mon) {
+					if (allCheck(board, head->i, head->j, temp->i, temp->j)) {
+						return true;
+					}
+				}
+				temp = temp->p_next;
+				if ((temp == NULL) && (j < 4)) {
+					j++;
+					temp = findPokeBall(board, j, 0);
+				}
+			}
+			head = head->p_next;
+		}
+	}
+	return false;
+}
+
+//bool haveFinished(HardMode** board) {
 //	for (int i = 0; i < HARD_HEIGHT; i++)
 //		for (int j = 0; j < HARD_WIDTH; j++) {
-//			if (p_ball[i]->exist == true) return false;
-//			p_ball[i] = p_ball[i]->p_next;
+//			if (board[i]->exist == true) return false;
+//			board[i] = board[i]->p_next;
 //		}
 //	return true;
 //}

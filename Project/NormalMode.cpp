@@ -10,9 +10,9 @@ void initBoard(NormalMode** board) {
 	int pair = (NORMAL_WIDTH * NORMAL_HEIGHT) / 2;
 	while (pair) { 
 		int index, pair_amount = 2;
-		char c = 65 + rand() % 26;
+		char c = 65 + rand() % 3;
 		while (pair_amount) { // 
-			index = rand() % 16;
+			index = rand() % (NORMAL_WIDTH * NORMAL_HEIGHT);
 			if (board[index / NORMAL_WIDTH][index % NORMAL_WIDTH].p_mon == ' ') {
 				board[index / NORMAL_WIDTH][index % NORMAL_WIDTH].p_mon = c;
 				pair_amount--;
