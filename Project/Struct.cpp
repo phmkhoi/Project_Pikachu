@@ -66,7 +66,9 @@ char cell[5][11] = {
 
 //draw cell in gameboard
 void NormalMode::drawCell(int color) {
-	if (!exist) return;
+	if (!exist) {
+		return;
+	}
 
 	int x = j + 1, y = i + 1; //coordinate of cell
 
@@ -87,9 +89,10 @@ void NormalMode::drawCell(int color) {
 		setColor(color + WHITE * 16);
 		gotoXY(x * 9 + 5 + 6, y * 4 + 4);
 		cout << p_mon;
- 		setColor(WHITE); //reset color
+		setColor(WHITE); //reset color
 	}
 	else {
+
 		//print letter in cell
 		setColor(WHITE);
 		gotoXY(x * 9 + 5 + 6, y * 4 + 4);
@@ -131,6 +134,7 @@ void HardMode::drawCell(int color) {
 		setColor(WHITE); //reset color
 	}
 	else {
+
 		//print letter in cell
 		setColor(WHITE);
 		gotoXY(x * 9 + 5, y * 4 + 2 - 2);

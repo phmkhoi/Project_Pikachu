@@ -2,12 +2,7 @@ vtqd,1800
 phmk,1800
 ngu,2000
 vcl213,3000
-<<<<<<< HEAD
 Khoi,20
-Khoi,20
-Khoi,20
-Khoi,20
+
+
 Khoi,180
-=======
-Khoi,20
->>>>>>> c2220262f8cb8cb68b07c48c70648ff70e8627f4

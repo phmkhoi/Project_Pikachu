@@ -128,7 +128,7 @@ int mainMenu() {
 	int choice[4] = { 0, 0, 0, 0 }, cur_choice = 0, key, temp_key;
 	while (1) {
 		choice[cur_choice] = 1;
-		
+
 		if (choice[0]) {
 			setColor(WHITE);
 			drawBox(x_menu, 16, y_menu, 3, BLACK, WHITE, "NORMAL");

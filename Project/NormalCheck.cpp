@@ -182,22 +182,20 @@ bool checkValidPairs(NormalMode** board) {
 	while (check >= 'A' && check <= 'Z') {
 		int cnt = 0;
 		int* pos = new int[NORMAL_HEIGHT * NORMAL_WIDTH];
-		for (int i = 0; i < NORMAL_HEIGHT; i++) {
-			for (int j = 0; j < NORMAL_WIDTH; j++) {
+		for (int i = 0; i < NORMAL_HEIGHT; i++)
+			for (int j = 0; j < NORMAL_WIDTH; j++) 
 				if (board[i][j].p_mon == check && board[i][j].exist) {
 					pos[cnt++] = i;
 					pos[cnt++] = j;
 				}
-			}
-		}
-		for (int i = 0; i < cnt - 2; i += 2) {
-			for (int j = i + 2; j < cnt; j += 2) {
+
+		for (int i = 0; i < cnt - 2; i += 2)
+			for (int j = i + 2; j < cnt; j += 2) 
 				if (allCheck(board, pos[i], pos[i + 1], pos[j], pos[j + 1])) {
 					delete[] pos;
 					return true;
 				}
-			}
-		}
+
 		check++;
 		delete[] pos;
 	}

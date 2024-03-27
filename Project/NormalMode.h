@@ -4,6 +4,7 @@
 #include "Console_Settings.h"
 #include "Utility.h"
 #include "Struct.h"
+using namespace std;
 
 #define NORMAL_HEIGHT 4
 #define NORMAL_WIDTH 4
