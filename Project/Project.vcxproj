@@ -158,11 +158,11 @@
   </ItemGroup>
   <ItemGroup>
     <Media Include="Arrow_Key_Sound.wav" />
-    <Media Include="C:\Users\DELL\Downloads\8 bit uh oh sound.wav" />
-    <Media Include="C:\Users\DELL\Downloads\confirm-38513.wav" />
-    <Media Include="C:\Users\DELL\Downloads\game-over-38511.wav" />
-    <Media Include="C:\Users\DELL\Downloads\sound-fx-mario-coin_D_major.wav" />
-    <Media Include="C:\Users\DELL\Downloads\winsquare-6993.wav" />
+    <Media Include="Enter_Key_Sound.wav" />
+    <Media Include="Game_Over_Sound.wav" />
+    <Media Include="Right_Pair_Sound.wav" />
+    <Media Include="Win_Sound.wav" />
+    <Media Include="Wrong_Pair_Sound.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,20 +1,31 @@
 #include "Sound.h"
 
 void arrowKeySound() {
+	//reference: https://pixabay.com/vi/sound-effects/success-02-68338/
 	PlaySound(TEXT("Arrow_Key_Sound.wav"), NULL, SND_ASYNC);
 }
+
 void enterKeySound() {
-	PlaySound(TEXT("confirm-38513.wav"), NULL, SND_ASYNC);
+	//reference: https://pixabay.com/vi/sound-effects/success-68578/
+	PlaySound(TEXT("Enter_Key_Sound.wav"), NULL, SND_ASYNC);
 }
+
 void winSound() {
-	PlaySound(TEXT("winsquare-6993.wav"), NULL, SND_FILENAME);
+	//reference: https://pixabay.com/vi/sound-effects/winsquare-6993/
+	PlaySound(TEXT("Win_Sound.wav"), NULL, SND_ASYNC);
 }
+
 void gameOverSound() {
-	PlaySound(TEXT("game-over-38511.wav"), NULL, SND_FILENAME);
+	//reference: https://pixabay.com/vi/sound-effects/game-over-38511/
+	PlaySound(TEXT("Game_Over_Sound.wav"), NULL, SND_ASYNC);
 }
+
 void rightPairSound() {
-	PlaySound(TEXT("sound-fx-mario-coin_D_major.wav"), NULL, SND_FILENAME);
+	//reference: https://samplefocus.com/samples/sound-fx-mario-coin
+	PlaySound(TEXT("Right_Pair_Sound.wav"), NULL, SND_ASYNC);
 }
+
 void wrongPairSound() {
-	PlaySound(TEXT("8 bit uh oh sound.wav"), NULL, SND_FILENAME);
+	//reference: https://freesound.org/people/JapanYoshiTheGamer/sounds/361255/
+	PlaySound(TEXT("Wrong_Pair_Sound.wav"), NULL, SND_ASYNC);
 }	
