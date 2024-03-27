@@ -24,7 +24,7 @@ int main() {
 			normalMode(p);
 			break;
 		case 1:
-			hardMode(p);
+			difficultMode(p);
 			break;
 		case 2:
 			readLeaderBoard();

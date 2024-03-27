@@ -270,3 +270,100 @@ void displayBackground(char bg[][41], int x, int y) {
 	//reset color
 	setColor(WHITE);
 }
+
+void drawNormalBorder() {
+	int x = 15, y = 6;
+
+	////GameBorder
+
+	////TOP
+	//for (int i = x - 1; i < x + 9 * 4 + 2; i++) {
+	//	gotoXY(i, y - 1);
+	//	cout << char(205);
+	//	Sleep(50);
+	//}
+
+	////TOP RIGHT
+	//gotoXY(x + 9 * 4 + 2, y - 1);
+	//cout << char(187);
+	//Sleep(50);
+
+	////RIGHT
+	//for (int j = y; j < y + 4 * 4 + 1; j++) {
+	//	gotoXY(x + 9 * 4 + 2, j);
+	//	cout << char(186);
+	//	Sleep(50);
+	//}
+
+	////BOTTOM RIGHT
+	//gotoXY(x + 9 * 4 + 2, y + 4 * 4 + 1);
+	//cout << char(188);
+	//Sleep(50);
+
+	////BOTTOM
+	//for (int i = x + 9 * 4 + 2 - 1; i >= x - 2; i--) {
+	//	gotoXY(i, y + 4 * 4 + 1);
+	//	cout << char(205);
+	//	Sleep(50);
+	//}
+
+	////BOTTOM LEFT
+	//gotoXY(x - 2, y + 4 * 4 + 1);
+	//cout << char(200);
+	//Sleep(50);
+
+	////LEFT
+	//for (int j = y + 4 * 4 + 1 - 1; j >= y; j--) {
+	//	gotoXY(x - 2, j);
+	//	cout << char(186);
+	//	Sleep(50);
+	//}
+
+	////TOP LEFT
+	//gotoXY(x - 2, y - 1);
+	//cout << char(201);
+	//Sleep(50);
+
+
+	//Menu Border
+	x = 90, y = 2;
+	//TOP
+	for (int i = x; i < x + 40; i++) {
+		gotoXY(i, y);
+		cout << char(205);
+	}
+
+	//TOP RIGHT
+	gotoXY(x + 40, y);
+	cout << char(187);
+
+	//RIGHT
+	for (int j = y + 1; j < y + 23; j++) {
+		gotoXY(x + 40, j);
+		cout << char(186);
+	}
+
+	//BOTTOM RIGHT
+	gotoXY(x + 40, y + 23);
+	cout << char(188);
+
+	//BOTTOM
+	for (int i = x + 40 - 1; i >= x; i--) {
+		gotoXY(i, y + 23);
+		cout << char(205);
+	}
+
+	//BOTTOM LEFT
+	gotoXY(x, y + 23);
+	cout << char(200);
+
+	//LEFT
+	for (int j = y + 23 - 1; j >= y; j--) {
+		gotoXY(x, j);
+		cout << char(186);
+	}
+
+	//TOP LEFT
+	gotoXY(x, y);
+	cout << char(201);
+}

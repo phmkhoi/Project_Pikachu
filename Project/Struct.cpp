@@ -115,7 +115,7 @@ void HardMode::drawCell(int color) {
 	int x = j + 1, y = i + 1;
 
 	for (int i = 0; i < 5; i++) {
-		gotoXY(x * 9 + 6, y * 4 + i + 2);
+		gotoXY(x * 9, y * 4 + i - 2);
 		cout << cell[i];
 	}
 
@@ -123,13 +123,13 @@ void HardMode::drawCell(int color) {
 	if (is_selected) {
 		setColor(color + WHITE * 16);
 		for (int i = 1; i < 4; i++) {
-			gotoXY(x * 9 + 6 + 1, y * 4 + i + 2);
+			gotoXY(x * 9 + 1, y * 4 + i - 2);
 			cout << "        ";
 		}
 
 		//print letter in cell
 		setColor(color + WHITE * 16);
-		gotoXY(x * 9 + 5 + 6, y * 4 + 4);
+		gotoXY(x * 9 + 5, y * 4 + 2 - 2);
 		cout << p_mon;
 		setColor(WHITE); //reset color
 	}
@@ -137,7 +137,7 @@ void HardMode::drawCell(int color) {
 
 		//print letter in cell
 		setColor(WHITE);
-		gotoXY(x * 9 + 5 + 6, y * 4 + 4);
+		gotoXY(x * 9 + 5, y * 4 + 2 - 2);
 		cout << p_mon;
 		setColor(WHITE); //Reset Color
 	}
@@ -148,7 +148,7 @@ void HardMode::deleteCell() {
 
 	//delete cell
 	for (int i = 0; i < 5; i++) {
-		gotoXY(x * 9 + 6, y * 4 + i + 2);
+		gotoXY(x * 9, y * 4 + i - 2);
 		cout << "          ";
 	}
 }
