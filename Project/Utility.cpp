@@ -1,5 +1,6 @@
 #include "Utility.h"
 #include "Struct.h"
+#include "Sound.h"
 
 //Set Color
 void setColor(int color) {
@@ -127,7 +128,7 @@ int mainMenu() {
 	int choice[4] = { 0, 0, 0, 0 }, cur_choice = 0, key, temp_key;
 	while (1) {
 		choice[cur_choice] = 1;
-
+		
 		if (choice[0]) {
 			setColor(WHITE);
 			drawBox(x_menu, 16, y_menu, 3, BLACK, WHITE, "NORMAL");
@@ -202,11 +203,13 @@ int mainMenu() {
 		if (temp_key = _getch()) {
 			if (temp_key != 224 && temp_key) {
 				if (temp_key == ENTER_KEY) {
+					enterKeySound();
 					system("cls");
 					return cur_choice;
 				}
 			}
 			else {
+				arrowKeySound();
 				key = _getch();
 				switch (key) {
 				case UP_KEY:

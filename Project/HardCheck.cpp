@@ -97,114 +97,6 @@ bool IHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 	return false;
 }
 
-//bool LHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
-//	if (r1 == r2 || c1 == c2) return false;
-//
-//	HardMode* p_curr = nullptr;
-//	bool check1;
-//	bool check2;
-//
-//	p_curr = findPokeBall(board, r1, c2);
-//	if (p_curr->exist == false) {
-//		check1 = lineCheck(board, r1, c1, r1, c2);
-//		check2 = lineCheck(board, r1, c2, r2, c2);
-//		if (check1 == true && check2 == true) return true;
-//	}
-//	p_curr = findPokeBall(board, r2, c1);
-//	if (p_curr->exist == false) {
-//		check1 = lineCheck(board, r1, c1, r2, c1);
-//		check2 = lineCheck(board, r2, c1, r2, c2);
-//		if (check1 == true && check2 == true) return true;
-//	}
-//	return false;
-//}
-//
-//bool ZHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
-//	if (r1 == r2 || c1 == c2) return false;
-//	
-//	bool check1;
-//	bool check2;
-//	bool check3;
-//	int start;
-//	int end;
-//
-//	start = c1 < c2 ? c1 : c2;
-//	end = c1 < c2 ? c2 : c1;
-//	for (int i = start + 1; i < end; i++) {
-//		check1 = lineCheck(board, r1, i, r2, i);
-//		if (check1 == true) {
-//			check2 = lineCheck(board, r1, c1, r1, i);
-//			check3 = lineCheck(board, r2, c2, r2, i);
-//			if (check2 == true && check3 == true) return true;
-//		}
-//	}
-//	start = r1 < r2 ? r1 : r2;
-//	end = r1 < r2 ? r2 : r1;
-//	for (int i = start + 1; i < end; i++) {
-//		check1 = lineCheck(board, i, c1, i, c2);
-//		if (check1 == true) {
-//			check2 = lineCheck(board, r1, c1, i, c1);
-//			check3 = lineCheck(board, r2, c2, i, c2);
-//			if (check2 == true && check3 == true) return true;
-//		}
-//	}
-//	return false;
-//}
-//
-//bool UHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
-//	if (((r1 == r2) && (r1 == 0 || r1 == HARD_HEIGHT - 1)) ||
-//		((c1 == c2) && (c1 == 0 || c1 == HARD_WIDTH - 1)))
-//		return true;
-//
-//	bool check1;
-//	bool check2;
-//	bool check3;
-//	int start;
-//	int end;
-//
-//	start = c1 < c2 ? c1 : c2;
-//	end = c1 < c2 ? c2 : c1;
-//	for (int i = 0; i < HARD_WIDTH; i++) {
-//		if (i <= start || i >= end) {
-//			check1 = lineCheck(board, r1, i, r2, i);
-//			if (check1 == true) {
-//				check2 = lineCheck(board, r1, c1, r1, i);
-//				check3 = lineCheck(board, r2, c2, r2, i);
-//				if (check2 == true && check3 == true) return true;
-//			}
-//		}
-//		else if (i == 0 || i == HARD_WIDTH - 1) {
-//			check2 = lineCheck(board, r1, c1, r1, i);
-//			check3 = lineCheck(board, r2, c2, r2, i);
-//			if ((check2 == true && check3 == true) ||
-//				(check2 == true && c2 == i) ||
-//				(c1 == i && check3 == true))
-//				return true;
-//		}
-//	}
-//	start = r1 < r2 ? r1 : r2;
-//	end = r1 < r2 ? r2 : r1;
-//	for (int i = 0; i < HARD_HEIGHT; i++) {
-//		if (i <= start || i >= end) {
-//			check1 = lineCheck(board, i, c1, i, c2);
-//			if (check1 == true) {
-//				check2 = lineCheck(board, r1, c1, i, c1);
-//				check3 = lineCheck(board, r2, c2, i, c1);
-//				if (check2 == true && check3 == true) return true;
-//			}
-//		}
-//		else if (i == 0 || i == HARD_HEIGHT - 1) {
-//			check2 = lineCheck(board, r1, c1, i, c1);
-//			check3 = lineCheck(board, r2, c2, i, c1);
-//			if ((check2 == true && check3 == true) ||
-//				(check2 == true && r2 == i) ||
-//				(r1 == i && check3 == true))
-//				return true;
-//		}
-//	}
-//	return false;
-//}
-
 bool LHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 	HardMode* temp;
 	temp = findPokeBall(board, r1, c2);
@@ -274,7 +166,6 @@ bool LHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 			}
 		}
 	}
-
 	return false;
 }
 
@@ -389,8 +280,6 @@ bool UandZcheck(HardMode** board, int r1, int c1, int r2, int c2) {
 bool allCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 	if (IHardCheck(board, r1, c1, r2, c2) == true) return true;
 	if (LHardCheck(board, r1, c1, r2, c2) == true) return true;
-	//if (ZHardCheck(board, r1, c1, r2, c2) == true) return true;
-	//if (UHardCheck(board, r1, c1, r2, c2) == true) return true;
 	if (UandZcheck(board, r1, c1, r2, c2) == true) return true;
 	return false;
 }
@@ -487,12 +376,3 @@ bool checkValidPairs(HardMode** board) {
 	}
 	return false;
 }
-
-//bool haveFinished(HardMode** board) {
-//	for (int i = 0; i < HARD_HEIGHT; i++)
-//		for (int j = 0; j < HARD_WIDTH; j++) {
-//			if (board[i]->exist == true) return false;
-//			board[i] = board[i]->p_next;
-//		}
-//	return true;
-//}

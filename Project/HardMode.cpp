@@ -3,8 +3,8 @@
 #include "Struct.h"
 #include "LeaderBoard.h"
 
-#define HARD_HEIGHT 4
-#define HARD_WIDTH 4
+#define HARD_HEIGHT 8
+#define HARD_WIDTH 8
 
 void push(HardMode*& head, HardMode* p) {
     if (head == NULL) {

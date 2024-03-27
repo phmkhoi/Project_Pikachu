@@ -157,6 +157,7 @@
     <Text Include="LeaderBoard.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Media Include="Arrow_Key_Sound.wav" />
     <Media Include="C:\Users\DELL\Downloads\8 bit uh oh sound.wav" />
     <Media Include="C:\Users\DELL\Downloads\confirm-38513.wav" />
     <Media Include="C:\Users\DELL\Downloads\game-over-38511.wav" />

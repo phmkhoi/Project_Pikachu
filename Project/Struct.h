@@ -22,7 +22,8 @@ void displayPlayer(Player p, int rank);
 struct NormalMode {
 	int i, j;
 	char p_mon = ' ';
-	bool exist = 1, is_selected = 0;
+	bool exist = 1;
+	bool is_selected = 0;
 
 	void drawCell(int);
 	void deleteCell();

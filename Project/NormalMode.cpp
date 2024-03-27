@@ -3,6 +3,7 @@
 #include "Struct.h"
 #include "Utility.h"
 #include "LeaderBoard.h"
+#include "Sound.h"
 
 using namespace std;
 

@@ -1,8 +1,10 @@
 #include "Sound.h"
 
-void arrowKeySound() {}
+void arrowKeySound() {
+	PlaySound(TEXT("Arrow_Key_Sound.wav"), NULL, SND_ASYNC);
+}
 void enterKeySound() {
-	PlaySound(TEXT("confirm-38513.wav"), NULL, SND_FILENAME);
+	PlaySound(TEXT("confirm-38513.wav"), NULL, SND_ASYNC);
 }
 void winSound() {
 	PlaySound(TEXT("winsquare-6993.wav"), NULL, SND_FILENAME);

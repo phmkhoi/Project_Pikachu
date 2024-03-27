@@ -96,7 +96,7 @@ void readLeaderBoard() {
 	//Display players
 	int rank = 0;
 
-	for (int i = 0; i < p_list.size(); i++) {
+	for (int i = 0; i < 7; i++) {
 		displayPlayer(p_list[i], rank);
 		rank += 2;
 	}

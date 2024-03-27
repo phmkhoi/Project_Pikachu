@@ -105,5 +105,8 @@
     <Media Include="C:\Users\DELL\Downloads\winsquare-6993.wav">
       <Filter>Resource Files\Sound</Filter>
     </Media>
+    <Media Include="Arrow_Key_Sound.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
   </ItemGroup>
 </Project>
