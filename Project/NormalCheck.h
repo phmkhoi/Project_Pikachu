@@ -4,11 +4,11 @@
 #include "NormalMode.h"
 using namespace std;
 
-bool lineCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2);
-bool INormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2);
-bool LNormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2);
-bool ZNormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2);
-bool UNormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2);
-bool allCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2);
-bool checkValidPairs(NormalMode** board);
-bool haveFinished(NormalMode** p_ball);
+bool lineCheck(NormalMode**, int, int, int, int);
+bool INormalCheck(NormalMode**, int, int, int, int);
+bool LNormalCheck(NormalMode**, int, int, int, int);
+bool ZNormalCheck(NormalMode**, int, int, int, int);
+bool UNormalCheck(NormalMode**, int, int, int, int);
+bool allCheck(NormalMode**, int, int, int, int);
+bool checkValidPairs(NormalMode**);
+bool haveFinished(NormalMode**);

@@ -32,9 +32,9 @@ using namespace std;
 #define BRIGHT_WHITE 15
 
 
-void setColor(int color);
-void drawBox(int x, int width, int y, int height, int text_color, int bg_color, string content);
+void setColor(int);
+void drawBox(int, int, int, int, int, int, string);
 int mainMenu();
-void getBackground(char bg[][41]);
-void displayBackground(char bg[][41], int x, int y);
-void drawNormalBorder(Player p);
+void getBackground(char[][41]);
+void displayBackground(char[][41], int, int);
+void drawNormalBorder(Player);

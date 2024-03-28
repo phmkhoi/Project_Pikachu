@@ -22,19 +22,19 @@ void drawLeaderBoard() {
 	//Draw BOARD
 	////https://patorjk.com/software/taag/#p=display&h=0&v=0&f=Small&t=POINT, font: Doom
 	setColor(LIGHT_GREEN);
-	gotoXY(71, 1);
+	gotoXY(69, 1);
 	cout << "______  _____   ___  ______ ______";
-	gotoXY(71, 2);
+	gotoXY(69, 2);
 	cout << "| ___ \\|  _  | / _ \\ | ___ \\|  _  \\";
 	setColor(LIGHT_AQUA);
-	gotoXY(71, 3);
+	gotoXY(69, 3);
 	cout << "| |_/ /| | | |/ /_\\ \\| |_/ /| | | |";
-	gotoXY(71, 4);
+	gotoXY(69, 4);
 	cout << "| ___ \\| | | ||  _  ||    / | | | |";
 	setColor(LIGHT_YELLOW);
-	gotoXY(71, 5);
+	gotoXY(69, 5);
 	cout << "| |_/ /\\ \\_/ /| | | || |\\ \\ | |/ /";
-	gotoXY(71, 6);
+	gotoXY(69, 6);
 	cout << "\\____/  \\___/ \\_| |_/\\_| \\_||___/";
 
 	setColor(BRIGHT_WHITE);
@@ -96,8 +96,8 @@ void readLeaderBoard() {
 	//Display players
 	int rank = 0;
 
-	for (int i = 0; i < 7; i++) {
-		displayPlayer(p_list[i], rank);
+	for (int i = 0; i < p_list.size(); i++) {
+		if (i < 7) displayPlayer(p_list[i], rank);
 		rank += 2;
 	}
 

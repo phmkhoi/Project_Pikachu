@@ -3,12 +3,6 @@ phmk,1800
 ngu,2000
 vcl213,3000
 Khoi,20
-
-
-Khoi,180
-
-Khoi,180
-
-Khoi,180
-
-Khoi,220
+Khoi,20
+Khoi,20
+Khoi,20

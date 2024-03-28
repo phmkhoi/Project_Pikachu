@@ -13,9 +13,9 @@ struct Player {
 };
 typedef vector<Player> PlayerList;
 
-void swapPlayer(Player& p1, Player& p2);
-void sortPlayer(PlayerList& p_list);
-void displayPlayer(Player p, int rank);
+void swapPlayer(Player&, Player&);
+void sortPlayer(PlayerList&);
+void displayPlayer(Player, int);
 
 //p_mon stands for pokemon
 struct NormalMode {

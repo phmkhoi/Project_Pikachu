@@ -7,4 +7,4 @@ using namespace std;
 
 void drawLeaderBoard();
 void readLeaderBoard();
-void writeLeaderBoard(Player p);
+void writeLeaderBoard(Player);
