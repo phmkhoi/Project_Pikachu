@@ -2,6 +2,7 @@
 #include "HardCheck.h"
 #include "Struct.h"
 #include "LeaderBoard.h"
+#include "Utility.h"
 
 #define HARD_HEIGHT 6
 #define HARD_WIDTH 6
@@ -74,10 +75,12 @@ void renderList(HardMode** board) {
 void move(HardMode** board, Position& pos, int& status, Player& p, Position selectedPos[], int& couple) {
     int temp, key;
     temp = _getch();
-    if (temp && temp != 224) { // neu ko phai la dau mui ten
-        if (temp == ESC_KEY) // neu la ESC
+
+    //If Not Arrow Key
+    if (temp && temp != 224) {
+        if (temp == ESC_KEY)
             status = 2;
-        else if (temp == ENTER_KEY) { // neu la Enter
+        else if (temp == ENTER_KEY) {
             if (pos.x == selectedPos[0].x && pos.y == selectedPos[0].y) {
                 HardMode* temp = findPokeBall(board, pos.y, pos.x);
                 temp->drawCell(70);
@@ -87,24 +90,35 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                 couple = 2;
                 selectedPos[0] = { -1, -1 };
                 p.life--;
-                gotoXY(70, 0);
-                cout << "Life: " << p.life;
-            } // kiem tra lap lai
+
+                //Update Life
+                gotoXY(95, 8);
+                cout << "Life: ";
+                setColor(LIGHT_AQUA);
+                cout << p.life;
+                setColor(WHITE);
+            }
             else {
                 selectedPos[2 - couple].x = pos.x;
                 selectedPos[2 - couple].y = pos.y;
                 findPokeBall(board, pos.y, pos.x)->is_selected = 1;
                 couple--;
 
-                if (couple == 0) { // neu da chon 1 cap
+                //If 1 Pair Is Selected
+                if (couple == 0) {
                     HardMode* p1, * p2;
                     p1 = findPokeBall(board, selectedPos[0].y, selectedPos[0].x);
                     p2 = findPokeBall(board, selectedPos[1].y, selectedPos[1].x);
-                    if (p1->p_mon == p2->p_mon) {  // neu cap nay hop nhau
+                    if (p1->p_mon == p2->p_mon) {
                         if (allCheck(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x)) {
                             p.point += 20;
-                            gotoXY(40, 0);
-                            cout << "Point: " << p.point;
+
+                            //Update Score
+                            gotoXY(95, 9);
+                            cout << "Point: ";
+                            setColor(LIGHT_AQUA);
+                            cout << p.point;
+                            setColor(WHITE);
 
                             p1->drawCell(40);
                             p2->drawCell(40);
@@ -118,8 +132,13 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                             Sleep(500);
 
                             p.life--;
-                            gotoXY(70, 0);
-                            cout << "Life: " << p.life;
+
+                            //Update Life
+                            gotoXY(95, 8);
+                            cout << "Life: ";
+                            setColor(LIGHT_AQUA);
+                            cout << p.life;
+                            setColor(WHITE);
                         }
                     }
                     else {
@@ -128,10 +147,16 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                         Sleep(500);
 
                         p.life--;
-                        gotoXY(70, 0);
-                        cout << "Life: " << p.life;
+
+                        //Update Life
+                        gotoXY(95, 8);
+                        cout << "Life: ";
+                        setColor(LIGHT_AQUA);
+                        cout << p.life;
+                        setColor(WHITE);
                     }
-                    // tra ve noi san xuat
+                    
+                    //Reset
                     p1->is_selected = 0;
                     p2->is_selected = 0;
                     couple = 2;
@@ -146,7 +171,8 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                                 return;
                             }
 
-                    for (int i = 0; i <= pos.y; i++) // chuyen den CELL_1 o tren
+                    ////Move To Cell
+                    for (int i = 0; i <= pos.y; i++)
                         for (int j = 0; j <= pos.x; j++) 
                             if (findPokeBall(board, i, j) != NULL) {
                                 pos.x = j;
@@ -157,7 +183,8 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
             }
         }
     }
-    else { //neu la dau mui ten
+    //If arrow key
+    else {
         if ((pos.y != selectedPos[0].y || pos.x != selectedPos[0].x) && 
             (pos.y != selectedPos[1].y || pos.x != selectedPos[1].x)) // ktra xem o nay co dang duoc chon hay khong
             findPokeBall(board, pos.y, pos.x)->is_selected = 0;
@@ -306,26 +333,11 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
 
 void difficultMode(Player& p) {
     srand(time(0));
+    drawHardBorder(p);
     //getBackground(BG);
 
     HardMode** board = new HardMode * [HARD_HEIGHT];
     initList(board);
-
-    gotoXY(10, 0);
-    cout << "Name: " << p.name;
-    gotoXY(40, 0);
-    cout << "Point: " << p.point;
-    gotoXY(70, 0);
-    cout << "Life: " << p.life;
-
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
-    gotoXY(100, 12);
-    cout << "Press arrow key to move";
-    gotoXY(100, 13);
-    cout << "Press Enter to delete";
-    gotoXY(100, 14);
-    cout << "Press ESC to quit";
-    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 
     Position selectedPos[] = { {-1, -1}, {-1, -1} };
     int couple = 2;
@@ -341,8 +353,8 @@ void difficultMode(Player& p) {
 
         move(board, curPosition, status, p, selectedPos, couple);
 
-        //if ((!checkValidPairs(board))) status = 1;
-        if (haveFinished(board)) status = 1;
+        if ((!checkValidPairs(board))) status = 1;
+        //if (haveFinished(board)) status = 1;
     }
 
     renderList(board);

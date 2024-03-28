@@ -6,3 +6,7 @@ Khoi,20
 Khoi,20
 Khoi,20
 Khoi,20
+Khoi,180
+Khoi,380
+Khoi,380
+Khoi,180

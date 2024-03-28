@@ -221,7 +221,7 @@ void DifMode(HardMode** board, int r1, int c1, int r2, int c2) {
 
 bool checkValidPairs(HardMode** board) {
 	HardMode* head, * temp;
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 6; i++) {
 		head = board[i];
 		while (head != NULL) {
 			int j = i;

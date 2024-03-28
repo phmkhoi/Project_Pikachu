@@ -59,7 +59,13 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                 couple = 2;
                 selectedPos[0] = { -1, -1 };
                 p.life--;
-                drawNormalBorder(p);
+
+                //Update Life
+                gotoXY(95, 8);
+                cout << "Life: ";
+                setColor(LIGHT_AQUA);
+                cout << p.life;
+                setColor(WHITE);
             }
             else {
                 selectedPos[2 - couple].x = pos.x;
@@ -74,8 +80,11 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                             p.point += 20;
 
                             //Update Score
-                            gotoXY(40, 0);
-                            drawNormalBorder(p);
+                            gotoXY(95, 9);
+                            cout << "Point: ";
+                            setColor(LIGHT_AQUA);
+                            cout << p.point;
+                            setColor(WHITE);
 
                             board[selectedPos[0].y][selectedPos[0].x].drawCell(40);
                             board[selectedPos[1].y][selectedPos[1].x].drawCell(40);
@@ -97,7 +106,11 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                             p.life--;
 
                             //Update Life
-                            drawNormalBorder(p);
+                            gotoXY(95, 8);
+                            cout << "Life: ";
+                            setColor(LIGHT_AQUA);
+                            cout << p.life;
+                            setColor(WHITE);
                         }
                     }
                     else {
@@ -106,10 +119,14 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                         Sleep(500);
 
                         p.life--;
-                        drawNormalBorder(p);;
+                        gotoXY(95, 8);
+                        cout << "Life: ";
+                        setColor(LIGHT_AQUA);
+                        cout << p.life;
+                        setColor(WHITE);
                     }
 
-                    //reset
+                    //Reset
                     board[selectedPos[0].y][selectedPos[0].x].is_selected = 0;
                     board[selectedPos[1].y][selectedPos[1].x].is_selected = 0;
                     couple = 2;
@@ -283,8 +300,6 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
     }
 }
 
-//x = 15, y = 6, start = 18
-
 void normalMode(Player& p) {
     drawNormalBorder(p);
     srand(time(0));
@@ -325,7 +340,7 @@ void normalMode(Player& p) {
         printBoard(board);
 
         move(board, cur_pos, status, p, selected_pos, couple);
-        //if ((!checkValidPairs(board))) status = 1;
+        if ((!checkValidPairs(board))) status = 1;
     }
 
     printBoard(board);

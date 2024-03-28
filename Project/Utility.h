@@ -38,3 +38,4 @@ int mainMenu();
 void getBackground(char[][41]);
 void displayBackground(char[][41], int, int);
 void drawNormalBorder(Player);
+void drawHardBorder(Player p);

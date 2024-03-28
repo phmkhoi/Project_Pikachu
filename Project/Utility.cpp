@@ -274,55 +274,301 @@ void displayBackground(char bg[][41], int x, int y) {
 void drawNormalBorder(Player p) {
 	int x = 15, y = 6;
 
-	////GameBorder
+	//GameBorder
 
 	//TOP
 	for (int i = x - 1; i < x + 10 * 4 + 4; i++) {
 		gotoXY(i, y - 1);
 		cout << char(205);
-		Sleep(20);
+		Sleep(10);
 	}
 
 	//TOP RIGHT
 	gotoXY(x + 10 * 4 + 4, y - 1);
 	cout << char(187);
-	Sleep(20);
+	Sleep(10);
 
 	//RIGHT
 	for (int j = y; j < y + 4 * 4 + 1; j++) {
 		gotoXY(x + 10 * 4 + 4, j);
 		cout << char(186);
-		Sleep(20);
+		Sleep(10);
 	}
 
 	//BOTTOM RIGHT
 	gotoXY(x + 10 * 4 + 4, y + 4 * 4 + 1);
 	cout << char(188);
-	Sleep(20);
+	Sleep(10);
 
 	//BOTTOM
 	for (int i = x + 10 * 4 + 4 - 1; i >= x - 2; i--) {
 		gotoXY(i, y + 4 * 4 + 1);
 		cout << char(205);
-		Sleep(20);
+		Sleep(10);
 	}
 
 	//BOTTOM LEFT
 	gotoXY(x - 2, y + 4 * 4 + 1);
 	cout << char(200);
-	Sleep(20);
+	Sleep(10);
 
 	//LEFT
 	for (int j = y + 4 * 4 + 1 - 1; j >= y; j--) {
 		gotoXY(x - 2, j);
 		cout << char(186);
-		Sleep(20);
+		Sleep(10);
 	}
 
 	//TOP LEFT
 	gotoXY(x - 2, y - 1);
 	cout << char(201);
-	Sleep(20);
+	Sleep(10);
+
+	//Gridline
+	for (int j = 0; j < 4 * 4 + 1; j++) {
+		for (int i = 0; i < 10 * 4 + 1; i++) {
+			if (i % 10 == 0) {
+				gotoXY(x + 1 + i, y + j);
+				if (j % 4 == 0) cout << '+';
+				else cout << '|';
+			}
+		}
+		Sleep(10);
+	}
+
+	for (int i = 0; i < 10 * 4 + 1; i++) {
+		for (int j = 0; j < 4 * 4 + 1; j++) {
+			if (j % 4 == 0) {
+				gotoXY(x + 1 + i, y + j);
+				if (i % 10 == 0) cout << '+';
+				else cout << '-';
+			}
+		}
+		Sleep(10);
+	}
+
+	//Player Border
+	x = 90, y = 4;
+	//TOP
+	for (int i = x; i < x + 40; i++) {
+		gotoXY(i, y);
+		cout << char(205);
+	}
+
+	//TOP RIGHT
+	gotoXY(x + 40, y);
+	cout << char(187);
+
+	//RIGHT
+	for (int j = y + 1; j < y + 7; j++) {
+		gotoXY(x + 40, j);
+		cout << char(186);
+	}
+
+	//BOTTOM RIGHT
+	gotoXY(x + 40, y + 7);
+	cout << char(188);
+
+	//BOTTOM
+	for (int i = x + 40 - 1; i >= x; i--) {
+		gotoXY(i, y + 7);
+		cout << char(205);
+	}
+
+	//BOTTOM LEFT
+	gotoXY(x, y + 7);
+	cout << char(200);
+
+	//LEFT
+	for (int j = y + 6; j >= y; j--) {
+		gotoXY(x, j);
+		cout << char(186);
+	}
+
+	//TOP LEFT
+	gotoXY(x, y);
+	cout << char(201);
+
+	//"Player's Information"
+	gotoXY(x + 12, y + 1);
+	cout << "Player's Information";
+
+	setColor(WHITE);
+	for (int i = 2; i <= 38; i++) {
+		gotoXY(x + i, y + 2);
+		if (i == 20) cout << '\\';
+		else if (i == 21) cout << '/';
+		else cout << '-';
+	}
+
+	gotoXY(x + 5, y + 3);
+	cout << "Name: ";
+	setColor(LIGHT_AQUA);
+	cout << p.name;
+	setColor(WHITE);
+
+	gotoXY(x + 5, y + 4);
+	cout << "Life: ";
+	setColor(LIGHT_AQUA);
+	cout << p.life;
+	setColor(WHITE);
+
+	gotoXY(x + 5, y + 5);
+	cout << "Point: ";
+	setColor(LIGHT_AQUA);
+	cout << p.point;
+	setColor(WHITE);
+
+	//Game Information
+	//TOP
+	for (int i = x; i < x + 40; i++) {
+		gotoXY(i, y + 8);
+		cout << char(205);
+	}
+
+	//TOP RIGHT
+	gotoXY(x + 40, y + 8);
+	cout << char(187);
+
+	//RIGHT
+	for (int j = y + 8 + 1; j < y + 18; j++) {
+		gotoXY(x + 40, j);
+		cout << char(186);
+	}
+
+	//BOTTOM RIGHT
+	gotoXY(x + 40, y + 18);
+	cout << char(188);
+
+	//BOTTOM
+	for (int i = x + 40 - 1; i >= x; i--) {
+		gotoXY(i, y + 18);
+		cout << char(205);
+	}
+
+	//BOTTOM LEFT
+	gotoXY(x, y + 18);
+	cout << char(200);
+
+	//LEFT
+	for (int j = y + 18 - 1; j >= y + 9; j--) {
+		gotoXY(x, j);
+		cout << char(186);
+	}
+
+	//TOP LEFT
+	gotoXY(x, y + 8);
+	cout << char(201);
+
+
+	gotoXY(x + 14, y + 9);
+	cout << "STAGE:  ";
+	setColor(LIGHT_AQUA);
+	cout << "NORMAL";
+
+	setColor(WHITE);
+
+	for (int i = 2; i <= 38; i++) {
+		gotoXY(x + i, y + 10);
+		if (i == 20) cout << '\\';
+		else if (i == 21) cout << '/';
+		else cout << '-';
+	}
+
+
+	gotoXY(x + 14, y + 12);
+	cout << "Game Tutorials";
+
+	for (int i = 2; i <= 38; i++) {
+		gotoXY(x + i, y + 13);
+		cout << '-';
+	}
+
+	setColor(LIGHT_AQUA);
+	gotoXY(x + 9, y + 14);
+	cout << "Press Arrow Key To Move";
+	gotoXY(x + 9, y + 15);
+	cout << "Press Enter To Choose";
+	gotoXY(x + 9, y + 16);
+	cout << "Press ESC TO Exit";
+}
+
+void drawHardBorder(Player p) {
+	//x = 11, y = 3, length = 10 * 6 + 1
+	int x = 9, y = 2;
+
+	////GameBorder
+
+	//TOP
+	for (int i = x - 2; i < x + 10 * 6 + 4; i++) {
+		gotoXY(i, y - 1);
+		cout << char(205);
+		Sleep(10);
+	}
+
+	//TOP RIGHT
+	gotoXY(x + 10 * 6 + 4, y - 1);
+	cout << char(187);
+	Sleep(10);
+
+	//RIGHT
+	for (int j = y; j < y + 4 * 6 + 1; j++) {
+		gotoXY(x + 10 * 6 + 4, j);
+		cout << char(186);
+		Sleep(10);
+	}
+
+	//BOTTOM RIGHT
+	gotoXY(x + 10 * 6 + 4, y + 6 * 4 + 1);
+	cout << char(188);
+	Sleep(10);
+
+	//BOTTOM
+	for (int i = x + 10 * 6 + 4 - 1; i > x - 2; i--) {
+		gotoXY(i, y + 6 * 4 + 1);
+		cout << char(205);
+		Sleep(10);
+	}
+
+	//BOTTOM LEFT
+	gotoXY(x - 2, y + 6 * 4 + 1);
+	cout << char(200);
+	Sleep(10);
+
+	//LEFT
+	for (int j = y + 4 * 6 + 1 - 1; j >= y; j--) {
+		gotoXY(x - 2, j);
+		cout << char(186);
+		Sleep(10);
+	}
+
+	//TOP LEFT
+	gotoXY(x - 2, y - 1);
+	cout << char(201);
+	Sleep(10);
+
+	//Gridline
+	for (int j = 0; j < 4 * 6 + 1; j++) {
+		for (int i = 0; i < 10 * 6 + 1; i++) {
+			if (i % 10 == 0) {
+				gotoXY(x + 1 + i, y + j);
+				if (j % 4 == 0) cout << '+';
+				else cout << '|';
+			}
+		}
+		Sleep(10);
+	}
+
+	for (int i = 0; i < 10 * 6 + 1; i++) {
+		for (int j = 0; j < 4 * 6 + 1; j++) {
+			if (j % 4 == 0) {
+				gotoXY(x + 1 + i, y + j);
+				if (i % 10 == 0) cout << '+';
+				else cout << '-';
+			}
+		}
+		Sleep(10);
+	}
 
 	//Player Border
 	x = 90, y = 4;
