@@ -5,7 +5,6 @@
 #include <vector>
 #include <string>
 #include <Windows.h>
-#include "Utility.h"
 using namespace std;
 
 struct Player {

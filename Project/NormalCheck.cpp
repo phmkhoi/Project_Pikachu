@@ -1,5 +1,6 @@
 #include "NormalCheck.h"
 
+
 //r stands for row, c stands for column
 bool lineCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 	int start;

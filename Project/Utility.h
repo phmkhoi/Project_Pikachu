@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <conio.h>
 #include "Console_Settings.h"
+#include "Struct.h"
 using namespace std;
 
 #define UP_KEY 72
@@ -36,4 +37,4 @@ void drawBox(int x, int width, int y, int height, int text_color, int bg_color, 
 int mainMenu();
 void getBackground(char bg[][41]);
 void displayBackground(char bg[][41], int x, int y);
-void drawNormalBorder();
+void drawNormalBorder(Player p);

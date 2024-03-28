@@ -70,7 +70,7 @@ bool IHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 	return false;
 }
 
-bool LHardcheck(HardMode** board, int r1, int c1, int r2, int c2) {
+bool LHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 	HardMode* p_cur;
 	p_cur = findPokeBall(board, r1, c2);
 	if (p_cur == NULL) {
@@ -105,17 +105,17 @@ bool LHardcheck(HardMode** board, int r1, int c1, int r2, int c2) {
 			else ++r;
 			p_cur = findPokeBall(board, r, c1);
 		}
-		if (Icheck(board, r1, c1, r1, c) && Icheck(board, r2, c2, r, c2)) 
+		if (IHardCheck(board, r1, c1, r1, c) && IHardCheck(board, r2, c2, r, c2)) 
 			return true;
-		else if (Icheck(board, r1, c1, r, c1) && Icheck(board, r2, c2, r, c2)) 
+		else if (IHardCheck(board, r1, c1, r, c1) && IHardCheck(board, r2, c2, r, c2)) 
 			return true;
 	}
 	return false;
 }
 
-bool ZHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
-
-}
+//bool ZHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
+//
+//}
 bool UHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 	if (((!findPokeBall(board, r1 - 1, c1) && !findPokeBall(board, r2 - 1, c2)) ||
 		(!findPokeBall(board, r1 + 1, c1) && !findPokeBall(board, r2 + 1, c2))) && (r1 == r2))
@@ -135,7 +135,7 @@ bool UHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 					++r;
 					p_tail = findPokeBall(board, r, c2);
 				}
-			if (Icheck(board, r, c2, r2, c2)) return true;
+			if (IHardCheck(board, r, c2, r2, c2)) return true;
 			
 			r = r1;
 			if (IHardCheck(board, r1, c1, 5, c1)) {
@@ -145,31 +145,31 @@ bool UHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 					p_tail = findPokeBall(board, r, c2);
 				}
 			}
-			if (Icheck(board, r, p_tail->column, r2, c2)) return true;
+			if (IHardCheck(board, r, p_tail->column, r2, c2)) return true;
 		}
-		if (Icheck(board, p_tail->row, p_tail->column, r2, c2)) return true;
+		if (IHardCheck(board, p_tail->row, p_tail->column, r2, c2)) return true;
 	}
-	if ((Icheck(board, r2, c2, 0, c2) || Icheck(board, r2, c2, 5, c2)) && (r1 != r2)) {
+	if ((IHardCheck(board, r2, c2, 0, c2) || IHardCheck(board, r2, c2, 5, c2)) && (r1 != r2)) {
 		p_tail = findPokeBall(board, r2, c1);
 		if (p_tail == NULL) {
 			int y = r2;
-			if (Icheck(board, r2, c2, 0, c2))
+			if (IHardCheck(board, r2, c2, 0, c2))
 				while (p_tail == NULL) {
 					y++;
 					p_tail = findPokeBall(board, y, c1);
 				}
-			if (Icheck(board, y, c1, r1, c1)) return true;
+			if (IHardCheck(board, y, c1, r1, c1)) return true;
 			
 			y = r2;
-			if (Icheck(board, r2, c2, 5, c2))
+			if (IHardCheck(board, r2, c2, 5, c2))
 				while (p_tail == NULL) {
 					y--;
 					p_tail = findPokeBall(board, y, c1);
 				}
-			if (Icheck(board, y, c1, r1, c1)) return true;
+			if (IHardCheck(board, y, c1, r1, c1)) return true;
 		}
 		else 
-			if (Icheck(board, p_tail->row, p_tail->column, r1, c1)) 
+			if (IHardCheck(board, p_tail->row, p_tail->column, r1, c1)) 
 				return true;
 	}
 	if (c1 != c2) {
@@ -178,8 +178,8 @@ bool UHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 			int c = c1;
 			p_tail = findPokeBall(board, i, c2);
 			c = c2;
-			if (Icheck(board, i, c1, i, c2)) 
-				if (Icheck(board, i, c1, r1, c1) && Icheck(board, i, c2, r2, c2))
+			if (IHardCheck(board, i, c1, i, c2)) 
+				if (IHardCheck(board, i, c1, r1, c1) && IHardCheck(board, i, c2, r2, c2))
 					return true;
 		}
 	}
@@ -189,8 +189,8 @@ bool UHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 			int y = r1;
 			p_tail = findPokeBall(board, r2, i);
 			y = r2;
-			if (Icheck(board, r1, i, r2, i)) 
-				if (Icheck(board, r1, i, r1, c1) && Icheck(board, r2, i, r2, c2))
+			if (IHardCheck(board, r1, i, r2, i)) 
+				if (IHardCheck(board, r1, i, r1, c1) && IHardCheck(board, r2, i, r2, c2))
 					return true;
 		}
 	}
@@ -198,9 +198,9 @@ bool UHardCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 }
 
 bool allCheck(HardMode** board, int r1, int c1, int r2, int c2) {
-	if (Icheck(board, r1, c1, r2, c2)) return true;
-	else if (Lcheck(board, r1, c1, r2, c2)) return true;
-	else if (UandZcheck(board, r1, c1, r2, c2)) return true;
+	if (IHardCheck(board, r1, c1, r2, c2)) return true;
+	else if (LHardCheck(board, r1, c1, r2, c2)) return true;
+	else if (UHardCheck(board, r1, c1, r2, c2)) return true;
 	return false;
 }
 

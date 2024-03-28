@@ -59,8 +59,7 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                 couple = 2;
                 selectedPos[0] = { -1, -1 };
                 p.life--;
-                gotoXY(70, 0);
-                cout << "Life: " << p.life;
+                drawNormalBorder(p);
             }
             else {
                 selectedPos[2 - couple].x = pos.x;
@@ -76,7 +75,7 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
 
                             //Update Score
                             gotoXY(40, 0);
-                            cout << "Point: " << p.point;
+                            drawNormalBorder(p);
 
                             board[selectedPos[0].y][selectedPos[0].x].drawCell(40);
                             board[selectedPos[1].y][selectedPos[1].x].drawCell(40);
@@ -98,8 +97,7 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                             p.life--;
 
                             //Update Life
-                            gotoXY(70, 0);
-                            cout << "Life: " << p.life;
+                            drawNormalBorder(p);
                         }
                     }
                     else {
@@ -108,8 +106,7 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                         Sleep(500);
 
                         p.life--;
-                        gotoXY(70, 0);
-                        cout << "Life: " << p.life;
+                        drawNormalBorder(p);;
                     }
 
                     //reset
@@ -289,7 +286,7 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
 //x = 15, y = 6, start = 18
 
 void normalMode(Player& p) {
-    drawNormalBorder();
+    drawNormalBorder(p);
     srand(time(0));
     /*getBackground(bg);*/
 
@@ -305,21 +302,13 @@ void normalMode(Player& p) {
     initBoard(board);
 
 
-    gotoXY(10, 0);
+    setColor(WHITE);
+    /*gotoXY(10, 0);
     cout << "Name: " << p.name;
     gotoXY(40, 0);
     cout << "Point: " << p.point;
     gotoXY(70, 0);
-    cout << "Life: " << p.life;
-
-    setColor(LIGHT_AQUA);
-    gotoXY(100, 12);
-    cout << "Press arrow key to move";
-    gotoXY(100, 13);
-    cout << "Press Enter to delete";
-    gotoXY(100, 14);
-    cout << "Press ESC to quit";
-    setColor(WHITE);
+    cout << "Life: " << p.life;*/
 
     Position selected_pos[] = { {-1, -1}, {-1, -1} };
     int couple = 2;
