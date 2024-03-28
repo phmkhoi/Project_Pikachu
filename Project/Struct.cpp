@@ -68,7 +68,7 @@ char cell[5][12] = {
 void NormalMode::drawCell(int color) {
 	if (!exist) return;
 
-	int x = row + 1, y = column + 1; //coordinate of cell
+	int x = column + 1, y = row + 1; //coordinate of cell
 
 	for (int i = 0; i < 5; i++) {
 		gotoXY(x * 10 + 6, y * 4 + i + 2);
