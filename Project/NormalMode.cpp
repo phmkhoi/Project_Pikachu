@@ -298,8 +298,8 @@ void normalMode(Player& p) {
     for (int i = 0; i < NORMAL_HEIGHT; i++) { // gan vi tri cho tung o mot
         board[i] = new NormalMode[NORMAL_WIDTH];
         for (int j = 0; j < NORMAL_WIDTH; j++) {
-            board[i][j].j = j;
-            board[i][j].i = i;
+            board[i][j].column = j;
+            board[i][j].row = i;
         }
     }
     initBoard(board);

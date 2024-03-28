@@ -7,8 +7,8 @@ bool lineCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 	int cnt = 0;
 
 	if (r1 == r2) {
-		start = c1 < c2 ? c1 : c2;
-		end = c1 < c2 ? c2 : c1;
+		start = min(c1, c2);
+		end = max(c1, c2);
 		for (int i = start; i <= end; i++) {
 			if (p_ball[r1][i].exist == true) {
 				++cnt;
@@ -23,8 +23,8 @@ bool lineCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 				return true;	
 	}
 	if (c1 == c2) {
-		start = r1 < r2 ? r1 : r2;
-		end = r1 < r2 ? r2 : r1;
+		start = min(r1, r2);
+		end = max(r1, r2);
 		for (int i = start; i <= end; i++) {
 			if (p_ball[i][c1].exist == true) {
 				++cnt;
@@ -46,16 +46,16 @@ bool INormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 	int end;
 
 	if (r1 == r2) {
-		start = c1 < c2 ? c1 : c2;
-		end = c1 < c2 ? c2 : c1;
+		start = min(c1, c2);
+		end = max(c1, c2);
 		for (int i = start + 1; i < end; i++)
 			if (p_ball[r1][i].exist == true)
 				return false;
 		return true;
 	}
 	if (c1 == c2) {
-		start = r1 < r2 ? r1 : r2;
-		end = r1 < r2 ? r2 : r1;
+		start = min(r1, r2);
+		end = max(r1, r2);
 		for (int i = start + 1; i < end; i++)
 			if (p_ball[i][c1].exist == true) 
 				return false;
@@ -92,8 +92,8 @@ bool ZNormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 	int start;
 	int end;
 
-	start = c1 < c2 ? c1 : c2;
-	end = c1 < c2 ? c2 : c1;
+	start = min(c1, c2);
+	end = max(c1, c2);
 	for (int i = start + 1; i < end; i++) {
 		check1 = lineCheck(p_ball, r1, i, r2, i);
 		if (check1 == true) {
@@ -102,8 +102,8 @@ bool ZNormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 			if (check2 == true && check3 == true) return true;
 		}
 	}
-	start = r1 < r2 ? r1 : r2;
-	end = r1 < r2 ? r2 : r1;
+	start = min(r1, r2);
+	end = max(r1, r2);
 	for (int i = start + 1; i < end; i++) {
 		check1 = lineCheck(p_ball, i, c1, i, c2);
 		if (check1 == true) {
@@ -126,8 +126,8 @@ bool UNormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 	int start;
 	int end;
 
-	start = c1 < c2 ? c1 : c2;
-	end = c1 < c2 ? c2 : c1;
+	start = min(c1, c2);
+	end = max(c1, c2);
 	for (int i = 0; i < NORMAL_WIDTH; i++) {
 		if (i <= start || i >= end) {
 			check1 = lineCheck(p_ball, r1, i, r2, i);
@@ -146,8 +146,8 @@ bool UNormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 				return true;
 		}
 	}
-	start = r1 < r2 ? r1 : r2;
-	end = r1 < r2 ? r2 : r1;
+	start = min(r1, r2);
+	end = max(r1, r2);
 	for (int i = 0; i < NORMAL_HEIGHT; i++) {
 		if (i <= start || i >= end) {
 			check1 = lineCheck(p_ball, i, c1, i, c2);

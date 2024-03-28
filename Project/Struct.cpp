@@ -56,24 +56,22 @@ void displayPlayer(Player p, int rank) {
 }
 
 
-char cell[5][11] = {
-	{"+--------+"},
-	{"|        |"},
-	{"|        |"},
-	{"|        |"},
-	{"+--------+"},
+char cell[5][12] = {
+	{"+---------+"},
+	{"|         |"},
+	{"|         |"},
+	{"|         |"},
+	{"+---------+"},
 };
 
 //draw cell in gameboard
 void NormalMode::drawCell(int color) {
-	if (!exist) {
-		return;
-	}
+	if (!exist) return;
 
-	int x = j + 1, y = i + 1; //coordinate of cell
+	int x = row + 1, y = column + 1; //coordinate of cell
 
 	for (int i = 0; i < 5; i++) {
-		gotoXY(x * 9 + 6, y * 4 + i + 2);
+		gotoXY(x * 10 + 6, y * 4 + i + 2);
 		cout << cell[i];
 	}
 
@@ -81,13 +79,13 @@ void NormalMode::drawCell(int color) {
 	if (is_selected) {
 		setColor(color + WHITE * 16);
 		for (int i = 1; i < 4; i++) {
-			gotoXY(x * 9 + 6 + 1, y * 4 + i + 2);
-			cout << "        ";
+			gotoXY(x * 10 + 6 + 1, y * 4 + i + 2);
+			cout << "         ";
 		}
 
 		//print letter in cell
 		setColor(color + WHITE * 16);
-		gotoXY(x * 9 + 5 + 6, y * 4 + 4);
+		gotoXY(x * 10 + 5 + 6, y * 4 + 4);
 		cout << p_mon;
 		setColor(WHITE); //reset color
 	}
@@ -95,27 +93,27 @@ void NormalMode::drawCell(int color) {
 
 		//print letter in cell
 		setColor(WHITE);
-		gotoXY(x * 9 + 5 + 6, y * 4 + 4);
+		gotoXY(x * 10 + 5 + 6, y * 4 + 4);
 		cout << p_mon;
 		setColor(WHITE); //Reset Color
 	}
 }
 
 void NormalMode::deleteCell() {
-	int x = j + 1, y = i + 1; //coordinate of cell
+	int x = column + 1, y = row + 1; //coordinate of cell
 
 	//delete cell
 	for (int i = 0; i < 5; i++) {
-		gotoXY(x * 9 + 6, y * 4 + i + 2);
-		cout << "          ";
+		gotoXY(x * 10 + 6, y * 4 + i + 2);
+		cout << "           ";
 	}
 }
 
 void HardMode::drawCell(int color) {
-	int x = j + 1, y = i + 1;
+	int x = column + 1, y = row + 1;
 
 	for (int i = 0; i < 5; i++) {
-		gotoXY(x * 9, y * 4 + i - 2);
+		gotoXY(x * 10, y * 4 + i - 2);
 		cout << cell[i];
 	}
 
@@ -123,13 +121,13 @@ void HardMode::drawCell(int color) {
 	if (is_selected) {
 		setColor(color + WHITE * 16);
 		for (int i = 1; i < 4; i++) {
-			gotoXY(x * 9 + 1, y * 4 + i - 2);
-			cout << "        ";
+			gotoXY(x * 10 + 1, y * 4 + i - 2);
+			cout << "         ";
 		}
 
 		//print letter in cell
 		setColor(color + WHITE * 16);
-		gotoXY(x * 9 + 5, y * 4 + 2 - 2);
+		gotoXY(x * 10 + 5, y * 4 + 2 - 2);
 		cout << p_mon;
 		setColor(WHITE); //reset color
 	}
@@ -137,18 +135,18 @@ void HardMode::drawCell(int color) {
 
 		//print letter in cell
 		setColor(WHITE);
-		gotoXY(x * 9 + 5, y * 4 + 2 - 2);
+		gotoXY(x * 10 + 5, y * 4 + 2 - 2);
 		cout << p_mon;
 		setColor(WHITE); //Reset Color
 	}
 }
 
 void HardMode::deleteCell() {
-	int x = j + 1, y = i + 1; //coordinate of cell
+	int x = column + 1, y = row + 1; //coordinate of cell
 
 	//delete cell
 	for (int i = 0; i < 5; i++) {
-		gotoXY(x * 9, y * 4 + i - 2);
-		cout << "          ";
+		gotoXY(x * 10, y * 4 + i - 2);
+		cout << "           ";
 	}
 }

@@ -20,7 +20,7 @@ void displayPlayer(Player p, int rank);
 
 //p_mon stands for pokemon
 struct NormalMode {
-	int i, j;
+	int row, column;
 	char p_mon = ' ';
 	bool exist = 1;
 	bool is_selected = 0;
@@ -30,7 +30,7 @@ struct NormalMode {
 };
 
 struct HardMode {
-	int i, j;
+	int row, column;
 	char p_mon = ' ';
 	bool is_selected = 0;
 	HardMode* p_next;

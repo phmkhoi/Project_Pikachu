@@ -22,8 +22,8 @@ void initList(HardMode** board) {
         board[i] = NULL;
         for (int j = 0; j < HARD_WIDTH; j++) {
             HardMode* p = new HardMode;
-            p->i = i;
-            p->j = j;
+            p->row = i;
+            p->column = j;
             p->p_next = NULL;
             push(board[i], p);
         }
