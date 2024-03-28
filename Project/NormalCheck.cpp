@@ -11,32 +11,32 @@ bool lineCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 		start = min(c1, c2);
 		end = max(c1, c2);
 		for (int i = start; i <= end; i++) {
-			if (p_ball[r1][i].exist == true) {
+			if (p_ball[r1][i].exist) {
 				++cnt;
 				if (cnt > 1) return false;
 			}
 		}
 		if (cnt == 0) return true;
 		if (cnt == 1)
-			if (p_ball[r1][c1].exist == true && p_ball[r2][c2].exist == false)
+			if (p_ball[r1][c1].exist && !p_ball[r2][c2].exist)
 				return true;
-			else if (p_ball[r1][c1].exist == false && p_ball[r2][c2].exist == true)
+			else if (!p_ball[r1][c1].exist && p_ball[r2][c2].exist)
 				return true;	
 	}
 	if (c1 == c2) {
 		start = min(r1, r2);
 		end = max(r1, r2);
 		for (int i = start; i <= end; i++) {
-			if (p_ball[i][c1].exist == true) {
+			if (p_ball[i][c1].exist) {
 				++cnt;
 				if (cnt > 1) return false;
 			}
 		}
 		if (cnt == 0) return true;
 		if (cnt == 1)
-			if (p_ball[r1][c1].exist == true && p_ball[r2][c2].exist == false)
+			if (p_ball[r1][c1].exist && !p_ball[r2][c2].exist)
 				return true;
-			else if (p_ball[r1][c1].exist == false && p_ball[r2][c2].exist == true)
+			else if (!p_ball[r1][c1].exist && p_ball[r2][c2].exist)
 				return true;
 	}
 	return false;
@@ -50,7 +50,7 @@ bool INormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 		start = min(c1, c2);
 		end = max(c1, c2);
 		for (int i = start + 1; i < end; i++)
-			if (p_ball[r1][i].exist == true)
+			if (p_ball[r1][i].exist)
 				return false;
 		return true;
 	}
@@ -58,7 +58,7 @@ bool INormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 		start = min(r1, r2);
 		end = max(r1, r2);
 		for (int i = start + 1; i < end; i++)
-			if (p_ball[i][c1].exist == true) 
+			if (p_ball[i][c1].exist) 
 				return false;
 		return true;
 	}
@@ -74,12 +74,12 @@ bool LNormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 	if (p_ball[r1][c2].exist == false) {
 		check1 = lineCheck(p_ball, r1, c1, r1, c2);
 		check2 = lineCheck(p_ball, r1, c2, r2, c2);
-		if (check1 == true && check2 == true) return true;
+		if (check1 && check2) return true;
 	}
 	if (p_ball[r2][c1].exist == false) {
 		check1 = lineCheck(p_ball, r1, c1, r2, c1);
 		check2 = lineCheck(p_ball, r2, c1, r2, c2);
-		if (check1 == true && check2 == true) return true;
+		if (check1 && check2) return true;
 	}
 	return false;
 }
@@ -97,20 +97,20 @@ bool ZNormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 	end = max(c1, c2);
 	for (int i = start + 1; i < end; i++) {
 		check1 = lineCheck(p_ball, r1, i, r2, i);
-		if (check1 == true) {
+		if (check1) {
 			check2 = lineCheck(p_ball, r1, c1, r1, i);
 			check3 = lineCheck(p_ball, r2, c2, r2, i);
-			if (check2 == true && check3 == true) return true;
+			if (check2 && check3) return true;
 		}
 	}
 	start = min(r1, r2);
 	end = max(r1, r2);
 	for (int i = start + 1; i < end; i++) {
 		check1 = lineCheck(p_ball, i, c1, i, c2);
-		if (check1 == true) {
+		if (check1) {
 			check2 = lineCheck(p_ball, r1, c1, i, c1);
 			check3 = lineCheck(p_ball, r2, c2, i, c2);
-			if (check2 == true && check3 == true) return true;
+			if (check2 && check3) return true;
 		}
 	}
 	return false;
@@ -130,51 +130,48 @@ bool UNormalCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 	start = min(c1, c2);
 	end = max(c1, c2);
 	for (int i = 0; i < NORMAL_WIDTH; i++) {
-		if (i <= start || i >= end) {
-			check1 = lineCheck(p_ball, r1, i, r2, i);
-			if (check1 == true) {
-				check2 = lineCheck(p_ball, r1, c1, r1, i);
-				check3 = lineCheck(p_ball, r2, c2, r2, i);
-				if (check2 == true && check3 == true) return true;
-			}
-		}
-		else if (i == 0 || i == NORMAL_WIDTH - 1) {
+		if (i == 0 || i == NORMAL_WIDTH - 1) {
 			check2 = lineCheck(p_ball, r1, c1, r1, i);
 			check3 = lineCheck(p_ball, r2, c2, r2, i);
-			if ((check2 == true && check3 == true) ||
-				(check2 == true && c2 == i) ||
-				(c1 == i && check3 == true))
+			if ((check2 && check3) || (check2 && c2 == i) || (c1 == i && check3))
 				return true;
 		}
+		if (i <= start || i >= end) {
+			check1 = lineCheck(p_ball, r1, i, r2, i);
+			if (check1) {
+				check2 = lineCheck(p_ball, r1, c1, r1, i);
+				check3 = lineCheck(p_ball, r2, c2, r2, i);
+				if (check2 && check3) return true;
+			}
+		}
 	}
+
 	start = min(r1, r2);
 	end = max(r1, r2);
 	for (int i = 0; i < NORMAL_HEIGHT; i++) {
+		if (i == 0 || i == NORMAL_HEIGHT - 1) {
+			check2 = lineCheck(p_ball, r1, c1, i, c1);
+			check3 = lineCheck(p_ball, r2, c2, i, c2);
+			if ((check2 && check3) || (check2 && r2 == i) || (r1 == i && check3))
+				return true;
+		}
 		if (i <= start || i >= end) {
 			check1 = lineCheck(p_ball, i, c1, i, c2);
-			if (check1 == true) {
+			if (check1) {
 				check2 = lineCheck(p_ball, r1, c1, i, c1);
-				check3 = lineCheck(p_ball, r2, c2, i, c1);
-				if (check2 == true && check3 == true) return true;
+				check3 = lineCheck(p_ball, r2, c2, i, c2);
+				if (check2 && check3) return true;
 			}
-		}
-		else if (i == 0 || i == NORMAL_HEIGHT - 1) {
-			check2 = lineCheck(p_ball, r1, c1, i, c1);
-			check3 = lineCheck(p_ball, r2, c2, i, c1);
-			if ((check2 == true && check3 == true) ||
-				(check2 == true && r2 == i) ||
-				(r1 == i && check3 == true))
-				return true;
 		}
 	}
 	return false;
 }
 
 bool allCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
-	if (INormalCheck(p_ball, r1, c1, r2, c2) == true) return true;
-	if (LNormalCheck(p_ball, r1, c1, r2, c2) == true) return true;
-	if (ZNormalCheck(p_ball, r1, c1, r2, c2) == true) return true;
-	if (UNormalCheck(p_ball, r1, c1, r2, c2) == true) return true;
+	if (INormalCheck(p_ball, r1, c1, r2, c2)) return true;
+	if (LNormalCheck(p_ball, r1, c1, r2, c2)) return true;
+	if (ZNormalCheck(p_ball, r1, c1, r2, c2)) return true;
+	if (UNormalCheck(p_ball, r1, c1, r2, c2)) return true;
 	return false;
 }
 
@@ -201,11 +198,4 @@ bool checkValidPairs(NormalMode** board) {
 		delete[] pos;
 	}
 	return false;
-}
-
-bool haveFinished(NormalMode** p_ball) {
-	for (int i = 0; i < NORMAL_HEIGHT; i++)
-		for (int j = 0; j < NORMAL_WIDTH; j++)
-			if (p_ball[i][j].exist == true) return false;
-	return true;
 }

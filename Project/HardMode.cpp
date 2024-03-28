@@ -342,6 +342,7 @@ void difficultMode(Player& p) {
         move(board, curPosition, status, p, selectedPos, couple);
 
         //if ((!checkValidPairs(board))) status = 1;
+        if (haveFinished(board)) status = 1;
     }
 
     renderList(board);

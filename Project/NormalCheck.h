@@ -11,4 +11,3 @@ bool ZNormalCheck(NormalMode**, int, int, int, int);
 bool UNormalCheck(NormalMode**, int, int, int, int);
 bool allCheck(NormalMode**, int, int, int, int);
 bool checkValidPairs(NormalMode**);
-bool haveFinished(NormalMode**);

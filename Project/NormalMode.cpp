@@ -325,7 +325,7 @@ void normalMode(Player& p) {
         printBoard(board);
 
         move(board, cur_pos, status, p, selected_pos, couple);
-        if ((!checkValidPairs(board))) status = 1;
+        //if ((!checkValidPairs(board))) status = 1;
     }
 
     printBoard(board);
