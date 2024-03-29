@@ -208,8 +208,6 @@ int mainMenu() {
 				}
 			}
 			else {
-				arrowKeySound();
-				Sleep(370);
 				key = _getch();
 				switch (key) {
 				case UP_KEY:

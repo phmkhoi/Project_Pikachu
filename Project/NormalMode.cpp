@@ -74,7 +74,7 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                     if (board[selectedPos[0].y][selectedPos[0].x].p_mon == board[selectedPos[1].y][selectedPos[1].x].p_mon) {  // neu cap nay hop nhau
                         if (allCheck(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x)) {
                             rightPairSound();
-                            Sleep(150);
+                            Sleep(200);
    
                             p.point += 20;
 
@@ -99,7 +99,7 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                         }
                         else {
                             wrongPairSound();
-                            Sleep(150);
+                            Sleep(200);
                       
                             board[selectedPos[0].y][selectedPos[0].x].drawCell(70);
                             board[selectedPos[1].y][selectedPos[1].x].drawCell(70);
@@ -117,7 +117,7 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                     }
                     else {
                         wrongPairSound();
-                        Sleep(150);
+                        Sleep(200);
                       
                         board[selectedPos[0].y][selectedPos[0].x].drawCell(70);
                         board[selectedPos[1].y][selectedPos[1].x].drawCell(70);

@@ -113,7 +113,7 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                     if (p1->p_mon == p2->p_mon) {
                         if (allCheck(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x)) {
                             rightPairSound();
-                            Sleep(150);
+                            Sleep(200);
 
                             p.point += 20;
 
@@ -132,7 +132,7 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                         }
                         else {
                             wrongPairSound();
-                            Sleep(150);
+                            Sleep(200);
 
                             p1->drawCell(70);
                             p2->drawCell(70);
@@ -150,7 +150,7 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                     }
                     else {
                         wrongPairSound();
-                        Sleep(150);
+                        Sleep(200);
 
                         p1->drawCell(70);
                         p2->drawCell(70);

@@ -3,3 +3,8 @@ KhoiPhan,20
 Ethan,500
 Yee,100
 KhoiPhan,160
+Duy,160
+Duy,160
+duy,360
+duy,160
+duy,0

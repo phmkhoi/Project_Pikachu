@@ -1,15 +1,5 @@
 #include "Sound.h"
 
-void arrowKeySound() {
-	//Source: https://pixabay.com/vi/sound-effects/success-02-68338/
-	PlaySound(TEXT("Arrow_Key_Sound.wav"), NULL, SND_ASYNC);
-}
-
-void enterKeySound() {
-	//Source: https://pixabay.com/vi/sound-effects/success-68578/
-	PlaySound(TEXT("Enter_Key_Sound.wav"), NULL, SND_ASYNC);
-}
-
 void winSound() {
 	//Source: https://pixabay.com/vi/sound-effects/winsquare-6993/
 	PlaySound(TEXT("Win_Sound.wav"), NULL, SND_ASYNC);
