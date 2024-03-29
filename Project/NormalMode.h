@@ -4,6 +4,9 @@
 #include "Console_Settings.h"
 #include "Utility.h"
 #include "Struct.h"
+#include "NormalCheck.h"
+#include "LeaderBoard.h"
+#include "Sound.h"
 using namespace std;
 
 #define NORMAL_HEIGHT 4

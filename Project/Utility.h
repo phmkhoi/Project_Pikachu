@@ -5,6 +5,7 @@
 #include <conio.h>
 #include "Console_Settings.h"
 #include "Struct.h"
+#include "Sound.h"
 using namespace std;
 
 #define UP_KEY 72
@@ -39,3 +40,4 @@ void getBackground(char[][41]);
 void displayBackground(char[][41], int, int);
 void drawNormalBorder(Player);
 void drawHardBorder(Player p);
+void displayStatus(int);

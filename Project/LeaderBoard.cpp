@@ -97,10 +97,10 @@ void readLeaderBoard() {
 	int rank = 0;
 
 	for (int i = 0; i < p_list.size(); i++) {
-		if (i < 7) displayPlayer(p_list[i], rank);
+		displayPlayer(p_list[i], rank);
 		rank += 2;
+		if (i > 5) break;
 	}
-
 	_getch();
 	system("cls");
 }
@@ -113,6 +113,6 @@ void writeLeaderBoard(Player p) {
 		return;
 	}
 
-	ofs << "\n" << p.name << "," << p.point << "\n";
+	ofs << "\n" << p.name << "," << p.point;
 	ofs.close();
 }

@@ -13,4 +13,3 @@ bool allCheck(HardMode**, int, int, int, int);
 void deleteNode(HardMode**, int, int);
 void DifMode(HardMode**, int, int, int, int);
 bool checkValidPairs(HardMode**);
-bool haveFinished(HardMode**);

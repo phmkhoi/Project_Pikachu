@@ -203,13 +203,13 @@ int mainMenu() {
 		if (temp_key = _getch()) {
 			if (temp_key != 224 && temp_key) {
 				if (temp_key == ENTER_KEY) {
-					enterKeySound();
 					system("cls");
 					return cur_choice;
 				}
 			}
 			else {
 				arrowKeySound();
+				Sleep(370);
 				key = _getch();
 				switch (key) {
 				case UP_KEY:
@@ -714,4 +714,112 @@ void drawHardBorder(Player p) {
 	cout << "Press Enter To Choose";
 	gotoXY(x + 9, y + 16);
 	cout << "Press ESC TO Exit";
+}
+
+void displayStatus(int status) {
+	switch (status) {
+	case 1:
+		winSound();
+		//Draw YOU WIN
+		//Source: https://patorjk.com/software/taag/#p=display&h=1&v=0&f=3D%20Diagonal&t=YOU%20WIN
+		setColor(LIGHT_GREEN);
+		Sleep(200);
+		gotoXY(25, 3);
+		cout << "                 ,----..                                                          ,--.";
+		Sleep(200);
+		gotoXY(25, 4);
+		cout << "                /   /   \\                                   .---.   ,---,       ,--.'|";
+		Sleep(200);
+		gotoXY(25, 5);
+		cout << "        ,---,  /   .     :          ,--,                   /. ./|,`--.' |   ,--,:  : |";
+		Sleep(200);
+		gotoXY(25, 6);
+		cout << "       /_ ./| .   /   ;.  \\       ,'_ /|               .--'.  ' ;|   :  :,`--.'`|  ' :";
+		Sleep(200);
+		gotoXY(25, 7);
+		cout << " ,---, |  ' :.   ;   /  ` ;  .--. |  | :              /__./ \\ : |:   |  '|   :  :  | |";
+		setColor(LIGHT_AQUA);
+		Sleep(200);
+		gotoXY(25, 8);
+		cout << "/___/ \\.  : |;   |  ; \\ ; |,'_ /| :  . |          .--'.  '   \\' .|   :  |:   |   \\ | :";
+		Sleep(200);
+		gotoXY(25, 9);
+		cout << " .  \\  \\ ,' '|   :  | ; | '|  ' | |  . .         /___/ \\ |    ' ''   '  ;|   : '  '; |";
+		Sleep(200);
+		gotoXY(25, 10);
+		cout << "  \\  ;  `  ,'.   |  ' ' ' :|  | ' |  | |         ;   \\  \\;      :|   |  |'   ' ;.    ;";
+		Sleep(200);
+		gotoXY(25, 11);
+		cout << "   \\  \\    ' '   ;  \\; /  |:  | | :  ' ;          \\   ;  `      |'   :  ;|   | | \\   |";
+		Sleep(200);
+		gotoXY(25, 12);
+		cout << "    '  \\   |  \\   \\  ',  / |  ; ' |  | '           .   \\    .\\  ;|   |  ''   : |  ; .'";
+		setColor(LIGHT_YELLOW);
+		Sleep(200);
+		gotoXY(25, 13);
+		cout << "     \\  ;  ;   ;   :    /  :  | : ;  ; |            \\   \\   ' \\ |'   :  ||   | '`--'";
+		Sleep(200);
+		gotoXY(25, 14);
+		cout << "      :  \\  \\   \\   \\ .'   '  :  `--'   \\            :   '  |--\";    |.' '   : |";
+		Sleep(200);
+		gotoXY(25, 15);
+		cout << "       \\  ' ;    `---`     :  ,      .-./             \\   \\ ;    '---'   ;   |.'";
+		Sleep(200);
+		gotoXY(25, 16);
+		cout << "        `--`                `--`----'                  '---\"             '---'";
+		setColor(WHITE);
+		Sleep(200);
+		break;
+	case 2:
+		gameOverSound();
+		//Draw GAME OVER
+		//Source: https://patorjk.com/software/taag/#p=display&h=1&v=0&f=3D%20Diagonal&t=GAME%20OVER
+		setColor(LIGHT_GREEN);
+		Sleep(200);
+		gotoXY(10, 7);
+		cout << "                                    ____                        ,----..";
+		Sleep(200);
+		gotoXY(10, 8);
+		cout << "  ,----..      ,---,               ,'  , `.    ,---,.           /   /   \\                  ,---,.,-.----.";
+		Sleep(200);
+		gotoXY(10, 9);
+		cout << " /   /   \\    '  .' \\           ,-+-,.' _ |  ,'  .' |          /   .     :        ,---.  ,'  .' |\\    /  \\";
+		Sleep(200);
+		gotoXY(10, 10);
+		cout << "|   :     :  /  ;    '.      ,-+-. ;   , ||,---.'   |         .   /   ;.  \\      /__./|,---.'   |;   :    \\";
+		Sleep(200);
+		gotoXY(10, 11);
+		cout << ".   |  ;. / :  :       \\    ,--.'|'   |  ;||   |   .'        .   ;   /  ` ; ,---.;  ; ||   |   .'|   | .\\ :  ";
+		setColor(LIGHT_AQUA);
+		Sleep(200);
+		gotoXY(10, 12);
+		cout << ".   ; /--`  :  |   /\\   \\  |   |  ,', |  '::   :  |-,        ;   |  ; \\ ; |/___/ \\  | |:   :  |-,.   : |: |";
+		Sleep(200);
+		gotoXY(10, 13);
+		cout << ";   | ;  __ |  :  ' ;.   : |   | /  | |  ||:   |  ;/|        |   :  | ; | '\   ;  \ ' |:   |  ;/||   |  \\ :";
+		Sleep(200);
+		gotoXY(10, 14);
+		cout << "|   : |.' .'|  |  ;/  \\   \\'   | :  | :  |,|   :   .'        .   |  ' ' ' : \\   \\  \\: ||   :   .'|   : .  /";
+		Sleep(200);
+		gotoXY(10, 15);
+		cout << ".   | '_.' :'  :  | \\  \\ ,';   . |  ; |--' |   |  |-,        '   ;  \\; /  |  ;   \\  ' .|   |  |-,;   | |  \\";
+		Sleep(200);
+		gotoXY(10, 16);
+		cout << "'   ; : \\  ||  |  '  '--'  |   : |  | ,    '   :  ;/|         \\   \\  ',  /    \\   \\   ''   :  ;/||   | ;\\  \\";
+		setColor(LIGHT_YELLOW);
+		Sleep(200);
+		gotoXY(10, 17);
+		cout << "'   | '/  .'|  :  :        |   : '  |/     |   |    \\          ;   :    /      \\   `  ;|   |    \\:   ' | \\.'";
+		Sleep(200);
+		gotoXY(10, 18);
+		cout << "|   :    /  |  | ,'        ;   | |`-'      |   :   .'           \\   \\ .'        :   \\ ||   :   .':   : :-'";
+		Sleep(200);
+		gotoXY(10, 19);
+		cout << " \\   \\ .'   `--''          |   ;/          |   | ,'              `---`           '---\" |   |, '  |   |.'";
+		Sleep(200);
+		gotoXY(10, 20);
+		cout << "  `---`                    '---'           `----'                                      `----'    `---'";
+		Sleep(200);
+		break;
+	}
 }

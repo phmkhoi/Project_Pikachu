@@ -108,5 +108,8 @@
     <Media Include="Right_Pair_Sound.wav">
       <Filter>Resource Files\Sound</Filter>
     </Media>
+    <Media Include="Game_Start_Sound.wav">
+      <Filter>Resource Files\Sound</Filter>
+    </Media>
   </ItemGroup>
 </Project>

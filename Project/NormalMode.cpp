@@ -1,10 +1,4 @@
 #include "NormalMode.h"
-#include "NormalCheck.h"
-#include "Struct.h"
-#include "Utility.h"
-#include "LeaderBoard.h"
-#include "Sound.h"
-using namespace std;
 
 void initBoard(NormalMode** board) {
     int pair = (NORMAL_WIDTH * NORMAL_HEIGHT) / 2;
@@ -48,8 +42,7 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
     int temp, key;
     temp = _getch();
     if (temp && temp != 224) { //If not arrow key
-        if (temp == ESC_KEY) 
-            status = 2;
+        if (temp == ESC_KEY) status = 2;
         else if (temp == ENTER_KEY) {
             if (pos.x == selectedPos[0].x && pos.y == selectedPos[0].y) {
                 board[selectedPos[0].y][selectedPos[0].x].drawCell(70);
@@ -77,6 +70,9 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                 if (couple == 0) {
                     if (board[selectedPos[0].y][selectedPos[0].x].p_mon == board[selectedPos[1].y][selectedPos[1].x].p_mon) {  // neu cap nay hop nhau
                         if (allCheck(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x)) {
+                            rightPairSound();
+                            Sleep(150);
+   
                             p.point += 20;
 
                             //Update Score
@@ -99,6 +95,9 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                             //if (selectedPos[1].x < 4) displayBackground(bg, selectedPos[1].x, selectedPos[1].y);
                         }
                         else {
+                            wrongPairSound();
+                            Sleep(150);
+                      
                             board[selectedPos[0].y][selectedPos[0].x].drawCell(70);
                             board[selectedPos[1].y][selectedPos[1].x].drawCell(70);
                             Sleep(500);
@@ -114,6 +113,9 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                         }
                     }
                     else {
+                        wrongPairSound();
+                        Sleep(150);
+                      
                         board[selectedPos[0].y][selectedPos[0].x].drawCell(70);
                         board[selectedPos[1].y][selectedPos[1].x].drawCell(70);
                         Sleep(500);
@@ -301,6 +303,7 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
 }
 
 void normalMode(Player& p) {
+    gameStartSound();
     drawNormalBorder(p);
     srand(time(0));
     /*getBackground(bg);*/
@@ -316,22 +319,14 @@ void normalMode(Player& p) {
     }
     initBoard(board);
 
-
-    setColor(WHITE);
-    /*gotoXY(10, 0);
-    cout << "Name: " << p.name;
-    gotoXY(40, 0);
-    cout << "Point: " << p.point;
-    gotoXY(70, 0);
-    cout << "Life: " << p.life;*/
-
     Position selected_pos[] = { {-1, -1}, {-1, -1} };
     int couple = 2;
     Position cur_pos = { 0, 0 };
 
     /*0: Playing
     1: Finish
-    2: Out*/
+    2: Game over
+    3: Out*/
     int status = 0;
 
     while (!status && p.life) {
@@ -340,6 +335,7 @@ void normalMode(Player& p) {
         printBoard(board);
 
         move(board, cur_pos, status, p, selected_pos, couple);
+
         if ((!checkValidPairs(board))) status = 1;
     }
 
@@ -349,7 +345,7 @@ void normalMode(Player& p) {
     system("cls");
 
     if (p.life && status == 1) {
-        //displayStatus(1);
+        displayStatus(1);
         gotoXY(50, 17);
         char ans;
         cout << "Do you want to continue next game? (Y/N): ";
@@ -360,7 +356,7 @@ void normalMode(Player& p) {
         else writeLeaderBoard(p);
     }
     else if (p.life == 0) {
-        //displayStatus(0);
+        displayStatus(2);
         writeLeaderBoard(p);
         Sleep(2000);
     }

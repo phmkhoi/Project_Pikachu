@@ -12,3 +12,4 @@ void winSound();
 void gameOverSound();
 void rightPairSound();
 void wrongPairSound();
+void gameStartSound();

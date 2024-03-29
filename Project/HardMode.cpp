@@ -78,8 +78,7 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
 
     //If Not Arrow Key
     if (temp && temp != 224) {
-        if (temp == ESC_KEY)
-            status = 2;
+        if (temp == ESC_KEY) status = 2;
         else if (temp == ENTER_KEY) {
             if (pos.x == selectedPos[0].x && pos.y == selectedPos[0].y) {
                 HardMode* temp = findPokeBall(board, pos.y, pos.x);
@@ -111,6 +110,9 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                     p2 = findPokeBall(board, selectedPos[1].y, selectedPos[1].x);
                     if (p1->p_mon == p2->p_mon) {
                         if (allCheck(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x)) {
+                            rightPairSound();
+                            Sleep(150);
+
                             p.point += 20;
 
                             //Update Score
@@ -127,6 +129,9 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                             DifMode(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x);
                         }
                         else {
+                            wrongPairSound();
+                            Sleep(150);
+
                             p1->drawCell(70);
                             p2->drawCell(70);
                             Sleep(500);
@@ -142,6 +147,9 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                         }
                     }
                     else {
+                        wrongPairSound();
+                        Sleep(150);
+
                         p1->drawCell(70);
                         p2->drawCell(70);
                         Sleep(500);
@@ -332,6 +340,7 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
 }
 
 void difficultMode(Player& p) {
+    gameStartSound();
     srand(time(0));
     drawHardBorder(p);
     //getBackground(BG);
@@ -342,9 +351,11 @@ void difficultMode(Player& p) {
     Position selectedPos[] = { {-1, -1}, {-1, -1} };
     int couple = 2;
     Position curPosition{ 0, 0 };
-    int status = 0; //0. dang choi game
-    //1. het game
-    //2. nguoi choi chon thoat
+    int status = 0; 
+    /*0. Playing
+    1. Finish
+    2. Game over
+    3. Exit*/
 
     while (!status && p.life) {
         findPokeBall(board, curPosition.y, curPosition.x)->is_selected = 1;
@@ -354,7 +365,6 @@ void difficultMode(Player& p) {
         move(board, curPosition, status, p, selectedPos, couple);
 
         if ((!checkValidPairs(board))) status = 1;
-        //if (haveFinished(board)) status = 1;
     }
 
     renderList(board);
@@ -363,7 +373,7 @@ void difficultMode(Player& p) {
     system("cls");
 
     if (p.life && status == 1) {
-        //displayStatus(1);
+        displayStatus(1);
         gotoXY(50, 17);
         char c;
         cout << "Do you want to continue next game? (Y/N): ";
@@ -374,7 +384,7 @@ void difficultMode(Player& p) {
         else writeLeaderBoard(p);
     }
     else if (p.life == 0) {
-        //displayStatus(0);
+        displayStatus(2);
         writeLeaderBoard(p);
         Sleep(500);
     }
