@@ -154,8 +154,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="HardBG.txt" />
-    <Text Include="NormalBG.txt" />
     <Text Include="LeaderBoard.txt" />
+    <Text Include="NormalBG.txt" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="Game_Over_Sound.wav" />

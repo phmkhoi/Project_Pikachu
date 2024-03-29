@@ -85,17 +85,14 @@
     <Text Include="LeaderBoard.txt">
       <Filter>Resource Files</Filter>
     </Text>
-    <Text Include="Background.txt">
+    <Text Include="NormalBG.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="HardBG.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Arrow_Key_Sound.wav">
-      <Filter>Resource Files\Sound</Filter>
-    </Media>
-    <Media Include="Enter_Key_Sound.wav">
-      <Filter>Resource Files\Sound</Filter>
-    </Media>
     <Media Include="Game_Over_Sound.wav">
       <Filter>Resource Files\Sound</Filter>
     </Media>
