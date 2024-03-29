@@ -1,4 +1,5 @@
 #include "HardCheck.h"
+#include "Utility.h"
 
 HardMode* findPokeBall(HardMode** board, int r, int c) {
 	if (r < 0 || r > 6 || c < 0 || c > 6) return NULL;
@@ -158,12 +159,12 @@ bool allCheck(HardMode** board, int r1, int c1, int r2, int c2) {
 	return false;
 }
 
-void deleteNode(HardMode** board, int r, int c) {
+void deleteNode(HardMode** board, int r, int c, char bg[][50]) {
 	HardMode* p_cur = findPokeBall(board, r, c);
 	if (c == 0) {
 		if (board[r]->p_next == NULL) {
 			board[r]->deleteCell();
-			//if (board[y]->j < 4) displayBackground(bg, board[y]->j, y);
+			if (board[r]->column < 5) displayHardBackground(bg, board[r]->column, r);
 			board[r] = NULL;
 			return;
 		}
@@ -172,7 +173,7 @@ void deleteNode(HardMode** board, int r, int c) {
 		p_cur = board[r]->p_next;
 		if (p_cur->p_next == NULL) {
 			p_cur->deleteCell();
-			//if (p->j < 4) displayBackground(bg, p->j, y);
+			if (p_cur->column < 5) displayHardBackground(bg, p_cur->column, r);
 			delete p_cur;
 			board[r]->p_next = NULL;
 		}
@@ -183,7 +184,7 @@ void deleteNode(HardMode** board, int r, int c) {
 			}
 			p_cur->p_mon = p_cur->p_next->p_mon;
 			p_cur->p_next->deleteCell();
-			//if (p->p_p_next->j < 4) displayBackground(bg, p->p_p_next->j, p->p_p_next->i);
+			if (p_cur->column < 5) displayHardBackground(bg, p_cur->p_next->column, p_cur->p_next->row);
 			delete p_cur->p_next;
 			p_cur->p_next = NULL;
 		}
@@ -195,27 +196,27 @@ void deleteNode(HardMode** board, int r, int c) {
 		}
 		p_cur->p_mon = p_cur->p_next->p_mon;
 		p_cur->p_next->deleteCell();
-		//if (p->p_next->j < 4) displayBackground(bg, p->p_next->j, p->p_next->i);
+		if (p_cur->p_next->column < 5) displayHardBackground(bg, p_cur->p_next->column, p_cur->p_next->row);
 		delete p_cur->p_next;
 		p_cur->p_next = NULL;
 	}
 	else {
 		p_cur->deleteCell();
-		//if (p->j < 4) displayBackground(bg, p->j, p->i);
+		if (p_cur->column < 5) displayHardBackground(bg, p_cur->column, p_cur->row);
 		delete p_cur;
 		p_cur = findPokeBall(board, r, c - 1);
 		p_cur->p_next = NULL;
 	}
 }
 
-void DifMode(HardMode** board, int r1, int c1, int r2, int c2) {
+void DifMode(HardMode** board, int r1, int c1, int r2, int c2, char bg[][50]) {
 	if (c1 > c2) {
-		deleteNode(board, r1, c1);
-		deleteNode(board, r2, c2);
+		deleteNode(board, r1, c1, bg);
+		deleteNode(board, r2, c2, bg);
 	}
 	else {
-		deleteNode(board, r2, c2);
-		deleteNode(board, r1, c1);
+		deleteNode(board, r2, c2, bg);
+		deleteNode(board, r1, c1, bg);
 	}
 }
 

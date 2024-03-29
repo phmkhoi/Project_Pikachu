@@ -5,7 +5,7 @@ void initBoard(NormalMode** board) {
     while (pair) {
         int index, pair_amount = 2;
         char c = 65 + rand() % 3;
-        while (pair_amount) { // 
+        while (pair_amount) {
             index = rand() % (NORMAL_WIDTH * NORMAL_HEIGHT);
             if (board[index / NORMAL_WIDTH][index % NORMAL_WIDTH].p_mon == ' ') {
                 board[index / NORMAL_WIDTH][index % NORMAL_WIDTH].p_mon = c;
@@ -16,14 +16,17 @@ void initBoard(NormalMode** board) {
     }
 }
 
+//Background
+char bg[20][41];
+
 //delete GameBoard
 void deleteBoard(NormalMode** board) {
     for (int i = 0; i < NORMAL_HEIGHT; i++)
         for (int j = 0; j < NORMAL_WIDTH; j++) 
             if (board[i][j].exist) {
                 board[i][j].deleteCell();
-                //if (j < 4) displayBackground(bg, j, i);
-                //Sleep(200);
+                if (j < 4) displayNormalBackground(bg, j, i);
+                Sleep(200);
             }
 
     //delete pointer
@@ -88,11 +91,11 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
 
                             board[selectedPos[0].y][selectedPos[0].x].exist = 0;
                             board[selectedPos[0].y][selectedPos[0].x].deleteCell();
-                            //if (selectedPos[0].x < 4) displayBackground(bg, selectedPos[0].x, selectedPos[0].y);
+                            if (selectedPos[0].x < 4) displayNormalBackground(bg, selectedPos[0].x, selectedPos[0].y);
 
                             board[selectedPos[1].y][selectedPos[1].x].exist = 0;
                             board[selectedPos[1].y][selectedPos[1].x].deleteCell();
-                            //if (selectedPos[1].x < 4) displayBackground(bg, selectedPos[1].x, selectedPos[1].y);
+                            if (selectedPos[1].x < 4) displayNormalBackground(bg, selectedPos[1].x, selectedPos[1].y);
                         }
                         else {
                             wrongPairSound();
@@ -306,11 +309,11 @@ void normalMode(Player& p) {
     gameStartSound();
     drawNormalBorder(p);
     srand(time(0));
-    /*getBackground(bg);*/
+    getNormalBackground(bg);
 
     //initialize board
     NormalMode** board = new NormalMode * [NORMAL_HEIGHT];
-    for (int i = 0; i < NORMAL_HEIGHT; i++) { // gan vi tri cho tung o mot
+    for (int i = 0; i < NORMAL_HEIGHT; i++) {
         board[i] = new NormalMode[NORMAL_WIDTH];
         for (int j = 0; j < NORMAL_WIDTH; j++) {
             board[i][j].column = j;
@@ -346,7 +349,7 @@ void normalMode(Player& p) {
 
     if (p.life && status == 1) {
         displayStatus(1);
-        gotoXY(50, 17);
+        gotoXY(50, 20);
         char ans;
         cout << "Do you want to continue next game? (Y/N): ";
         cin >> ans;

@@ -238,31 +238,64 @@ int mainMenu() {
 	}
 }
 
-void getBackground(char bg[][41]) {
+void getNormalBackground(char bg[][41]) {
 	ifstream ifs;
-	ifs.open("Background.txt", ios::in);
+	ifs.open("NormalBG.txt", ios::in);
 	if (ifs) {
-		for (int i = 0; i < 23; i++) {
+		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 41; j++) {
 				bg[i][j] = ifs.get();
 			}
 			ifs.ignore();
 		}
+		ifs.close();
 	}
 	else {
 		memset(bg, ' ', sizeof(bg));
 	}
-	ifs.close();
 }
 
-void displayBackground(char bg[][41], int x, int y) {
+void displayNormalBackground(char bg[][41], int x, int y) {
 	//set bg color
-	setColor(LIGHT_GREEN);
+	setColor(LIGHT_AQUA);
 
 	//print bg from each cell
 	for (int i = 0; i < 5; i++) {
 		for (int j = 0; j < 11; j++) {
-			gotoXY((x + 1) * 10 + j, (y + 1) * 4 + j);
+			gotoXY((x + 1) * 10 + j + 6, (y + 1) * 4 + i + 2);
+			cout << bg[y * 4 + i][x * 10 + j];
+		}
+	}
+
+	//reset color
+	setColor(WHITE);
+}
+
+void getHardBackground(char bg[][50]) {
+	ifstream ifs;
+	ifs.open("HardBG.txt", ios::in);
+	if (ifs) {
+		for (int i = 0; i < 25; i++) {
+			for (int j = 0; j < 50; j++) {
+				bg[i][j] = ifs.get();
+			}
+			ifs.ignore();
+		}
+		ifs.close();
+	}
+	else {
+		memset(bg, ' ', sizeof(bg));
+	}
+}
+
+void displayHardBackground(char bg[][50], int x, int y) {
+	//set bg color
+	setColor(LIGHT_AQUA);
+
+	//print bg from each cell
+	for (int i = 0; i < 5; i++) {
+		for (int j = 0; j < 11; j++) {
+			gotoXY((x + 1) * 10 + j + 1, (y + 1) * 4 + i - 2);
 			cout << bg[y * 4 + i][x * 10 + j];
 		}
 	}
@@ -684,10 +717,10 @@ void drawHardBorder(Player p) {
 	cout << char(201);
 
 
-	gotoXY(x + 14, y + 9);
+	gotoXY(x + 16, y + 9);
 	cout << "STAGE:  ";
 	setColor(LIGHT_AQUA);
-	cout << "NORMAL";
+	cout << "HARD";
 
 	setColor(WHITE);
 
@@ -822,4 +855,14 @@ void displayStatus(int status) {
 		Sleep(200);
 		break;
 	}
+}
+
+void getPlayerInfo(Player& p) {
+	gotoXY(50, 12);
+	cout << "Enter Player Name: ";
+	cin >> p.name;
+	cin.ignore();
+	p.life = 3;
+	p.point = 0;
+	system("cls");
 }

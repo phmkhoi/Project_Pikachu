@@ -2,15 +2,4 @@ vippro123,400
 KhoiPhan,20
 Ethan,500
 Yee,100
-Khoi,380
-Khoi,20
-Khoi,20
-Khoi,20
-Khoi,20
-Khoi,20
-Khoi,180
-Khoi,20
-Khoi,20
-Khoi,180
-Khoi,20
-Khoi,20
+KhoiPhan,160

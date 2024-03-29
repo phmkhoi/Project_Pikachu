@@ -10,6 +10,6 @@ bool LHardCheck(HardMode**, int, int, int, int);
 bool ZHardCheck(HardMode**, int, int, int, int);
 bool UHardCheck(HardMode**, int, int, int, int);
 bool allCheck(HardMode**, int, int, int, int);
-void deleteNode(HardMode**, int, int);
-void DifMode(HardMode**, int, int, int, int);
+void deleteNode(HardMode**, int, int, char[][50]);
+void DifMode(HardMode**, int, int, int, int, char [][50]);
 bool checkValidPairs(HardMode**);

@@ -47,6 +47,8 @@ void initList(HardMode** board) {
     }
 }
 
+char bg[25][50];
+
 void deleteList(HardMode** board) {
     for (int i = 0; i < HARD_HEIGHT; i++) {
         HardMode* temp;
@@ -54,7 +56,7 @@ void deleteList(HardMode** board) {
             temp = board[i];
             board[i] = board[i]->p_next;
             temp->deleteCell();
-            //if (temp->j < 4) displayBackground(BG, temp->j, i);
+            if (temp->column < 5) displayHardBackground(bg, temp->column, i);
             Sleep(500);
             delete temp;
         }
@@ -126,7 +128,7 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                             p2->drawCell(40);
                             Sleep(500);
 
-                            DifMode(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x);
+                            DifMode(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x, bg);
                         }
                         else {
                             wrongPairSound();
@@ -194,7 +196,7 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
     //If arrow key
     else {
         if ((pos.y != selectedPos[0].y || pos.x != selectedPos[0].x) && 
-            (pos.y != selectedPos[1].y || pos.x != selectedPos[1].x)) // ktra xem o nay co dang duoc chon hay khong
+            (pos.y != selectedPos[1].y || pos.x != selectedPos[1].x)) 
             findPokeBall(board, pos.y, pos.x)->is_selected = 0;
         switch (key = _getch()) {
         case UP_KEY:
@@ -343,7 +345,7 @@ void difficultMode(Player& p) {
     gameStartSound();
     srand(time(0));
     drawHardBorder(p);
-    //getBackground(BG);
+    getHardBackground(bg);
 
     HardMode** board = new HardMode * [HARD_HEIGHT];
     initList(board);
@@ -374,7 +376,7 @@ void difficultMode(Player& p) {
 
     if (p.life && status == 1) {
         displayStatus(1);
-        gotoXY(50, 17);
+        gotoXY(50, 20);
         char c;
         cout << "Do you want to continue next game? (Y/N): ";
         cin >> c;

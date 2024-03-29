@@ -153,7 +153,8 @@
     <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Background.txt" />
+    <Text Include="HardBG.txt" />
+    <Text Include="NormalBG.txt" />
     <Text Include="LeaderBoard.txt" />
   </ItemGroup>
   <ItemGroup>
