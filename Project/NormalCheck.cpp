@@ -1,4 +1,5 @@
 #include "NormalCheck.h"
+#include "Utility.h"
 
 
 //r stands for row, c stands for column

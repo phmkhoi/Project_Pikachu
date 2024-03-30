@@ -46,3 +46,5 @@ void displayStatus(int);
 void getPlayerInfo(Player&);
 void drawILine(int r1, int c1, int r2, int c2);
 void deleteILine(int r1, int c1, int r2, int c2);
+void drawLLine(NormalMode**p_ball, int r1, int c1, int r2, int c2);
+void deleteLLine(NormalMode** p_ball, int r1, int c1, int r2, int c2);

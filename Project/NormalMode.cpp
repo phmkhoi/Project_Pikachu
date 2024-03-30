@@ -48,7 +48,7 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
         if (temp == ESC_KEY) status = 2;
         else if (temp == ENTER_KEY) {
             if (pos.x == selectedPos[0].x && pos.y == selectedPos[0].y) {
-                board[selectedPos[0].y][selectedPos[0].x].drawCell(70);
+                board[selectedPos[0].y][selectedPos[0].x].drawCell(BLACK + RED * 16);
                 Sleep(500);
 
                 board[selectedPos[0].y][selectedPos[0].x].is_selected = 0;
@@ -71,7 +71,7 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
 
                 //If 1 pair is selected
                 if (couple == 0) {
-                    if (board[selectedPos[0].y][selectedPos[0].x].p_mon == board[selectedPos[1].y][selectedPos[1].x].p_mon) {  // neu cap nay hop nhau
+                    if (board[selectedPos[0].y][selectedPos[0].x].p_mon == board[selectedPos[1].y][selectedPos[1].x].p_mon) {
                         if (allCheck(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x)) {
                             rightPairSound();
                             Sleep(200);
@@ -85,9 +85,26 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                             cout << p.point;
                             setColor(WHITE);
 
-                            board[selectedPos[0].y][selectedPos[0].x].drawCell(40);
-                            board[selectedPos[1].y][selectedPos[1].x].drawCell(40);
-                            Sleep(500);
+                            if (INormalCheck(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x)) {
+                                board[selectedPos[0].y][selectedPos[0].x].drawCell(WHITE + GREEN * 16);
+                                board[selectedPos[1].y][selectedPos[1].x].drawCell(WHITE + GREEN * 16);
+                                drawILine(selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x);
+                                Sleep(500);
+                                deleteILine(selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x);
+                            }
+                            else if (LNormalCheck(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x)) {
+                                board[selectedPos[0].y][selectedPos[0].x].drawCell(WHITE + GREEN * 16);
+                                board[selectedPos[1].y][selectedPos[1].x].drawCell(WHITE + GREEN * 16);
+                                drawLLine(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x);
+                                Sleep(500);
+                                deleteLLine(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x);
+                            }
+                            else {
+                                board[selectedPos[0].y][selectedPos[0].x].drawCell(WHITE + GREEN * 16);
+                                board[selectedPos[1].y][selectedPos[1].x].drawCell(WHITE + GREEN * 16);
+                                Sleep(500);
+                            }
+
 
                             board[selectedPos[0].y][selectedPos[0].x].exist = 0;
                             board[selectedPos[0].y][selectedPos[0].x].deleteCell();
@@ -101,8 +118,8 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                             wrongPairSound();
                             Sleep(200);
                       
-                            board[selectedPos[0].y][selectedPos[0].x].drawCell(70);
-                            board[selectedPos[1].y][selectedPos[1].x].drawCell(70);
+                            board[selectedPos[0].y][selectedPos[0].x].drawCell(WHITE + RED * 16);
+                            board[selectedPos[1].y][selectedPos[1].x].drawCell(WHITE + RED * 16);
                             Sleep(500);
 
                             p.life--;
@@ -119,8 +136,8 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                         wrongPairSound();
                         Sleep(200);
                       
-                        board[selectedPos[0].y][selectedPos[0].x].drawCell(70);
-                        board[selectedPos[1].y][selectedPos[1].x].drawCell(70);
+                        board[selectedPos[0].y][selectedPos[0].x].drawCell(WHITE + RED * 16);
+                        board[selectedPos[1].y][selectedPos[1].x].drawCell(WHITE + RED * 16);
                         Sleep(500);
 
                         p.life--;
