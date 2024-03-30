@@ -44,3 +44,5 @@ void drawNormalBorder(Player);
 void drawHardBorder(Player p);
 void displayStatus(int);
 void getPlayerInfo(Player&);
+void drawILine(int r1, int c1, int r2, int c2);
+void deleteILine(int r1, int c1, int r2, int c2);

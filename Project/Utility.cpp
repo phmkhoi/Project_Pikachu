@@ -864,3 +864,60 @@ void getPlayerInfo(Player& p) {
 	p.point = 0;
 	system("cls");
 }
+
+void drawILine(int r1, int c1, int r2, int c2) {
+	setColor(LIGHT_AQUA);
+	if (r1 == r2) {
+		gotoXY(r1, c1 + 1);
+		cout << char(17);
+		for (int i = c1 + 2; i <= c2 - 2; i++) {
+			gotoXY(r1, i);
+			cout << char(45);
+		}
+		gotoXY(r1, c2 - 1);
+		cout << char(16);
+		setColor(WHITE);
+		return;
+	}
+
+	if (c1 == c2) {
+		gotoXY(r1 + 1, c1);
+		cout << char(30);
+		for (int i = r1 + 2; i <= r2 - 2; i++) {
+			gotoXY(i, c1);
+			cout << char(179);
+		}
+		gotoXY(r2 - 1, c2);
+		cout << char(31);
+		setColor(WHITE);
+		return;
+	}
+}
+
+void deleteILine(int r1, int c1, int r2, int c2) {
+	if (r1 == r2) {
+		gotoXY(r1, c1 + 1);
+		cout << char(32);
+		for (int i = c1 + 2; i <= c2 - 2; i++) {
+			gotoXY(r1, i);
+			cout << char(32);
+		}
+		gotoXY(r1, c2 - 1);
+		cout << char(32);
+		setColor(WHITE);
+		return;
+	}
+
+	if (c1 == c2) {
+		gotoXY(r1 + 1, c1);
+		cout << char(32);
+		for (int i = r1 + 2; i <= r2 - 2; i++) {
+			gotoXY(i, c1);
+			cout << char(32);
+		}
+		gotoXY(r2 - 1, c2);
+		cout << char(32);
+		setColor(WHITE);
+		return;
+	}
+}
