@@ -16,7 +16,7 @@ typedef vector<Player> PlayerList;
 void swapPlayer(Player&, Player&);
 void sortPlayer(PlayerList&);
 void displayPlayer(Player, int);
-
+void getPlayerInfo(Player&);
 //p_mon stands for pokemon
 struct NormalMode {
 	int row, column;

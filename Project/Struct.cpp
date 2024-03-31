@@ -55,6 +55,39 @@ void displayPlayer(Player p, int rank) {
 	for (int i = 0; i < 79; i++) cout << "-";
 }
 
+void getPlayerInfo(Player& p) {
+	//Draw WELCOME
+	//Source: https://patorjk.com/software/taag/#p=display&h=1&v=1&f=Chiseled&t=WELCOME
+	setColor(LIGHT_GREEN);
+	gotoXY(20, 7);
+	cout << "         ,-.-.      ,----.              _,.----.      _,.---._            ___       ,----.";
+	gotoXY(20, 8);
+	cout << ",-..-.-./  \\==\\  ,-.--` , \\   _.-.    .' .' -   \\   ,-.' , -  `.   .-._ .'=.'\\   ,-.--` , \\";
+	gotoXY(20, 9);
+	cout << "|, \\=/\\=|- |==| |==|-  _.-` .-,.'|   /==/  ,  ,-'  /==/_,  ,  - \\ /==/ \\|==|  | |==|-  _.-`";
+	setColor(LIGHT_AQUA);
+	gotoXY(20, 10);
+	cout << "|- |/ |/ , /==/ |==|   `.-.|==|, |   |==|-   |  . |==|   .=.     ||==|,|  / - | |==|   `.-.";
+	gotoXY(20, 11);
+	cout << " \\, ,     _|==|/==/_ ,    /|==|- |   |==|_   `-' \\|==|_ : ;=:  - ||==|  \\/  , |/==/_ ,    /";
+	gotoXY(20, 12);
+	cout << " | -  -  , |==||==|    .-' |==|, |   |==|   _  , ||==| , '='     ||==|- ,   _ ||==|    .-'";
+	setColor(LIGHT_YELLOW);
+	gotoXY(20, 13);
+	cout << "  \\  ,  - /==/ |==|_  ,`-._|==|- `-._\\==\\.       / \\==\\ -    ,_ / |==| _ /\\   ||==|_  ,`-._";
+	gotoXY(20, 14);
+	cout << "  |-  /\\ /==/  /==/ ,     //==/ - , ,/`-.`.___.-'   '.='. -   .'  /==/  / / , //==/ ,     /";
+	gotoXY(20, 15);
+	cout << "  `--`  `--`   `--`-----`` `--`-----'                 `--`--''    `--`./  `--` `--`-----``";
+	setColor(WHITE);
+	gotoXY(50, 17);
+	cout << "Enter Player name: ";
+	cin >> p.name;
+	cin.ignore();
+	p.life = 3;
+	p.point = 0;
+	system("cls");
+}
 
 char cell[5][12] = {
 	{"+---------+"},

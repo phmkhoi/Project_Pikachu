@@ -376,7 +376,7 @@ void difficultMode(Player& p) {
 
     if (p.life && status == 1) {
         displayStatus(1);
-        gotoXY(50, 19);
+        gotoXY(48, 19);
         char c;
         cout << "Do you want to continue next game? (Y/N): ";
         cin >> c;
