@@ -104,6 +104,8 @@ void readLeaderBoard() {
 	_getch();
 	system("cls");
 }
+
+//Save Player Data To File
 void writeLeaderBoard(Player p) {
 	ofstream ofs;
 

@@ -15,6 +15,7 @@ void sortPlayer(PlayerList& p_list) {
 				swapPlayer(p_list[i], p_list[j]);
 }
 
+//Print LeaderBoard
 void displayPlayer(Player p, int rank) {
 	switch (rank) {
 	case 0:
@@ -165,7 +166,6 @@ void HardMode::drawCell(int color) {
 		setColor(WHITE); //reset color
 	}
 	else {
-
 		//print letter in cell
 		setColor(WHITE);
 		gotoXY(x * 10 + 5, y * 4 + 2 - 2);

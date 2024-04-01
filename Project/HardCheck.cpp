@@ -1,6 +1,7 @@
 #include "HardCheck.h"
 #include "Utility.h"
 
+//Find Node From Coordinate (c, r)
 HardMode* findPokeBall(HardMode** board, int r, int c) {
 	if (r < 0 || r > 6 || c < 0 || c > 6) return NULL;
 
@@ -281,6 +282,7 @@ void deleteNode(HardMode** board, int r, int c, char bg[][50]) {
 	}
 }
 
+//Delete Selected Cell And Print Background
 void DifMode(HardMode** board, int r1, int c1, int r2, int c2, char bg[][50]) {
 	if (c1 > c2) {
 		deleteNode(board, r1, c1, bg);

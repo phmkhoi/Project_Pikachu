@@ -43,6 +43,8 @@ void drawBox(int x, int width, int y, int height, int text_color, int bg_color, 
 	//Print content
 	gotoXY(x + (width - content.length()) / 2, y + (height - 1) / 2);
 	cout << content;
+
+	//Reset Color
 	setColor(WHITE);
 }
 
@@ -236,6 +238,7 @@ int mainMenu() {
 	}
 }
 
+//https://tools.toywiz.com/_images/_products/pokesfpgreatball.jpg
 void getNormalBackground(char bg[][41]) {
 	ifstream ifs;
 	ifs.open("NormalBG.txt", ios::in);
@@ -269,6 +272,7 @@ void displayNormalBackground(char bg[][41], int x, int y) {
 	setColor(WHITE);
 }
 
+//https://www.deviantart.com/dazzyallen/art/Bulbasaur-257570205
 void getHardBackground(char bg[][50]) {
 	ifstream ifs;
 	ifs.open("HardBG.txt", ios::in);
@@ -303,6 +307,7 @@ void displayHardBackground(char bg[][50], int x, int y) {
 }
 
 void drawNormalBorder(Player p) {
+	//Coordinate Of top-left Cell
 	int x = 15, y = 6;
 
 	//GameBorder
@@ -356,6 +361,8 @@ void drawNormalBorder(Player p) {
 	Sleep(10);
 
 	//Gridline
+	//Inspired by: https://github.com/Louis2602/Pikachu-Game/blob/master/Pikachu/BoardView.cpp
+	//From Line 140 to Line 167
 	for (int j = 0; j < 4 * 4 + 1; j++) {
 		for (int i = 0; i < 10 * 4 + 1; i++) {
 			if (i % 10 == 0) {
@@ -523,11 +530,12 @@ void drawNormalBorder(Player p) {
 	gotoXY(x + 9, y + 16);
 	cout << "Press ESC TO Exit";
 	
+	//Reset Color
 	setColor(WHITE);
 }
 
 void drawHardBorder(Player p) {
-	//x = 11, y = 3, length = 10 * 6 + 1
+	//Coordinate Of top-left Cell
 	int x = 9, y = 2;
 
 	////GameBorder
@@ -581,6 +589,8 @@ void drawHardBorder(Player p) {
 	Sleep(10);
 
 	//Gridline
+	//Inspired by: https://github.com/Louis2602/Pikachu-Game/blob/master/Pikachu/BoardView.cpp
+	//From Line 140 to Line 167
 	for (int j = 0; j < 4 * 6 + 1; j++) {
 		for (int i = 0; i < 10 * 6 + 1; i++) {
 			if (i % 10 == 0) {
@@ -717,8 +727,8 @@ void drawHardBorder(Player p) {
 	cout << char(201);
 
 
-	gotoXY(x + 16, y + 9);
-	cout << "STAGE:  ";
+	gotoXY(x + 15, y + 9);
+	cout << "STAGE: ";
 	setColor(LIGHT_AQUA);
 	cout << "HARD";
 
@@ -748,6 +758,7 @@ void drawHardBorder(Player p) {
 	gotoXY(x + 9, y + 16);
 	cout << "Press ESC TO Exit";
 
+	//Reset Color
 	setColor(WHITE);
 }
 

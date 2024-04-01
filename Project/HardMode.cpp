@@ -7,6 +7,7 @@
 #define HARD_HEIGHT 6
 #define HARD_WIDTH 6
 
+//add node to list
 void push(HardMode*& head, HardMode* p) {
     if (head == NULL) head = p;
     else {
@@ -19,6 +20,7 @@ void push(HardMode*& head, HardMode* p) {
 }
 
 void initList(HardMode** board) {
+    //Init Game Board
     for (int i = 0; i < HARD_HEIGHT; i++) {
         board[i] = NULL;
         for (int j = 0; j < HARD_WIDTH; j++) {
@@ -30,7 +32,7 @@ void initList(HardMode** board) {
         }
     }
 
-    int flagNum = (HARD_WIDTH * HARD_HEIGHT) / 2;
+    int flagNum = (HARD_WIDTH * HARD_HEIGHT) / 2; //pair amount
     while (flagNum) {
         int i, time = 2;
         char c = 65 + rand() % 5;
@@ -47,7 +49,9 @@ void initList(HardMode** board) {
     }
 }
 
+//background
 char bg[25][50];
+
 
 void deleteList(HardMode** board) {
     for (int i = 0; i < HARD_HEIGHT; i++) {
@@ -64,6 +68,7 @@ void deleteList(HardMode** board) {
     delete[] board;
 }
 
+//Print Game Board
 void renderList(HardMode** board) {
     for (int i = 0; i < HARD_HEIGHT; i++) {
         HardMode* temp = board[i];
