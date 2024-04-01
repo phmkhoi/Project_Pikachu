@@ -17,10 +17,13 @@ void swapPlayer(Player&, Player&);
 void sortPlayer(PlayerList&);
 void displayPlayer(Player, int);
 void getPlayerInfo(Player&);
-//p_mon stands for pokemon
+
 struct NormalMode {
 	int row, column;
+
+	//pokemon
 	char p_mon = ' ';
+
 	bool exist = 1;
 	bool is_selected = 0;
 
@@ -30,7 +33,10 @@ struct NormalMode {
 
 struct HardMode {
 	int row, column;
+
+	//pokemon
 	char p_mon = ' ';
+
 	bool is_selected = 0;
 	HardMode* p_next;
 
