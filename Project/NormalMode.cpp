@@ -85,26 +85,9 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                             cout << p.point;
                             setColor(WHITE);
 
-                            if (INormalCheck(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x)) {
-                                board[selectedPos[0].y][selectedPos[0].x].drawCell(WHITE + GREEN * 16);
-                                board[selectedPos[1].y][selectedPos[1].x].drawCell(WHITE + GREEN * 16);
-                                drawILine(selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x);
-                                Sleep(500);
-                                deleteILine(selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x);
-                            }
-                            else if (LNormalCheck(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x)) {
-                                board[selectedPos[0].y][selectedPos[0].x].drawCell(WHITE + GREEN * 16);
-                                board[selectedPos[1].y][selectedPos[1].x].drawCell(WHITE + GREEN * 16);
-                                drawLLine(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x);
-                                Sleep(500);
-                                deleteLLine(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x);
-                            }
-                            else {
-                                board[selectedPos[0].y][selectedPos[0].x].drawCell(WHITE + GREEN * 16);
-                                board[selectedPos[1].y][selectedPos[1].x].drawCell(WHITE + GREEN * 16);
-                                Sleep(500);
-                            }
-
+                            board[selectedPos[0].y][selectedPos[0].x].drawCell(WHITE + GREEN * 16);
+                            board[selectedPos[1].y][selectedPos[1].x].drawCell(WHITE + GREEN * 16);
+                            Sleep(500);
 
                             board[selectedPos[0].y][selectedPos[0].x].exist = 0;
                             board[selectedPos[0].y][selectedPos[0].x].deleteCell();

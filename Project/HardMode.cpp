@@ -84,7 +84,7 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
         else if (temp == ENTER_KEY) {
             if (pos.x == selectedPos[0].x && pos.y == selectedPos[0].y) {
                 HardMode* temp = findPokeBall(board, pos.y, pos.x);
-                temp->drawCell(70);
+                temp->drawCell(BLACK + RED * 16);
                 Sleep(500);
 
                 temp->is_selected = 0;
@@ -124,8 +124,8 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                             cout << p.point;
                             setColor(WHITE);
 
-                            p1->drawCell(40);
-                            p2->drawCell(40);
+                            p1->drawCell(WHITE + GREEN * 16);
+                            p2->drawCell(WHITE + GREEN * 16);
                             Sleep(500);
 
                             DifMode(board, selectedPos[0].y, selectedPos[0].x, selectedPos[1].y, selectedPos[1].x, bg);
@@ -134,8 +134,8 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                             wrongPairSound();
                             Sleep(200);
 
-                            p1->drawCell(70);
-                            p2->drawCell(70);
+                            p1->drawCell(WHITE + RED * 16);
+                            p2->drawCell(WHITE + RED * 16);
                             Sleep(500);
 
                             p.life--;
@@ -152,8 +152,8 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                         wrongPairSound();
                         Sleep(200);
 
-                        p1->drawCell(70);
-                        p2->drawCell(70);
+                        p1->drawCell(WHITE + RED * 16);
+                        p2->drawCell(WHITE + RED * 16);
                         Sleep(500);
 
                         p.life--;

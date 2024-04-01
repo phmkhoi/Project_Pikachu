@@ -152,14 +152,14 @@ void HardMode::drawCell(int color) {
 
 	setColor(WHITE);
 	if (is_selected) {
-		setColor(color + WHITE * 16);
+		setColor(color);
 		for (int i = 1; i < 4; i++) {
 			gotoXY(x * 10 + 1, y * 4 + i - 2);
 			cout << "         ";
 		}
 
 		//print letter in cell
-		setColor(color + WHITE * 16);
+		setColor(color);
 		gotoXY(x * 10 + 5, y * 4 + 2 - 2);
 		cout << p_mon;
 		setColor(WHITE); //reset color
