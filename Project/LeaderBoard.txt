@@ -10,12 +10,6 @@ khoi,160
 duy,160
 duy,360
 duy,0
-khoi,160
-khoi,160
-khoi,160
-khoi,160
-khoi,360
-khoi,160
-khoi,360
-khoi,360
-khoi,360
+
+Duy,160
+sdfas,0

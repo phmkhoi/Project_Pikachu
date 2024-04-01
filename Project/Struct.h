@@ -11,10 +11,9 @@ struct Player {
 	string name = " ";
 	int point, life;
 };
-typedef vector<Player> PlayerList;
 
 void swapPlayer(Player&, Player&);
-void sortPlayer(PlayerList&);
+void sortPlayer(vector<Player>&);
 void displayPlayer(Player, int);
 void getPlayerInfo(Player&);
 

@@ -8,7 +8,7 @@ void swapPlayer(Player& p1, Player& p2) {
 	swap(p1.point, p2.point);
 }
 
-void sortPlayer(PlayerList& p_list) {
+void sortPlayer(vector<Player> &p_list) {
 	for (int i = 0; i < p_list.size() - 1; i++)
 		for (int j = i + 1; j < p_list.size(); j++)
 			if (p_list[i].point < p_list[j].point)

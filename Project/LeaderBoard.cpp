@@ -65,6 +65,7 @@ void drawLeaderBoard() {
 	for (int i = 0; i < 79; i++) cout << "-";
 
 }
+
 void readLeaderBoard() {
 	//Draw leaderBoard
 	drawLeaderBoard();
@@ -79,7 +80,7 @@ void readLeaderBoard() {
 	}
 
 	Player temp_player;
-	PlayerList p_list;
+	vector<Player> p_list;
 	string point = " ";
 
 	while (!ifs.eof()) {
