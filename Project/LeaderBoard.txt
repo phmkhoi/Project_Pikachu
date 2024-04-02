@@ -1,15 +1,5 @@
 vippro123,360
 Khoi,200
 ethen,100
-duy,100
-heh,40
-Khoi,160
-khoi,320
-khoi,160
-khoi,160
-duy,160
+khoi,180
 duy,360
-duy,0
-
-Duy,160
-sdfas,0

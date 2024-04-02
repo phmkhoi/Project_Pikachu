@@ -136,7 +136,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="NormalCheck.cpp" />
     <ClCompile Include="NormalMode.cpp" />
-    <ClCompile Include="Project.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Struct.cpp" />
     <ClCompile Include="Utility.cpp" />

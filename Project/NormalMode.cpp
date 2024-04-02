@@ -7,8 +7,8 @@ void initBoard(NormalMode** board) {
         char c = 65 + rand() % 3;
         while (pair_amount) {
             index = rand() % (NORMAL_WIDTH * NORMAL_HEIGHT);
-            if (board[index / NORMAL_WIDTH][index % NORMAL_WIDTH].p_mon == ' ') {
-                board[index / NORMAL_WIDTH][index % NORMAL_WIDTH].p_mon = c;
+            if (board[(int) (index / NORMAL_WIDTH)][ (int) (index % NORMAL_WIDTH)].p_mon == ' ') {
+                board[(int)(index / NORMAL_WIDTH)][(int)(index % NORMAL_WIDTH)].p_mon = c;
                 pair_amount--;
             }
         }
