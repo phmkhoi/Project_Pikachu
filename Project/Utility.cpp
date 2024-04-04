@@ -470,27 +470,27 @@ void drawNormalBorder(Player p) {
 	cout << char(187);
 
 	//RIGHT
-	for (int j = y + 8 + 1; j < y + 18; j++) {
+	for (int j = y + 8 + 1; j < y + 19; j++) {
 		gotoXY(x + 40, j);
 		cout << char(186);
 	}
 
 	//BOTTOM RIGHT
-	gotoXY(x + 40, y + 18);
+	gotoXY(x + 40, y + 19);
 	cout << char(188);
 
 	//BOTTOM
 	for (int i = x + 40 - 1; i >= x; i--) {
-		gotoXY(i, y + 18);
+		gotoXY(i, y + 19);
 		cout << char(205);
 	}
 
 	//BOTTOM LEFT
-	gotoXY(x, y + 18);
+	gotoXY(x, y + 19);
 	cout << char(200);
 
 	//LEFT
-	for (int j = y + 18 - 1; j >= y + 9; j--) {
+	for (int j = y + 19 - 1; j >= y + 9; j--) {
 		gotoXY(x, j);
 		cout << char(186);
 	}
@@ -524,12 +524,14 @@ void drawNormalBorder(Player p) {
 	}
 
 	setColor(LIGHT_AQUA);
-	gotoXY(x + 9, y + 14);
-	cout << "Press Arrow Key To Move";
-	gotoXY(x + 9, y + 15);
+	gotoXY(x + 4, y + 14);
+	cout << "Use Arrow Keys To Move";
+	gotoXY(x + 4, y + 15);
 	cout << "Press Enter To Choose";
-	gotoXY(x + 9, y + 16);
-	cout << "Press ESC TO Exit";
+	gotoXY(x + 4, y + 16);
+	cout << "Press 'H' Key For Move Suggestion";
+	gotoXY(x + 4, y + 17);
+	cout << "Press ESC To Exit";
 	
 	//Reset Color
 	setColor(WHITE);
@@ -698,27 +700,27 @@ void drawHardBorder(Player p) {
 	cout << char(187);
 
 	//RIGHT
-	for (int j = y + 8 + 1; j < y + 18; j++) {
+	for (int j = y + 8 + 1; j < y + 19; j++) {
 		gotoXY(x + 40, j);
 		cout << char(186);
 	}
 
 	//BOTTOM RIGHT
-	gotoXY(x + 40, y + 18);
+	gotoXY(x + 40, y + 19);
 	cout << char(188);
 
 	//BOTTOM
 	for (int i = x + 40 - 1; i >= x; i--) {
-		gotoXY(i, y + 18);
+		gotoXY(i, y + 19);
 		cout << char(205);
 	}
 
 	//BOTTOM LEFT
-	gotoXY(x, y + 18);
+	gotoXY(x, y + 19);
 	cout << char(200);
 
 	//LEFT
-	for (int j = y + 18 - 1; j >= y + 9; j--) {
+	for (int j = y + 19 - 1; j >= y + 9; j--) {
 		gotoXY(x, j);
 		cout << char(186);
 	}
@@ -752,12 +754,14 @@ void drawHardBorder(Player p) {
 	}
 
 	setColor(LIGHT_AQUA);
-	gotoXY(x + 9, y + 14);
-	cout << "Press Arrow Key To Move";
-	gotoXY(x + 9, y + 15);
+	gotoXY(x + 4, y + 14);
+	cout << "Use Arrow Keys To Move";
+	gotoXY(x + 4, y + 15);
 	cout << "Press Enter To Choose";
-	gotoXY(x + 9, y + 16);
-	cout << "Press ESC TO Exit";
+	gotoXY(x + 4, y + 16);
+	cout << "Press 'H' Key For Move Suggestion";
+	gotoXY(x + 4, y + 17);
+	cout << "Press ESC To Exit";
 
 	//Reset Color
 	setColor(WHITE);
