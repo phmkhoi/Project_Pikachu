@@ -46,6 +46,19 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
     temp = _getch();
     if (temp && temp != 224) { //If not arrow key
         if (temp == ESC_KEY) status = 2;
+        else if ((temp == 'H' || temp == 'h') && p.point > 0) {
+            moveNormalSuggestion(board);
+            p.point -= 10;
+            //Update Score
+            gotoXY(95, 9);
+            cout << "Point: ";
+            cout << "    ";
+            setColor(LIGHT_AQUA);
+            gotoXY(102, 9);
+            cout << p.point;
+            setColor(WHITE);
+            return;
+        }
         else if (temp == ENTER_KEY) {
             if (pos.x == selectedPos[0].x && pos.y == selectedPos[0].y) {
                 board[selectedPos[0].y][selectedPos[0].x].drawCell(BLACK + RED * 16);
@@ -81,7 +94,9 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
                             //Update Score
                             gotoXY(95, 9);
                             cout << "Point: ";
+                            cout << "    ";
                             setColor(LIGHT_AQUA);
+                            gotoXY(102, 9);
                             cout << p.point;
                             setColor(WHITE);
 
@@ -305,6 +320,52 @@ void move(NormalMode** board, Position& pos, int& status, Player& p, Position se
     }
 }
 
+void drawNormalSuggestCell(NormalMode** board, int row, int column, int color) {
+    int x = column + 1, y = row + 1; //coordinate of cell
+
+    setColor(color);
+    for (int i = 1; i < 4; i++) {
+        gotoXY(x * 10 + 6 + 1, y * 4 + i + 2);
+        cout << "         ";
+    }
+    setColor(color);
+    gotoXY(x * 10 + 5 + 6, y * 4 + 4);
+    cout << board[row][column].p_mon;
+    setColor(WHITE); //Reset Color
+}
+
+void moveNormalSuggestion(NormalMode** board) {
+    char check = 'A';
+    while (check >= 'A' && check <= 'Z') {
+        int cnt = 0;
+        int* position = new int[NORMAL_HEIGHT * NORMAL_WIDTH];
+
+        //Locate existing elements
+        for (int i = 0; i < NORMAL_HEIGHT; i++)
+            for (int j = 0; j < NORMAL_WIDTH; j++)
+                if (board[i][j].p_mon == check && board[i][j].exist) {
+                    position[cnt++] = i;
+                    position[cnt++] = j;
+                }
+
+        //Check if there're valid pairs
+        for (int i = 0; i < cnt - 2; i += 2)
+            for (int j = i + 2; j < cnt; j += 2)
+                if (allCheck(board, position[i], position[i + 1], position[j], position[j + 1])) {
+                    drawNormalSuggestCell(board, position[i], position[i + 1], WHITE + PURPLE * 16);
+                    drawNormalSuggestCell(board, position[j], position[j + 1], WHITE + PURPLE * 16);
+                    Sleep(700);
+                    drawNormalSuggestCell(board, position[i], position[i + 1], WHITE);
+                    drawNormalSuggestCell(board, position[j], position[j + 1], WHITE);
+                    delete[] position;
+                    return;
+                }
+
+        check++;
+        delete[] position;
+    }
+}
+
 void normalMode(Player& p) {
     gameStartSound();
     drawNormalBorder(p);
@@ -338,6 +399,8 @@ void normalMode(Player& p) {
         printBoard(board);
 
         move(board, cur_pos, status, p, selected_pos, couple);
+
+        if (status == 3) break;
 
         if ((!checkValidPairs(board))) status = 1;
     }

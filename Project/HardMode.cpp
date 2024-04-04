@@ -60,7 +60,7 @@ void deleteList(HardMode** board) {
             temp = board[i];
             board[i] = board[i]->p_next;
             temp->deleteCell();
-            if (temp->column < 5) displayHardBackground(bg, temp->column, i);
+            if (temp->column < 6) displayHardBackground(bg, temp->column, i);
             Sleep(500);
             delete temp;
         }
@@ -85,7 +85,22 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
 
     //If Not Arrow Key
     if (temp && temp != 224) {
-        if (temp == ESC_KEY) status = 2;
+        if (temp == ESC_KEY) status = 3;
+        else if ((temp == 'h' || temp == 'H') && p.point > 0) {
+            moveHardSuggestion(board);
+            p.point -= 10;
+
+            //Update Score
+            gotoXY(95, 9);
+            cout << "Point: ";
+            cout << "    ";
+            setColor(LIGHT_AQUA);
+            gotoXY(102, 9);
+            cout << p.point;
+            setColor(WHITE);
+            return;
+
+        }
         else if (temp == ENTER_KEY) {
             if (pos.x == selectedPos[0].x && pos.y == selectedPos[0].y) {
                 HardMode* temp = findPokeBall(board, pos.y, pos.x);
@@ -125,7 +140,9 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
                             //Update Score
                             gotoXY(95, 9);
                             cout << "Point: ";
+                            cout << "    ";
                             setColor(LIGHT_AQUA);
+                            gotoXY(102, 9);
                             cout << p.point;
                             setColor(WHITE);
 
@@ -346,6 +363,58 @@ void move(HardMode** board, Position& pos, int& status, Player& p, Position sele
     }
 }
 
+void drawHardSuggestCell(HardMode** board, int row, int column, int color, char pokemon) {
+    int x = column + 1, y = row + 1; //coordinate of cell
+
+    setColor(color);
+    for (int i = 1; i < 4; i++) {
+        gotoXY(x * 10 + 1, y * 4 + i - 2);
+        cout << "         ";
+    }
+
+    setColor(color);
+    gotoXY(x * 10 + 5, y * 4 + 2 - 2);
+    cout << pokemon;
+    setColor(WHITE); //Reset Color
+}
+
+void moveHardSuggestion(HardMode** board) {
+    HardMode* head, * temp;
+    for (int i = 0; i < HARD_HEIGHT; i++) {
+
+        //Locate existing nodes
+        head = board[i];
+        while (head != NULL) {
+            int j = i;
+            temp = head->p_next;
+            while (temp == NULL && j < 5) {
+                j++;
+                temp = board[j];
+            }
+
+            //Check if there're valid pairs
+            while (temp != NULL) {
+                if (head->p_mon == temp->p_mon)
+                    if (allCheck(board, head->row, head->column, temp->row, temp->column)) {
+                        char pokemon = head->p_mon;
+                        drawHardSuggestCell(board, head->row, head->column, WHITE + PURPLE * 16, pokemon);
+                        drawHardSuggestCell(board, temp->row, temp->column, WHITE + PURPLE * 16, pokemon);
+                        Sleep(500);
+                        drawHardSuggestCell(board, head->row, head->column, WHITE, pokemon);
+                        drawHardSuggestCell(board, temp->row, temp->column, WHITE, pokemon);
+                        return;
+                    }
+                temp = temp->p_next;
+                if ((temp == NULL) && (j < 5)) {
+                    j++;
+                    temp = findPokeBall(board, j, 0);
+                }
+            }
+            head = head->p_next;
+        }
+    }
+}
+
 void difficultMode(Player& p) {
     gameStartSound();
     srand(time(0));
@@ -370,6 +439,8 @@ void difficultMode(Player& p) {
         renderList(board);
 
         move(board, curPosition, status, p, selectedPos, couple);
+
+        if (status == 3) break;
 
         if ((!checkValidPairs(board))) status = 1;
     }

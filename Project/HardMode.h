@@ -12,4 +12,6 @@ void initList(HardMode**);
 void deleteList(HardMode**);
 void renderList(HardMode**);
 void move(HardMode**, Position&, int&, Player&, Position[], int&);
+void drawHardSuggestCell(HardMode**, int, int, int, char);
+void moveHardSuggestion(HardMode**);
 void difficultMode(Player&);

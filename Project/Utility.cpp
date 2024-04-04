@@ -275,7 +275,7 @@ void displayNormalBackground(char bg[][41], int x, int y) {
 //https://www.deviantart.com/dazzyallen/art/Bulbasaur-257570205
 void getHardBackground(char bg[][50]) {
 	ifstream ifs;
-	ifs.open("HardBG.txt", ios::in);
+	ifs.open("HardBG.txt");
 	if (ifs) {
 		for (int i = 0; i < 25; i++) {
 			for (int j = 0; j < 50; j++) {
@@ -296,9 +296,10 @@ void displayHardBackground(char bg[][50], int x, int y) {
 
 	//print bg from each cell
 	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < 11; j++) {
-			gotoXY((x + 1) * 10 + j + 1, (y + 1) * 4 + i - 2);
-			cout << bg[y * 4 + i][x * 10 + j];
+		for (int j = 0; j < 12; j++) {
+			gotoXY((x + 1) * 9.25 + j + 2, (y + 1) * 4 + i - 2);
+			if ((y * 4 + 1) <= 24 && (x * 10 + j) <= 49) 
+				cout << bg[y * 4 + i][x * 10 + j];
 		}
 	}
 

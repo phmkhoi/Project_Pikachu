@@ -296,25 +296,24 @@ void DifMode(HardMode** board, int r1, int c1, int r2, int c2, char bg[][50]) {
 
 bool checkValidPairs(HardMode** board) {
 	HardMode* head, * temp;
-	for (int i = 0; i < 6; i++) {
+	for (int i = 0; i < HARD_HEIGHT; i++) {
 
         //Locate existing nodes
 		head = board[i];
 		while (head != NULL) {
 			int j = i;
 			temp = head->p_next;
-			while (temp == NULL && j < 6) {
+			while (temp == NULL && j < 5) {
 				j++;
 				temp = board[j];
 			}
-
             //Check if there're valid pairs
 			while (temp != NULL) {
 				if (head->p_mon == temp->p_mon) 
 					if (allCheck(board, head->row, head->column, temp->row, temp->column))
 						return true;
 				temp = temp->p_next;
-				if ((temp == NULL) && (j < 6)) {
+				if ((temp == NULL) && (j < 5)) {
 					j++;
 					temp = findPokeBall(board, j, 0);
 				}

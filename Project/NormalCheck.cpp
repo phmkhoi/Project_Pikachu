@@ -261,7 +261,7 @@ bool allCheck(NormalMode** p_ball, int r1, int c1, int r2, int c2) {
 
 bool checkValidPairs(NormalMode** board) {
 	char check = 'A';
-	while (check >= 'A' && check <= 'Z') {
+	while (check >= 'A' && check <= 'C') {
 		int cnt = 0;
 		int* pos = new int[NORMAL_HEIGHT * NORMAL_WIDTH];
 

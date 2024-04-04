@@ -1,5 +1,3 @@
 vippro123,360
-Khoi,200
+B,200
 ethen,100
-khoi,180
-duy,360

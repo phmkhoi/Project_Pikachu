@@ -124,7 +124,6 @@ void NormalMode::drawCell(int color) {
 		setColor(WHITE); //reset color
 	}
 	else {
-
 		//print letter in cell
 		setColor(WHITE);
 		gotoXY(x * 10 + 5 + 6, y * 4 + 4);

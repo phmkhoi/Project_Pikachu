@@ -16,4 +16,6 @@ void initBoard(NormalMode**);
 void deleteBoard(NormalMode**);
 void printBoard(NormalMode**);
 void move(NormalMode**, Position&, int&, Player&, Position[], int&);
+void drawNormalSuggestCell(NormalMode**, int, int, int);
+void moveNormalSuggestion(NormalMode**);
 void normalMode(Player&);
